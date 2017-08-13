@@ -1,10 +1,11 @@
 import {put} from 'redux-saga/effects';
 import UserAction from './UserAction';
 import LoadingAction from '../loading/LoadingAction';
+import IAction from '../../interfaces/IAction';
 
 class UserSaga {
 
-    static* loadUser(action) {
+    static* loadUser(action: IAction<void> = null) {
         yield put({
             type: LoadingAction.SET_LOADING,
             payload: true,

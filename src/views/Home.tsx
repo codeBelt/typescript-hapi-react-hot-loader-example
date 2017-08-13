@@ -7,22 +7,29 @@ import {Dispatch} from 'redux';
 import IMetaReducerState from '../interfaces/reducers/IMetaReducerState';
 import IUserReducerState from '../interfaces/reducers/IUserReducerState';
 
-const mapStateToProps = (state: IStore) => ({
+interface IStateToProps {
+    readonly user: IUserReducerState;
+}
+
+interface IDispatchToProps {
+    loadUser: () => void;
+    setMeta: (meta: IMetaReducerState) => void;
+}
+
+const mapStateToProps = (state: IStore): IStateToProps => ({
     user: state.userReducer,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
+const mapDispatchToProps = (dispatch: Dispatch<any>): IDispatchToProps => ({
     loadUser: () => dispatch(UserAction.loadUser()),
     setMeta: (meta: IMetaReducerState) => dispatch(MetaAction.setMeta(meta)),
 });
 
-interface IHomeProps {
-    readonly user: IUserReducerState;
-    loadUser: () => void,
-    setMeta: (meta: IMetaReducerState) => void,
+
+interface IHomeProps extends IStateToProps, IDispatchToProps {
 }
 
-class Home extends React.Component<IHomeProps, void> {
+class Home extends React.Component<IStateToProps & IDispatchToProps, void> {
 
     componentWillMount(): void {
         this.props.setMeta({
@@ -58,5 +65,5 @@ class Home extends React.Component<IHomeProps, void> {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect<IStateToProps, IDispatchToProps, any>(mapStateToProps, mapDispatchToProps)(Home);
 

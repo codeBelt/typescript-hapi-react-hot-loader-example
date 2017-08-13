@@ -1,5 +1,5 @@
 import {renderToString} from 'react-dom/server';
-import path from 'path';
+import * as path from 'path';
 import * as fse from 'fs-extra';
 import * as React from 'react';
 import RouterWrapper from '../../RouterWrapper';
@@ -16,7 +16,7 @@ class ReactController implements IController {
         server.route({
             method: 'GET',
             path: '/{route*}',
-            handler: async (request: hapi.Request, reply: hapi.ReplyNoContinue): Promise<void> => {
+            handler: async (request: Hapi.Request, reply: Hapi.ReplyNoContinue): Promise<void> => {
                 const store: ISagaStore<IStore> = ProviderService.createProviderStore({}, true);
                 const context: any = {};
                 const app = (

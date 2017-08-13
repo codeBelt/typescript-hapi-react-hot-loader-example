@@ -17,7 +17,7 @@ interface IProviderWrapperProps {
     context?: any;
 }
 
-const RouterWrapper: React.StatelessComponent<IStore> = (props: IProviderWrapperProps): JSX.Element  => {
+const RouterWrapper: React.StatelessComponent<IProviderWrapperProps> = (props: IProviderWrapperProps): JSX.Element  => {
     const Router = props.isServerSide ? StaticRouter : BrowserRouter;
 
     return (

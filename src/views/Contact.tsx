@@ -1,22 +1,24 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import MetaAction from '../store/meta/MetaAction';
-import {Field, FormProps, reduxForm} from 'redux-form';
+import {reduxForm, Field, FormProps, FormErrors} from 'redux-form';
 import IStore from '../interfaces/IStore';
 import {Dispatch} from 'redux';
+import IContactForm from '../interfaces/IContactForm';
+import IMetaReducerState from '../interfaces/reducers/IMetaReducerState';
 
 const mapStateToProps = (state: IStore) => ({});
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
-    setMeta: (meta) => dispatch(MetaAction.setMeta(meta)),
+    setMeta: (meta: IMetaReducerState) => dispatch(MetaAction.setMeta(meta)),
 });
 
-interface IContactProps extends FormProp {
+interface IContactProps extends FormProps {
 }
 
-class Contact extends React.Component<IContactProps, void> {
+class Contact extends React.Component {
 
-    _handleSubmitHandler = (formData) => this._onFormSubmit(formData);
+    private _handleSubmitHandler: Function = (formData: IContactForm) => this._onFormSubmit(formData);
 
     componentWillMount(): void {
         this.props.setMeta({title: 'Contact Page'});
@@ -121,13 +123,13 @@ class Contact extends React.Component<IContactProps, void> {
         );
     }
 
-    _onFormSubmit(formData) {
+    private _onFormSubmit(formData: IContactForm): void {
         console.info(formData);
 
         window.alert(JSON.stringify(formData, null, 2));
     }
 
-    _renderInputField(field) {
+    private _renderInputField(field: any): JSX.Element {
         const {meta: {touched, error}} = field;
         const className = `small text-danger ${touched && error ? '' : 'd-none'}`;
 
@@ -147,7 +149,7 @@ class Contact extends React.Component<IContactProps, void> {
         );
     }
 
-    _renderCheckbox(field) {
+    private _renderCheckbox(field: any): JSX.Element {
         return (
             <label
                 className="form-check-label"
@@ -163,7 +165,7 @@ class Contact extends React.Component<IContactProps, void> {
         );
     }
 
-    _renderRadio(field) {
+    private _renderRadio(field: any): JSX.Element {
         return (
             <div className="form-check">
                 <label htmlFor={field.input.name} className="form-check-label">
@@ -183,7 +185,7 @@ class Contact extends React.Component<IContactProps, void> {
         );
     }
 
-    _renderTextArea(field) {
+    private _renderTextArea(field: any): JSX.Element {
         const {meta: {touched, error}} = field;
         const className = `small text-danger ${touched && error ? '' : 'd-none'}`;
 
@@ -203,7 +205,7 @@ class Contact extends React.Component<IContactProps, void> {
     }
 
     /* eslint-disable jsx-a11y/label-has-for */
-    _renderSelect(field) {
+    private _renderSelect(field: any): JSX.Element {
         return (
             <div>
                 <label htmlFor={field.name}>
@@ -228,9 +230,9 @@ class Contact extends React.Component<IContactProps, void> {
 
 export default reduxForm({
     form: 'contactForm',
-    validate: (formData) => {
-        const errors = {};
-        const validEmailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+    validate: (formData: Readonly<IContactForm>) => {
+        const errors: FormErrors<IContactForm> = {};
+        const validEmailRegex: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
         if (!validEmailRegex.test(formData.email)) {
             errors.email = 'Invalid email address';

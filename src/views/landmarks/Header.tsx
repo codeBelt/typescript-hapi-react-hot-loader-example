@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {NavLink} from 'react-router-dom';
 
-class Header extends React.Component<void, void> {
+class Header extends React.Component {
 
     public render(): JSX.Element {
         return (

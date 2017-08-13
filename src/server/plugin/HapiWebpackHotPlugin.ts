@@ -1,15 +1,15 @@
-import Webpack from 'webpack';
-import ServerManager from '../ServerManager';
-import HapiWebpackPlugin from 'hapi-webpack-plugin';
-import notifier from 'node-notifier';
+import * as Webpack from 'webpack';
+import * as HapiWebpackPlugin from 'hapi-webpack-plugin';
+import * as notifier from 'node-notifier';
 import * as Hapi from 'hapi';
+import ServerManager from '../ServerManager';
 
 class HapiWebpackHotPlugin {
 
     constructor(server: Hapi.Server) {
-        const compiler = new Webpack(require('../../../webpack.config.js'));
+        const compiler: any = new Webpack(require('../../../webpack.config.js'));
 
-        compiler.plugin('done', (stats) => this._onDone(stats));
+        compiler.plugin('done', (stats: any) => this._onDone(stats));
 
         const options = {
             assets: {
@@ -32,7 +32,7 @@ class HapiWebpackHotPlugin {
         });
     }
 
-    private _onDone(stats): void {
+    private _onDone(stats: any): void {
         const pkg = require('../../../package.json');
         const time = ((stats.endTime - stats.startTime) / 1000).toFixed(2);
 
@@ -44,7 +44,7 @@ class HapiWebpackHotPlugin {
             title: pkg.name,
             message: `WebPack is done!\n${stats.compilation.errors.length} errors in ${time}s`,
             timeout: 1,
-        });
+        } as any);
     }
 
 }

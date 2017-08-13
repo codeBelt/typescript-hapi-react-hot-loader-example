@@ -1,7 +1,7 @@
-import * as hapi from 'hapi';
+import * as Hapi from 'hapi';
 
 interface IController {
-    mapRoutes(server: hapi.Server): void;
+    mapRoutes(server: Hapi.Server): void;
 }
 
 export default IController;

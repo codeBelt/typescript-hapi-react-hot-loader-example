@@ -3,11 +3,12 @@ import {connect} from 'react-redux';
 import MetaAction from '../store/meta/MetaAction';
 import IStore from '../interfaces/IStore';
 import {Dispatch} from "redux";
+import IMetaReducerState from '../interfaces/reducers/IMetaReducerState';
 
 const mapStateToProps = (state: IStore) => ({});
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
-    setMeta: (meta) => dispatch(MetaAction.setMeta(meta)),
+    setMeta: (meta: IMetaReducerState) => dispatch(MetaAction.setMeta(meta)),
 });
 
 class About extends React.Component<any, void> {

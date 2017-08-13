@@ -20,7 +20,7 @@ const store: ISagaStore<IStore>  = ProviderService.createProviderStore(initialSt
 
 delete (window as any)['__STATE__'];
 
-const render = (Component: React.StatelessComponent) =>
+const render = (Component: any) =>
     ReactDOM.render(
         <AppContainer>
             <Component store={store} />

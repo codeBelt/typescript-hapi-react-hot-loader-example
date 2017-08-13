@@ -1,4 +1,4 @@
-import path from 'path';
+import * as path from 'path';
 import * as Hapi from 'hapi';
 import IController from '../../interfaces/IController';
 
@@ -8,7 +8,7 @@ class AssetsController implements IController{
         server.route({
             method: 'GET',
             path: '/assets/{file*}',
-            handler: (request: hapi.Request, reply: hapi.ReplyNoContinue) => {
+            handler: (request: Hapi.Request, reply: Hapi.ReplyNoContinue) => {
                 reply.file(path.resolve(__dirname, `../../public${request.path}`));
             },
         });
