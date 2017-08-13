@@ -6,7 +6,7 @@ import notifier from 'node-notifier';
 class HapiWebpackHotPlugin {
 
     constructor(server) {
-        const compiler = new Webpack(require('../../../webpack.config.js')); // eslint-disable-line global-require
+        const compiler = new Webpack(require('../../../webpack.config.js'));
 
         compiler.plugin('done', (stats) => this._onDone(stats));
 
@@ -32,7 +32,7 @@ class HapiWebpackHotPlugin {
     }
 
     _onDone(stats) {
-        const pkg = require('../../../package.json'); // eslint-disable-line global-require
+        const pkg = require('../../../package.json');
         const time = ((stats.endTime - stats.startTime) / 1000).toFixed(2);
 
         setTimeout(() => {

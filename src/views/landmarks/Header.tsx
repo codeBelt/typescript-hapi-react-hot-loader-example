@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {NavLink} from 'react-router-dom';
 
-class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class Header extends React.Component<void, void> {
 
-    render() {
+    public render(): JSX.Element {
         return (
             <div className="header clearfix">
                 <nav>

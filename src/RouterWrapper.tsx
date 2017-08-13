@@ -7,8 +7,17 @@ import Home from './views/Home';
 import Contact from './views/Contact';
 import Footer from './views/landmarks/Footer';
 import Header from './views/landmarks/Header';
+import IStore from './interfaces/IStore';
+import ISagaStore from './interfaces/ISagaStore';
 
-const RouterWrapper = (props) => {
+interface IProviderWrapperProps {
+    store: ISagaStore<IStore>;
+    isServerSide: boolean;
+    location?: string;
+    context?: any;
+}
+
+const RouterWrapper: React.StatelessComponent<IStore> = (props: IProviderWrapperProps): JSX.Element  => {
     const Router = props.isServerSide ? StaticRouter : BrowserRouter;
 
     return (

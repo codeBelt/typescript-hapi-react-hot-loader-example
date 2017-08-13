@@ -1,13 +1,15 @@
 import MetaAction from './MetaAction';
+import IMetaReducerState from '../../interfaces/reducers/IMetaReducerState';
+import IAction from '../../interfaces/IAction';
 
 class MetaReducer {
 
-    static _initialState = {
+    private static readonly _initialState: IMetaReducerState = {
         title: 'Robert is cool',
         description: '',
     };
 
-    static reduce(state = MetaReducer._initialState, action) {
+    public static reduce(state: IMetaReducerState = MetaReducer._initialState, action: IAction<any>): IMetaReducerState {
         switch (action.type) {
             case MetaAction.SET_META:
                 return MetaReducer._setMeta(state, action);
@@ -16,7 +18,7 @@ class MetaReducer {
         }
     }
 
-    static _setMeta(state, action) {
+    public static _setMeta(state: IMetaReducerState, action: IAction<IMetaReducerState>): IMetaReducerState {
         return {
             ...state,
             ...action.payload,

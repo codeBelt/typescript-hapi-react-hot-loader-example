@@ -1,8 +1,10 @@
 import UserAction from './UserAction';
+import IUserReducerState from '../../interfaces/reducers/IUserReducerState';
+import IAction from '../../interfaces/IAction';
 
 class UserReducer {
 
-    static _initialState = {
+    private static readonly _initialState: IUserReducerState = {
         name: {
             title: '',
             first: '',
@@ -22,7 +24,7 @@ class UserReducer {
         },
     };
 
-    static reduce(state = UserReducer._initialState, action) {
+    public static reduce(state: IUserReducerState = UserReducer._initialState, action: IAction<any>): IUserReducerState {
         switch (action.type) {
             case UserAction.LOAD_USER_SUCCESS:
                 return UserReducer._loadUser(state, action);
@@ -31,7 +33,7 @@ class UserReducer {
         }
     }
 
-    static _loadUser(state, action) {
+    public static _loadUser(state: IUserReducerState, action: IAction<IUserReducerState>): IUserReducerState {
         return {
             ...state,
             ...action.payload,

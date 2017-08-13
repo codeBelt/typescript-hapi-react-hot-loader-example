@@ -1,20 +1,22 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import MetaAction from '../store/meta/MetaAction';
+import IStore from '../interfaces/IStore';
+import {Dispatch} from "redux";
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state: IStore) => ({});
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
     setMeta: (meta) => dispatch(MetaAction.setMeta(meta)),
 });
 
-class About extends React.Component {
+class About extends React.Component<any, void> {
 
-    componentWillMount() {
+    componentWillMount(): void {
         this.props.setMeta({title: 'About Page'});
     }
 
-    render() {
+    public render(): JSX.Element {
         return (
             <div>
                 <div className="jumbotron">

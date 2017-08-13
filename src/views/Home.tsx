@@ -2,26 +2,28 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import UserAction from '../store/user/UserAction';
 import MetaAction from '../store/meta/MetaAction';
+import IStore from '../interfaces/IStore';
+import {Dispatch} from 'redux';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: IStore) => ({
     user: state.userReducer,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
     loadUser: () => dispatch(UserAction.loadUser()),
     setMeta: (meta) => dispatch(MetaAction.setMeta(meta)),
 });
 
-class Home extends React.Component {
+class Home extends React.Component<any, void> {
 
-    componentWillMount() {
+    componentWillMount(): void {
         this.props.setMeta({
             title: 'Home Page',
             description: 'This is the Home Page',
         });
     }
 
-    render() {
+    public render(): JSX.Element {
         const user = this.props.user;
 
         return (

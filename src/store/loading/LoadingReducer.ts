@@ -1,12 +1,14 @@
 import LoadingAction from './LoadingAction';
+import ILoadingReducerState from '../../interfaces/reducers/ILoadingReducerState';
+import IAction from '../../interfaces/IAction';
 
 class LoadingReducer {
 
-    static _initialState = {
+    private static readonly _initialState: ILoadingReducerState = {
         isLoading: false,
     };
 
-    static reduce(state = LoadingReducer._initialState, action) {
+    public static reduce(state: ILoadingReducerState = LoadingReducer._initialState, action: IAction<any>): ILoadingReducerState {
         switch (action.type) {
             case LoadingAction.SET_LOADING:
                 return LoadingReducer._setLoading(state, action);
@@ -15,7 +17,7 @@ class LoadingReducer {
         }
     }
 
-    static _setLoading(state, action) {
+    private static _setLoading(state: ILoadingReducerState, action: IAction<boolean>): ILoadingReducerState {
         return {
             ...state,
             isLoading: action.payload,

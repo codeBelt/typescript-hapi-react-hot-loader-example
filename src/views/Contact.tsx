@@ -2,22 +2,24 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import MetaAction from '../store/meta/MetaAction';
 import {Field, reduxForm} from 'redux-form';
+import IStore from '../interfaces/IStore';
+import {Dispatch} from 'redux';
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state: IStore) => ({});
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
     setMeta: (meta) => dispatch(MetaAction.setMeta(meta)),
 });
 
-class Contact extends React.Component {
+class Contact extends React.Component<any, void> {
 
     _handleSubmitHandler = (formData) => this._onFormSubmit(formData);
 
-    componentWillMount() {
+    componentWillMount(): void {
         this.props.setMeta({title: 'Contact Page'});
     }
 
-    render() {
+    public render(): JSX.Element {
         const {handleSubmit, reset} = this.props;
 
         return (
@@ -119,7 +121,7 @@ class Contact extends React.Component {
     _onFormSubmit(formData) {
         console.info(formData);
 
-        window.alert(JSON.stringify(formData, null, 2)); // eslint-disable-line no-alert
+        window.alert(JSON.stringify(formData, null, 2));
     }
 
     _renderInputField(field) {

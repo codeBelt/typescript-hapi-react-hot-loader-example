@@ -5,6 +5,8 @@ import * as React from 'react';
 import RouterWrapper from '../../RouterWrapper';
 import ProviderService from '../../services/ProviderService';
 import rootSaga from '../../store/rootSaga';
+import ISagaStore from '../../interfaces/ISagaStore';
+import IStore from '../../interfaces/IStore';
 
 class ReactController {
 
@@ -13,7 +15,7 @@ class ReactController {
             method: 'GET',
             path: '/{route*}',
             handler: async (request, reply) => {
-                const store = ProviderService.createProviderStore({}, true);
+                const store: ISagaStore<IStore> = ProviderService.createProviderStore({}, true);
                 const context = {};
                 const app = (
                     <RouterWrapper
@@ -25,9 +27,9 @@ class ReactController {
                 );
 
                 store.runSaga(rootSaga).done.then(async () => {
-                    const renderedHtml = renderToString(app);
-                    const state = store.getState();
-                    const initialState = {
+                    const renderedHtml: string = renderToString(app);
+                    const state: IStore = store.getState();
+                    const initialState: IStore = {
                         ...state,
                         renderReducer: {
                             isServerSide: true,

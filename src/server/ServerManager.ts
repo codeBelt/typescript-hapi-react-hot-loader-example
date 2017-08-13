@@ -1,4 +1,5 @@
 import * as Hapi from 'hapi';
+import IController from '../interfaces/IController';
 
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || 'localhost';
@@ -6,13 +7,13 @@ const NODE_ENV = process.env.NODE_ENV;
 
 class ServerManager {
 
-    static log = () => console.info(`\n\nServer running in ${NODE_ENV} mode at: http://${HOST}:${PORT}\n`);
+    public static log = () => console.info(`\n\nServer running in ${NODE_ENV} mode at: http://${HOST}:${PORT}\n`);
 
-    _server = new Hapi.Server({debug: {request: ['error']}});
+    private _server: Hapi.Server = new Hapi.Server({debug: {request: ['error']}});
 
-    isDevelopment = (NODE_ENV === 'development');
+    public isDevelopment: boolean = (NODE_ENV === 'development');
 
-    get server() {
+    public get server(): Hapi.Server {
         return this._server;
     }
 
@@ -23,16 +24,16 @@ class ServerManager {
         });
     }
 
-    async registerPlugin(pluginConfig) {
+    public async registerPlugin(pluginConfig: any): Promise<void> {
         await this._server.register(pluginConfig);
     }
 
-    registerController(controller) {
+    public registerController(controller: IController): void {
         controller.mapRoutes(this._server);
     }
 
-    startServer() {
-        this._server.start((error) => {
+    public startServer(): void {
+        this._server.start((error: Error) => {
             if (error) {
                 throw error;
             }

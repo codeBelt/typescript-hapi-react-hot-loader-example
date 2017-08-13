@@ -3,17 +3,19 @@ import rootReducer from '../store/rootReducer';
 import {composeWithDevTools} from 'redux-devtools-extension/developmentOnly';
 import createSagaMiddleware, {END} from 'redux-saga';
 import rootSaga from '../store/rootSaga';
+import IStore from '../interfaces/IStore';
+import ISagaStore from '../interfaces/ISagaStore';
 
 class ProviderService {
 
-    static createProviderStore(initialState = {}, isServerSide = false) {
+    static createProviderStore(initialState: any = {}, isServerSide: boolean = false): ISagaStore<IStore> {
         const sagaMiddleware = createSagaMiddleware();
 
         const store = createStore(
             rootReducer,
             initialState,
             composeWithDevTools(applyMiddleware(sagaMiddleware)),
-        );
+        ) as ISagaStore<IStore>;
 
         if (isServerSide) {
             store.runSaga = sagaMiddleware.run;
@@ -22,17 +24,15 @@ class ProviderService {
             sagaMiddleware.run(rootSaga);
         }
 
-        // Saga reloading https://gist.github.com/markerikson/dc6cee36b5b6f8d718f2e24a249e0491
-
         ProviderService._setupHotReloading(store);
 
         return store;
     }
 
-    static _setupHotReloading(store) {
+    private static _setupHotReloading(store: ISagaStore<IStore>) {
         if (module.hot) {
             module.hot.accept('../store/rootReducer', () => {
-                const nextReducer = require('../store/rootReducer').default; // eslint-disable-line global-require
+                const nextReducer = require('../store/rootReducer').default;
 
                 store.replaceReducer(nextReducer);
             });

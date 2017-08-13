@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-class Footer extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+class Footer extends React.PureComponent {
 
-    render() {
+    public render(): JSX.Element {
         return (
             <footer className="footer">
                 <p>&copy; {'Company 2017'}</p>

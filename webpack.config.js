@@ -21,16 +21,16 @@ const config = {
             'react-hot-loader/patch', // activate HMR for React
             `webpack-hot-middleware/client?path=http://${HOST}:${PORT}/__webpack_hmr`, // bundle the client for webpack-hot-middleware and connect to the provided endpoint
 
-            './src/client.jsx',
+            './src/client.tsx',
         ]
         : [
             'babel-polyfill',
 
-            './src/client.jsx',
+            './src/client.tsx',
         ],
 
     resolve: {
-        extensions: ['.js', '.jsx', '.json'],
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
     },
 
     output: {
@@ -49,8 +49,19 @@ const config = {
                 ),
             },
             {
-                test: /\.jsx?$/,
-                use: ['babel-loader'],
+                test: /\.tsx?$/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                    },
+                    {
+                        loader: 'awesome-typescript-loader',
+                        options: {
+                            configFileName: 'tsconfig.json',
+                            // useBabel: true,
+                        },
+                    },
+                ],
                 include: path.join(__dirname, 'src'),
             },
         ],

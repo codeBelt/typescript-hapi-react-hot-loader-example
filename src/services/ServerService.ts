@@ -1,6 +1,6 @@
 class ServerService {
 
-    static createLocationObject(request) {
+    public static createLocationObject(request) {
         const protocal = request.headers['x-forwarded-proto'] || request.connection.info.protocol;
 
         return {
