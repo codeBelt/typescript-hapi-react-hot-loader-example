@@ -4,6 +4,8 @@ import UserAction from '../store/user/UserAction';
 import MetaAction from '../store/meta/MetaAction';
 import IStore from '../interfaces/IStore';
 import {Dispatch} from 'redux';
+import IMetaReducerState from '../interfaces/reducers/IMetaReducerState';
+import IUserReducerState from '../interfaces/reducers/IUserReducerState';
 
 const mapStateToProps = (state: IStore) => ({
     user: state.userReducer,
@@ -11,10 +13,16 @@ const mapStateToProps = (state: IStore) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
     loadUser: () => dispatch(UserAction.loadUser()),
-    setMeta: (meta) => dispatch(MetaAction.setMeta(meta)),
+    setMeta: (meta: IMetaReducerState) => dispatch(MetaAction.setMeta(meta)),
 });
 
-class Home extends React.Component<any, void> {
+interface IHomeProps {
+    readonly user: IUserReducerState;
+    loadUser: () => void,
+    setMeta: (meta: IMetaReducerState) => void,
+}
+
+class Home extends React.Component<IHomeProps, void> {
 
     componentWillMount(): void {
         this.props.setMeta({

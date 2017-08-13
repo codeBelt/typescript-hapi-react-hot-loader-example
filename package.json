@@ -50,6 +50,7 @@
     "@types/hapi": "16.1.8",
     "@types/inert": "4.2.2",
     "@types/node": "8.0.20",
+    "@types/node-notifier": "0.0.28",
     "@types/react": "16.0.2",
     "@types/react-dom": "15.5.2",
     "@types/react-hot-loader": "3.0.3",

@@ -7,16 +7,18 @@ import ProviderService from '../../services/ProviderService';
 import rootSaga from '../../store/rootSaga';
 import ISagaStore from '../../interfaces/ISagaStore';
 import IStore from '../../interfaces/IStore';
+import * as Hapi from 'hapi';
+import IController from '../../interfaces/IController';
 
-class ReactController {
+class ReactController implements IController {
 
-    mapRoutes(server) {
+    public mapRoutes(server: Hapi.Server): void {
         server.route({
             method: 'GET',
             path: '/{route*}',
-            handler: async (request, reply) => {
+            handler: async (request: hapi.Request, reply: hapi.ReplyNoContinue): Promise<void> => {
                 const store: ISagaStore<IStore> = ProviderService.createProviderStore({}, true);
-                const context = {};
+                const context: any = {};
                 const app = (
                     <RouterWrapper
                         store={store}
@@ -36,7 +38,7 @@ class ReactController {
                         },
                     };
 
-                    let html = await fse.readFile(path.resolve(__dirname, '../../public/index.html'), 'utf8');
+                    let html: string = await fse.readFile(path.resolve(__dirname, '../../public/index.html'), 'utf8');
                     html = html.replace('{title}', state.metaReducer.title);
                     html = html.replace('{description}', state.metaReducer.description);
                     html = html.replace('{content}', renderedHtml);

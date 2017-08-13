@@ -54,6 +54,12 @@
   dependencies:
     "@types/mime-db" "*"
 
+"@types/node-notifier@0.0.28":
+  version "0.0.28"
+  resolved "https://registry.yarnpkg.com/@types/node-notifier/-/node-notifier-0.0.28.tgz#86ba3d3aa8d918352cc3191d88de328b20dc93c1"
+  dependencies:
+    "@types/node" "*"
+
 "@types/node@*", "@types/node@8.0.20":
   version "8.0.20"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.20.tgz#65c7375255c24b184c215a5d0b63247c32f01c91"

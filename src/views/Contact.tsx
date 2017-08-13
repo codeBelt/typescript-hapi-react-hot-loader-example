@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import MetaAction from '../store/meta/MetaAction';
-import {Field, reduxForm} from 'redux-form';
+import {Field, FormProps, reduxForm} from 'redux-form';
 import IStore from '../interfaces/IStore';
 import {Dispatch} from 'redux';
 
@@ -11,7 +11,10 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
     setMeta: (meta) => dispatch(MetaAction.setMeta(meta)),
 });
 
-class Contact extends React.Component<any, void> {
+interface IContactProps extends FormProp {
+}
+
+class Contact extends React.Component<IContactProps, void> {
 
     _handleSubmitHandler = (formData) => this._onFormSubmit(formData);
 

@@ -2,10 +2,11 @@ import Webpack from 'webpack';
 import ServerManager from '../ServerManager';
 import HapiWebpackPlugin from 'hapi-webpack-plugin';
 import notifier from 'node-notifier';
+import * as Hapi from 'hapi';
 
 class HapiWebpackHotPlugin {
 
-    constructor(server) {
+    constructor(server: Hapi.Server) {
         const compiler = new Webpack(require('../../../webpack.config.js'));
 
         compiler.plugin('done', (stats) => this._onDone(stats));
@@ -31,7 +32,7 @@ class HapiWebpackHotPlugin {
         });
     }
 
-    _onDone(stats) {
+    private _onDone(stats): void {
         const pkg = require('../../../package.json');
         const time = ((stats.endTime - stats.startTime) / 1000).toFixed(2);
 
