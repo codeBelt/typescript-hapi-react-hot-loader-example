@@ -107,9 +107,9 @@ const config = {
             ? null
             : new webpack.optimize.CommonsChunkPlugin({name: 'manifest'}),
 
-        isDevelopment
-            ? null
-            : new webpack.optimize.UglifyJsPlugin(),
+        isProduction
+            ? new webpack.optimize.UglifyJsPlugin()
+            : null,
 
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src/index.html'),

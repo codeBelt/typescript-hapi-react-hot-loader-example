@@ -6,17 +6,19 @@ import IStore from '../interfaces/IStore';
 import {Dispatch} from 'redux';
 import IContactForm from '../interfaces/IContactForm';
 import IMetaReducerState from '../interfaces/reducers/IMetaReducerState';
+import IAction from '../interfaces/IAction';
 
 const mapStateToProps = (state: IStore) => ({});
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
-    setMeta: (meta: IMetaReducerState) => dispatch(MetaAction.setMeta(meta)),
+    setMeta: (meta: IMetaReducerState): IAction<IMetaReducerState> => dispatch(MetaAction.setMeta(meta)),
 });
 
 interface IContactProps extends FormProps {
+    setMeta: (meta: IMetaReducerState) => IAction<IMetaReducerState>;
 }
 
-class Contact extends React.Component {
+class Contact extends React.Component<IContactProps, {}> {
 
     private _handleSubmitHandler: Function = (formData: IContactForm) => this._onFormSubmit(formData);
 

@@ -9,7 +9,6 @@ import ProviderService from './services/ProviderService';
 import IStore from './interfaces/IStore';
 import ISagaStore from './interfaces/ISagaStore';
 
-const rootEl: HTMLElement = document.getElementById('root');
 const initialState: IStore = {
     ...(window as any)['__STATE__'],
     renderReducer: {
@@ -17,6 +16,7 @@ const initialState: IStore = {
     },
 };
 const store: ISagaStore<IStore>  = ProviderService.createProviderStore(initialState);
+const rootEl: HTMLElement = document.getElementById('root');
 
 delete (window as any)['__STATE__'];
 

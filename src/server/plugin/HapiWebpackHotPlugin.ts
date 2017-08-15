@@ -7,7 +7,8 @@ import ServerManager from '../ServerManager';
 class HapiWebpackHotPlugin {
 
     constructor(server: Hapi.Server) {
-        const compiler: any = new Webpack(require('../../../webpack.config.js'));
+        const config: Webpack.Configuration = require('../../../webpack.config.js');
+        const compiler: any = Webpack(config);
 
         compiler.plugin('done', (stats: any) => this._onDone(stats));
 
