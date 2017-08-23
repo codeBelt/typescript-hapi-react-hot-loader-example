@@ -58,13 +58,9 @@ const config = {
                 test: /\.tsx?$/,
                 use: [
                     {
-                        loader: 'babel-loader',
-                    },
-                    {
                         loader: 'awesome-typescript-loader',
                         options: {
                             configFileName: 'tsconfig.json',
-                            // useBabel: true,
                         },
                     },
                 ],

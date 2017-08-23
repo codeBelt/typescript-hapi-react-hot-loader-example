@@ -31,5 +31,5 @@ const render = (Component: any) =>
 render(RouterWrapper);
 
 if (module.hot) {
-    module.hot.accept('./RouterWrapper', () => render(RouterWrapper));
+    module.hot.accept('./RouterWrapper', () => render(require("./RouterWrapper").default));
 }
