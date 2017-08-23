@@ -25,11 +25,7 @@ const mapDispatchToProps = (dispatch: Dispatch<any>): IDispatchToProps => ({
     setMeta: (meta: IMetaReducerState) => dispatch(MetaAction.setMeta(meta)),
 });
 
-
-interface IHomeProps extends IStateToProps, IDispatchToProps {
-}
-
-class Home extends React.Component<IStateToProps & IDispatchToProps, void> {
+class Home extends React.Component<IStateToProps & IDispatchToProps, any> {
 
     componentWillMount(): void {
         this.props.setMeta({

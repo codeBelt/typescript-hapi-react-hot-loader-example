@@ -2,8 +2,15 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import MetaAction from '../store/meta/MetaAction';
 import IStore from '../interfaces/IStore';
-import {Dispatch} from "redux";
+import {Dispatch} from 'redux';
 import IMetaReducerState from '../interfaces/reducers/IMetaReducerState';
+
+interface IStateToProps {
+}
+
+interface IDispatchToProps {
+    setMeta: (meta: IMetaReducerState) => void;
+}
 
 const mapStateToProps = (state: IStore) => ({});
 
@@ -11,7 +18,7 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
     setMeta: (meta: IMetaReducerState) => dispatch(MetaAction.setMeta(meta)),
 });
 
-class About extends React.Component<any, void> {
+class About extends React.Component<IStateToProps & IDispatchToProps, any> {
 
     componentWillMount(): void {
         this.props.setMeta({title: 'About Page'});
@@ -60,4 +67,5 @@ class About extends React.Component<any, void> {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(About);
+export default connect<IStateToProps, IDispatchToProps, any>(mapStateToProps, mapDispatchToProps)(About);
+
