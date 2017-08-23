@@ -1,24 +1,28 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import MetaAction from '../store/meta/MetaAction';
-import {reduxForm, Field, FormProps, FormErrors} from 'redux-form';
-import IStore from '../interfaces/IStore';
+import {reduxForm, Field, FormProps, FormErrors, InjectedFormProps} from 'redux-form';
 import {Dispatch} from 'redux';
-import IContactForm from '../interfaces/IContactForm';
-import IMetaReducerState from '../interfaces/reducers/IMetaReducerState';
-import IAction from '../interfaces/IAction';
+import IMetaReducerState from '../interfaces/store/reducers/IMetaReducerState';
+import IStore from '../interfaces/store/IStore';
+import IContactForm from '../interfaces/views/IContactForm';
+import CustomField from './CustomField';
 
-const mapStateToProps = (state: IStore) => ({});
+interface IStateToProps extends InjectedFormProps<IContactForm> {}
 
-const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
-    setMeta: (meta: IMetaReducerState): IAction<IMetaReducerState> => dispatch(MetaAction.setMeta(meta)),
-});
-
-interface IContactProps extends FormProps {
-    setMeta: (meta: IMetaReducerState) => IAction<IMetaReducerState>;
+interface IDispatchToProps {
+    setMeta: (meta: IMetaReducerState) => void;
 }
 
-class Contact extends React.Component<IContactProps, {}> {
+const mapStateToProps = (state: IStore): IStateToProps => ({
+
+});
+
+const mapDispatchToProps = (dispatch: Dispatch<any>): IDispatchToProps => ({
+    setMeta: (meta: IMetaReducerState) => dispatch(MetaAction.setMeta(meta)),
+});
+
+class Contact extends React.Component<IStateToProps & IDispatchToProps, {}> {
 
     private _handleSubmitHandler: Function = (formData: IContactForm) => this._onFormSubmit(formData);
 
@@ -37,7 +41,7 @@ class Contact extends React.Component<IContactProps, {}> {
                 </div>
                 <form onSubmit={handleSubmit(this._handleSubmitHandler)}>
                     <div className="form-group">
-                        <Field
+                        <CustomField
                             component={this._renderInputField}
                             label="Name"
                             name="name"
@@ -46,7 +50,7 @@ class Contact extends React.Component<IContactProps, {}> {
                         />
                     </div>
                     <div className="form-group">
-                        <Field
+                        <CustomField
                             component={this._renderInputField}
                             label="Email"
                             name="email"
@@ -61,14 +65,14 @@ class Contact extends React.Component<IContactProps, {}> {
                         </small>
                     </div>
                     <div className="form-group">
-                        <Field
+                        <CustomField
                             label={'Example select'}
                             name="exampleSelect1"
                             component={this._renderSelect}
                         />
                     </div>
                     <div className="form-group">
-                        <Field
+                        <CustomField
                             component={this._renderTextArea}
                             label="Message"
                             name="message"
@@ -78,20 +82,20 @@ class Contact extends React.Component<IContactProps, {}> {
                     <fieldset className="form-group">
                         <legend>{'Code Quality'}</legend>
 
-                        <Field
+                        <CustomField
                             component={this._renderRadio}
                             label="This code is awesome!"
                             name="codeQualityRadio"
                             option="1"
                             checked={true}
                         />
-                        <Field
+                        <CustomField
                             component={this._renderRadio}
                             label="This code is ok."
                             name="codeQualityRadio"
                             option="2"
                         />
-                        <Field
+                        <CustomField
                             component={this._renderRadio}
                             label="This code is bad."
                             name="codeQualityRadio"
@@ -100,7 +104,7 @@ class Contact extends React.Component<IContactProps, {}> {
                         />
                     </fieldset>
                     <div className="form-check">
-                        <Field
+                        <CustomField
                             component={this._renderCheckbox}
                             label="Did you star my repo?"
                             name="starred"
@@ -250,4 +254,4 @@ export default reduxForm({
 
         return errors;
     },
-})(connect(mapStateToProps, mapDispatchToProps)(Contact));
+})(connect<IStateToProps, IDispatchToProps, {}>(mapStateToProps, mapDispatchToProps)(Contact));

@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {StaticRouter} from 'react-router';
 import About from './views/About';
 import Home from './views/Home';
+import Contact from './views/Contact';
 import Footer from './views/landmarks/Footer';
 import Header from './views/landmarks/Header';
 import IStore from './interfaces/store/IStore';
@@ -36,6 +37,10 @@ const RouterWrapper: React.StatelessComponent<IProviderWrapperProps> = (props: I
                         <Route
                             path="/about"
                             component={About}
+                        />
+                        <Route
+                            path="/contact"
+                            component={Contact}
                         />
                     </Switch>
                     <Footer />
