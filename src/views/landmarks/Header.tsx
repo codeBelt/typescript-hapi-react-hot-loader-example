@@ -1,7 +1,10 @@
 import * as React from 'react';
 import {NavLink} from 'react-router-dom';
 
-class Header extends React.Component {
+interface IProps {}
+interface IState {}
+
+class Header extends React.Component<IProps, IState> {
 
     public render(): JSX.Element {
         return (

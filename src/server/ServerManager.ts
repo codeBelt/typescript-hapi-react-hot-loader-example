@@ -1,5 +1,6 @@
 import * as Hapi from 'hapi';
-import IController from '../interfaces/IController';
+import IController from '../interfaces/server/IController';
+import {ServerConnectionOptions} from 'hapi';
 
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || 'localhost';
@@ -7,7 +8,7 @@ const NODE_ENV = process.env.NODE_ENV;
 
 class ServerManager {
 
-    public static log = () => console.info(`\n\nServer running in ${NODE_ENV} mode at: http://${HOST}:${PORT}\n`);
+    public static log: Function = (): void => console.info(`\n\nServer running in ${NODE_ENV} mode at: http://${HOST}:${PORT}\n`);
 
     private _server: Hapi.Server = new Hapi.Server({debug: {request: ['error']}});
 
@@ -21,7 +22,7 @@ class ServerManager {
         this._server.connection({
             host: HOST,
             port: PORT,
-        });
+        } as ServerConnectionOptions);
     }
 
     public async registerPlugin(pluginConfig: any): Promise<void> {

@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "dist",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "alwaysStrict": true,
+    "declaration": false,
+    "importHelpers": true,
+    "jsx": "react",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noUnusedParameters": false,
+    "removeComments": true,
+    "pretty": true,
+    "sourceMap": false,
+    "noImplicitThis": true,
+    "target": "es2015"
+  },
+  "include": [
+    "src/**/*",
+    "./Server.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

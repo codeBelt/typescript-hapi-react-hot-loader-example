@@ -1,4 +1,4 @@
-import IAction from '../../interfaces/IAction';
+import IAction from '../../interfaces/store/IAction';
 
 class LoadingAction {
 

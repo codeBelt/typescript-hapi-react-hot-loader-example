@@ -1,6 +1,6 @@
 import MetaAction from './MetaAction';
-import IMetaReducerState from '../../interfaces/reducers/IMetaReducerState';
-import IAction from '../../interfaces/IAction';
+import IMetaReducerState from '../../interfaces/store/reducers/IMetaReducerState';
+import IAction from '../../interfaces/store/IAction';
 
 class MetaReducer {
 
@@ -18,7 +18,7 @@ class MetaReducer {
         }
     }
 
-    public static _setMeta(state: IMetaReducerState, action: IAction<IMetaReducerState>): IMetaReducerState {
+    private static _setMeta(state: IMetaReducerState, action: IAction<IMetaReducerState>): IMetaReducerState {
         return {
             ...state,
             ...action.payload,

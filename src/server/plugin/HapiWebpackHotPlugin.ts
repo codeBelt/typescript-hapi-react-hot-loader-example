@@ -8,7 +8,7 @@ class HapiWebpackHotPlugin {
 
     constructor(server: Hapi.Server) {
         const config: Webpack.Configuration = require('../../../webpack.config.js');
-        const compiler: any = Webpack(config);
+        const compiler: Webpack.Compiler = Webpack(config);
 
         compiler.plugin('done', (stats: any) => this._onDone(stats));
 
@@ -26,7 +26,7 @@ class HapiWebpackHotPlugin {
         server.register({
             register: HapiWebpackPlugin,
             options,
-        }, (error) => {
+        }, (error: Error) => {
             if (error) {
                 console.error(error);
             }

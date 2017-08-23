@@ -1,6 +1,5 @@
 import 'fetch-everywhere';
 import * as inert from 'inert';
-
 import ServerManager from './server/ServerManager';
 import AssetsController from './server/controllers/AssetsController';
 import ReactController from './server/controllers/ReactController';

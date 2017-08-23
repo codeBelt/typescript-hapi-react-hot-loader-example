@@ -1,10 +1,12 @@
+import IAction from '../../interfaces/store/IAction';
+
 class UserAction {
 
-    static LOAD_USER = 'UserAction.LOAD_USER';
-    static LOAD_USER_SUCCESS = 'UserAction.LOAD_USER_SUCCESS';
-    static LOAD_USER_FAIL = 'UserAction.LOAD_USER_FAIL';
+    public static readonly LOAD_USER = 'UserAction.LOAD_USER';
+    public static readonly LOAD_USER_SUCCESS = 'UserAction.LOAD_USER_SUCCESS';
+    public static readonly LOAD_USER_FAIL = 'UserAction.LOAD_USER_FAIL';
 
-    static loadUser() {
+    public static loadUser(): IAction<void> {
         return {
             type: UserAction.LOAD_USER,
         };

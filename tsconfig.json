@@ -1,4 +1,5 @@
 {
+  "docs": "https://www.typescriptlang.org/docs/handbook/compiler-options.html",
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     // no errors on commonjs default import
@@ -29,18 +30,20 @@
     "moduleResolution": "node",
     "noEmitOnError": true,
     "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true,
     "noImplicitReturns": true,
-    "noImplicitThis": true,
     "noUnusedLocals": false,
-    "strictNullChecks": false,
     "pretty": true,
     "removeComments": true,
-    "sourceMap": false
+    "sourceMap": false,
+
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": false
   },
   "include": [
     "src/**/*",
-    "src/_declare/**/*"
+    "src/_declare/**/*",
+    "./server.ts"
   ],
   "exclude": [
     "node_modules"

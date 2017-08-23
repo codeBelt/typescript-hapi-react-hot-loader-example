@@ -5,10 +5,10 @@ import * as React from 'react';
 import RouterWrapper from '../../RouterWrapper';
 import ProviderService from '../../services/ProviderService';
 import rootSaga from '../../store/rootSaga';
-import ISagaStore from '../../interfaces/ISagaStore';
-import IStore from '../../interfaces/IStore';
+import ISagaStore from '../../interfaces/store/ISagaStore';
+import IStore from '../../interfaces/store/IStore';
 import * as Hapi from 'hapi';
-import IController from '../../interfaces/IController';
+import IController from '../../interfaces/server/IController';
 
 class ReactController implements IController {
 
@@ -39,8 +39,8 @@ class ReactController implements IController {
                     };
 
                     let html: string = await fse.readFile(path.resolve(__dirname, '../../public/index.html'), 'utf8');
-                    html = html.replace('{title}', state.metaReducer.title);
-                    html = html.replace('{description}', state.metaReducer.description);
+                    html = html.replace('{title}', initialState.metaReducer.title);
+                    html = html.replace('{description}', initialState.metaReducer.description);
                     html = html.replace('{content}', renderedHtml);
                     html = html.replace('{state}', JSON.stringify(initialState));
 

@@ -1,12 +1,11 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import MetaAction from '../store/meta/MetaAction';
-import IStore from '../interfaces/IStore';
+import IStore from '../interfaces/store/IStore';
 import {Dispatch} from 'redux';
-import IMetaReducerState from '../interfaces/reducers/IMetaReducerState';
+import IMetaReducerState from '../interfaces/store/reducers/IMetaReducerState';
 
-interface IStateToProps {
-}
+interface IStateToProps {}
 
 interface IDispatchToProps {
     setMeta: (meta: IMetaReducerState) => void;
@@ -18,7 +17,7 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
     setMeta: (meta: IMetaReducerState) => dispatch(MetaAction.setMeta(meta)),
 });
 
-class About extends React.Component<IStateToProps & IDispatchToProps, any> {
+class About extends React.Component<IStateToProps & IDispatchToProps, {}> {
 
     componentWillMount(): void {
         this.props.setMeta({title: 'About Page'});
@@ -67,5 +66,5 @@ class About extends React.Component<IStateToProps & IDispatchToProps, any> {
 
 }
 
-export default connect<IStateToProps, IDispatchToProps, any>(mapStateToProps, mapDispatchToProps)(About);
+export default connect<IStateToProps, IDispatchToProps, {}>(mapStateToProps, mapDispatchToProps)(About);
 

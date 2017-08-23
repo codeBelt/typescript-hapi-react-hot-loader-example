@@ -1,6 +1,9 @@
 import * as React from 'react';
 
-class Footer extends React.PureComponent {
+interface IProps {}
+interface IState {}
+
+class Footer extends React.PureComponent<IProps, IState> {
 
     public render(): JSX.Element {
         return (

@@ -1,5 +1,5 @@
-import IRenderReducerState from '../../interfaces/reducers/IRenderReducerState';
-import IAction from '../../interfaces/IAction';
+import IRenderReducerState from '../../interfaces/store/reducers/IRenderReducerState';
+import IAction from '../../interfaces/store/IAction';
 
 class RenderReducer {
 

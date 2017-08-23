@@ -5,8 +5,8 @@
   "scripts": {
     "---------- HELPERS -----------------------------------------------------------------------------": "",
     "remove": "cross-env rimraf dist",
-    "buildServer": "cross-env BABEL_ENV=server ./node_modules/.bin/babel src --out-dir dist",
-    "watchServer": "cross-env BABEL_ENV=server ./node_modules/.bin/babel src --out-dir dist --watch",
+    "buildServer": "cross-env tsc -project tsconfig.server.json",
+    "watchServer": "cross-env tsc -watch -project tsconfig.server.json",
     "removeAndBuildServer": "cross-env npm run remove && npm run buildServer",
     "start": "cross-env NODE_ENV=production node ./dist/server.js",
     "---------- DEVELOPMENT -------------------------------------------------------------------------": "",

@@ -1,6 +1,6 @@
 import UserAction from './UserAction';
-import IUserReducerState from '../../interfaces/reducers/IUserReducerState';
-import IAction from '../../interfaces/IAction';
+import IUserReducerState from '../../interfaces/store/reducers/IUserReducerState';
+import IAction from '../../interfaces/store/IAction';
 
 class UserReducer {
 
@@ -33,7 +33,7 @@ class UserReducer {
         }
     }
 
-    public static _loadUser(state: IUserReducerState, action: IAction<IUserReducerState>): IUserReducerState {
+    private static _loadUser(state: IUserReducerState, action: IAction<IUserReducerState>): IUserReducerState {
         return {
             ...state,
             ...action.payload,

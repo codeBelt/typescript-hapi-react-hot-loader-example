@@ -5,7 +5,7 @@ import MetaReducer from './meta/MetaReducer';
 import {reducer as formReducer} from 'redux-form';
 import RenderReducer from './render/RenderReducer';
 
-const rootReducer = combineReducers({
+const rootReducer = combineReducers<any>({
     form: formReducer,
     loadingReducer: LoadingReducer.reduce,
     metaReducer: MetaReducer.reduce,

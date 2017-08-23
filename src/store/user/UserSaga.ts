@@ -1,20 +1,21 @@
 import {put} from 'redux-saga/effects';
 import UserAction from './UserAction';
 import LoadingAction from '../loading/LoadingAction';
-import IAction from '../../interfaces/IAction';
+import IAction from '../../interfaces/store/IAction';
+import IUserReducerState from '../../interfaces/store/reducers/IUserReducerState';
 
 class UserSaga {
 
-    static* loadUser(action: IAction<void> = null) {
+    public static* loadUser(action: IAction<void> = null) {
         yield put({
             type: LoadingAction.SET_LOADING,
             payload: true,
         });
 
-        const response = yield fetch('https://randomuser.me/api/?inc=picture,name,email,phone,id,dob');
-        const type = (response.status === 200) ? UserAction.LOAD_USER_SUCCESS : UserAction.LOAD_USER_FAIL;
+        const response: Response = yield fetch('https://randomuser.me/api/?inc=picture,name,email,phone,id,dob');
+        const type: string = (response.status === 200) ? UserAction.LOAD_USER_SUCCESS : UserAction.LOAD_USER_FAIL;
 
-        let data = null;
+        let data: IUserReducerState = null;
 
         if (response.status === 200) {
             const json = yield response.json();
@@ -25,8 +26,8 @@ class UserSaga {
         yield put({
             type,
             payload: data,
-            meta: null,
-            error: response.error,
+            meta: response,
+            error: response.statusText,
         });
 
         yield put({

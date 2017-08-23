@@ -1,12 +1,13 @@
-import {all, fork, takeLatest, select} from 'redux-saga/effects';
+import {all, fork, takeLatest, select, ForkEffect} from 'redux-saga/effects';
 import UserSaga from './user/UserSaga';
 import UserAction from './user/UserAction';
+import IStore from '../interfaces/store/IStore';
 
 export default function* rootSaga() {
-    const store = yield select();
+    const store: IStore = yield select();
     const isServerSide = store.renderReducer.isServerSide;
 
-    const filteredSagas = [
+    const filteredSagas: ForkEffect[] = [
         isServerSide ? fork(UserSaga.loadUser) : null,
         takeLatest(UserAction.LOAD_USER, UserSaga.loadUser),
     ].filter(Boolean);
