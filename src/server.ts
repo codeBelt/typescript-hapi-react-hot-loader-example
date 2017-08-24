@@ -6,10 +6,11 @@ import ReactController from './server/controllers/ReactController';
 import HapiWebpackHotPlugin from './server/plugin/HapiWebpackHotPlugin';
 
 const manager = new ServerManager();
+
 manager.registerPlugin(inert);
 
 if (manager.isDevelopment) {
-    new HapiWebpackHotPlugin(manager.server);
+    new HapiWebpackHotPlugin(manager.server); // eslint-disable-line no-new
 }
 
 manager.registerController(new AssetsController());

@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './assets/styles/styles.css';
 
-import {AppContainer} from 'react-hot-loader';
+import {AppContainer as ReactHotLoader} from 'react-hot-loader';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import RouterWrapper from './RouterWrapper';
@@ -20,16 +20,16 @@ const rootEl: HTMLElement = document.getElementById('root');
 
 delete window.__STATE__;
 
-const render = (Component: any) =>
+const renderApp = (Component: any) =>
     ReactDOM.render(
-        <AppContainer>
+        <ReactHotLoader>
             <Component store={store} />
-        </AppContainer>,
+        </ReactHotLoader>,
         rootEl,
     );
 
-render(RouterWrapper);
+renderApp(RouterWrapper);
 
 if (module.hot) {
-    module.hot.accept('./RouterWrapper', () => render(require("./RouterWrapper").default));
+    module.hot.accept('./RouterWrapper', () => renderApp(require('./RouterWrapper').default)); // eslint-disable-line global-require
 }

@@ -1,12 +1,13 @@
 import * as React from 'react';
 import {Provider} from 'react-redux';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import {StaticRouter} from 'react-router';
 import About from './views/about/About';
 import Home from './views/home/Home';
 import Contact from './views/contact/Contact';
 import Footer from './views/landmarks/Footer';
 import Header from './views/landmarks/Header';
+import NotFound from './views/errors/NotFound';
 import IStore from './interfaces/store/IStore';
 import ISagaStore from './interfaces/store/ISagaStore';
 
@@ -42,6 +43,11 @@ const RouterWrapper: React.StatelessComponent<IProviderWrapperProps> = (props: I
                             path="/contact"
                             component={Contact}
                         />
+                        <Redirect
+                            from="/old-path"
+                            to="/"
+                        />
+                        <Route component={NotFound} />
                     </Switch>
                     <Footer />
                 </div>

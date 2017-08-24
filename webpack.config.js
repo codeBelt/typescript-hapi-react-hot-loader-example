@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin').default;
+const pkg = require('./package.json');
 
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || 'localhost';
@@ -47,11 +48,16 @@ const config = {
                 use: ['css-hot-loader'].concat(
                     ExtractTextPlugin.extract({
                         fallback: 'style-loader',
-                        use: [{
-                            loader: 'css-loader',
-                            options: {minimize: true},
-                        }],
-                    }),
+                        use: [
+                            {
+                                loader: 'css-loader',
+                                options: {minimize: true},
+                            },
+                            {
+                                loader: 'postcss-loader',
+                            },
+                        ],
+                    })
                 ),
             },
             {
@@ -75,6 +81,10 @@ const config = {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
         }),
+
+        isDevelopment
+            ? null
+            : new webpack.optimize.ModuleConcatenationPlugin(),
 
         isDevelopment
             ? new webpack.HotModuleReplacementPlugin() // enable HMR globally
@@ -106,6 +116,10 @@ const config = {
         isProduction
             ? new webpack.optimize.UglifyJsPlugin()
             : null,
+
+        isDevelopment
+            ? null
+            : new webpack.BannerPlugin(`${pkg.version} ${new Date().toString()}`),
 
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src/index.html'),

@@ -1,16 +1,18 @@
-import {renderToString} from 'react-dom/server';
 import * as path from 'path';
 import * as fse from 'fs-extra';
 import * as React from 'react';
+import * as Hapi from 'hapi';
+import {renderToString} from 'react-dom/server';
 import RouterWrapper from '../../RouterWrapper';
 import ProviderService from '../../services/ProviderService';
 import rootSaga from '../../store/rootSaga';
 import ISagaStore from '../../interfaces/store/ISagaStore';
 import IStore from '../../interfaces/store/IStore';
-import * as Hapi from 'hapi';
 import IController from '../../interfaces/server/IController';
 
 class ReactController implements IController {
+
+    private _html: string = null;
 
     public mapRoutes(server: Hapi.Server): void {
         server.route({
@@ -28,9 +30,16 @@ class ReactController implements IController {
                     />
                 );
 
-                store.runSaga(rootSaga).done.then(async () => {
+                this._html = (this._html === null) ? await this._loadHtmlFile() : this._html;
+
+                store.runSaga(rootSaga).done.then(() => {
+                    if (context.url) {
+                        return reply().redirect(context.url);
+                    }
+
                     const renderedHtml: string = renderToString(app);
                     const state: IStore = store.getState();
+
                     const initialState: IStore = {
                         ...state,
                         renderReducer: {
@@ -38,19 +47,16 @@ class ReactController implements IController {
                         },
                     };
 
-                    let html: string = await fse.readFile(path.resolve(__dirname, '../../public/index.html'), 'utf8');
-                    html = html.replace('{title}', initialState.metaReducer.title);
-                    html = html.replace('{description}', initialState.metaReducer.description);
-                    html = html.replace('{content}', renderedHtml);
-                    html = html.replace('{state}', JSON.stringify(initialState));
+                    const html: string = this._html
+                        .slice(0)
+                        .replace('{title}', initialState.metaReducer.title)
+                        .replace('{description}', initialState.metaReducer.description)
+                        .replace('{content}', renderedHtml)
+                        .replace('{state}', JSON.stringify(initialState));
 
-                    // context.url will contain the URL to redirect to if a <Redirect> was used
-                    if (context.url) {
-                        // TODO: figure out redirects
-                        reply(context.url);
-                    } else {
-                        reply(html);
-                    }
+                    return reply(html);
+                }).catch((error: Error) => {
+                    reply(error.toString());
                 });
 
                 renderToString(app);
@@ -58,6 +64,12 @@ class ReactController implements IController {
                 store.endSaga();
             },
         });
+    }
+
+    private async _loadHtmlFile(): Promise<string> {
+        const htmlPath = path.resolve(__dirname, '../../public/index.html');
+
+        return fse.readFile(htmlPath, 'utf8');
     }
 
 }
