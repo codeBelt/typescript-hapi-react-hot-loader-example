@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch: Dispatch<any>): IDispatchToProps => ({
 
 class Contact extends React.Component<IStateToProps & IDispatchToProps, {}> {
 
-    componentWillMount(): void {
+    public componentWillMount(): void {
         this.props.setMeta({title: 'Contact Page'});
     }
 

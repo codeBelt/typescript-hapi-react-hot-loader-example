@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
 
 class About extends React.Component<IStateToProps & IDispatchToProps, {}> {
 
-    componentWillMount(): void {
+    public componentWillMount(): void {
         this.props.setMeta({title: 'About Page'});
     }
 

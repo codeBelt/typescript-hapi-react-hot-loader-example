@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch: Dispatch<any>): IDispatchToProps => ({
 
 class NotFound extends React.Component<IStateToProps & IDispatchToProps, {}> {
 
-    componentWillMount(): void {
+    public componentWillMount(): void {
         this.props.setMeta({title: '404 Page Not Found'});
     }
 

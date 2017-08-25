@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch: Dispatch<any>): IDispatchToProps => ({
 
 class Home extends React.Component<IStateToProps & IDispatchToProps, {}> {
 
-    componentWillMount(): void {
+    public componentWillMount(): void {
         this.props.setMeta({
             title: 'Home Page',
             description: 'This is the Home Page',
