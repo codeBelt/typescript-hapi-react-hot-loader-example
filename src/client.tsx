@@ -31,5 +31,5 @@ const renderApp = (Component: any) =>
 renderApp(RouterWrapper);
 
 if (module.hot) {
-    module.hot.accept('./RouterWrapper', () => renderApp(require('./RouterWrapper').default)); // eslint-disable-line global-require
+    module.hot.accept('./RouterWrapper', () => renderApp(require('./RouterWrapper').default));  // tslint:disable-line no-require-imports
 }

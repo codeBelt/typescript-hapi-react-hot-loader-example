@@ -13,7 +13,7 @@ class Header extends React.Component<IProps, IState> {
                     <ul className="nav nav-pills float-right">
                         <li className="nav-item">
                             <NavLink
-                                exact
+                                exact={true}
                                 className="nav-link"
                                 activeClassName="active"
                                 to="/"

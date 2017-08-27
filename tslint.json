@@ -1,40 +1,37 @@
 {
-  "defaultSeverity": "error",
-  "extends": [
-    "tslint:recommended",
-    "tslint-react",
-    "tslint-immutable",
-    "tslint-eslint-rules"
-  ],
+  "extends": ["tslint:latest", "tslint-react"],
   "rules": {
-    "no-trailing-whitespace": false,
-    "newline-before-return": true,
-    "ordered-imports": [false],
-    "arrow-parens": [true],
+    "arrow-parens": true,
+    "arrow-return-shorthand": [true],
+    "comment-format": [true],
+    "import-blacklist": [true, "rxjs"],
+    "interface-over-type-literal": true,
+    "max-line-length": [false],
+    "member-access": true,
     "member-ordering": [true, {"order": "fields-first"}],
-    "quotemark": [
-      true,
-      "avoid-escape",
-      "jsx-double",
-      "single"
-    ],
-    "variable-name": [
-      true,
-      "allow-leading-underscore",
-      "allow-pascal-case",
-      "ban-keywords",
-      "check-format"
-    ],
-    "max-line-length": [
-      true,
-      200
-    ],
-    "trailing-comma": [
-        true,
-        {"multiline": {"functions": "never"}}
-    ],
-    "jsx-no-multiline-js": false,
-    "jsx-wrap-multiline": false
-  },
-  "rulesDirectory": []
+    "newline-before-return": true,
+    "no-any": false,
+    "no-console": [true, "log"],
+    "no-empty-interface": false,
+    "no-inferrable-types": [true, "ignore-params", "ignore-properties"],
+    "no-invalid-this": [true, "check-function-in-method"],
+    "no-null-keyword": false,
+    "no-require-imports": true,
+    "no-submodule-imports": false,
+    "no-switch-case-fall-through": true,
+    "no-this-assignment": [true, {"allow-destructuring": true}],
+    "no-trailing-whitespace": true,
+    "object-literal-shorthand": true,
+    "object-literal-sort-keys": false,
+    "one-variable-per-declaration": [true],
+    "only-arrow-functions": [true, "allow-declarations"],
+    "ordered-imports": [false],
+    "prefer-method-signature": false,
+    "prefer-template": [true, "allow-single-concat"],
+    "quotemark": [true, "single", "jsx-double"],
+    "semicolon": [true],
+    "triple-equals": [true, "allow-null-check"],
+    "typedef": [true,"parameter", "property-declaration"],
+    "variable-name": [true, "ban-keywords", "check-format", "allow-pascal-case", "allow-leading-underscore"]
+  }
 }
