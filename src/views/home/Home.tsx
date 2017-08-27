@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import UserAction from '../../store/user/UserAction';
-import MetaAction from '../../store/meta/MetaAction';
+import UserAction from '../../stores/user/UserAction';
+import MetaAction from '../../stores/meta/MetaAction';
 import IStore from '../../interfaces/store/IStore';
 import {Dispatch} from 'redux';
 import IMetaReducerState from '../../interfaces/store/reducers/IMetaReducerState';
