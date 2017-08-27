@@ -1,6 +1,6 @@
 import {renderToString} from 'react-dom/server';
 import {AsyncComponentProvider, createAsyncContext} from 'react-async-component';
-import * as asyncBootstrapper from 'react-async-bootstrapper';
+import asyncBootstrapper from 'react-async-bootstrapper';
 import * as serialize from 'serialize-javascript';
 import * as path from 'path';
 import * as fse from 'fs-extra';

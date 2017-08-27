@@ -3,7 +3,7 @@ import './assets/styles/styles.css';
 
 import {AppContainer as ReactHotLoader} from 'react-hot-loader';
 import {AsyncComponentProvider} from 'react-async-component';
-import * as asyncBootstrapper from 'react-async-bootstrapper';
+import asyncBootstrapper from 'react-async-bootstrapper';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import RouterWrapper from './RouterWrapper';
