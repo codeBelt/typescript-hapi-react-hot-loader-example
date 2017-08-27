@@ -42,7 +42,6 @@
   },
   "include": [
     "src/**/*",
-    "src/_declare/**/*",
     "./server.ts"
   ],
   "exclude": [
