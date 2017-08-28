@@ -2,10 +2,10 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import UserAction from '../../stores/user/UserAction';
 import MetaAction from '../../stores/meta/MetaAction';
-import IStore from '../../interfaces/store/IStore';
+import IStore from '../../interfaces/stores/IStore';
 import {Dispatch} from 'redux';
-import IMetaReducerState from '../../interfaces/store/reducers/IMetaReducerState';
-import IUserReducerState from '../../interfaces/store/reducers/IUserReducerState';
+import IMetaReducerState from '../../interfaces/stores/reducers/IMetaReducerState';
+import IUserReducerState from '../../interfaces/stores/reducers/IUserReducerState';
 
 interface IStateToProps {
     readonly user: IUserReducerState;

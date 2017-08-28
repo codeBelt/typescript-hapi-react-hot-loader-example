@@ -8,8 +8,8 @@ import Contact from './views/contact/Contact';
 import Footer from './views/landmarks/Footer';
 import Header from './views/landmarks/Header';
 import NotFound from './views/errors/NotFound';
-import IStore from './interfaces/store/IStore';
-import ISagaStore from './interfaces/store/ISagaStore';
+import IStore from './interfaces/stores/IStore';
+import ISagaStore from './interfaces/stores/ISagaStore';
 
 interface IProviderWrapperProps {
     store: ISagaStore<IStore>;

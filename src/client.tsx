@@ -6,8 +6,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import RouterWrapper from './RouterWrapper';
 import ProviderService from './services/ProviderService';
-import IStore from './interfaces/store/IStore';
-import ISagaStore from './interfaces/store/ISagaStore';
+import IStore from './interfaces/stores/IStore';
+import ISagaStore from './interfaces/stores/ISagaStore';
 
 const initialState: IStore = {
     ...window.__STATE__,
