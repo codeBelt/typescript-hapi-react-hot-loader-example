@@ -1,5 +1,9 @@
-# `hapi-react-hot-loader-example`
-Example application demonstrating react-hot-loader-3 with webpack-2, react and friends, and hapi.
+# `typescript-hapi-react-hot-loader-example`
+TypeScript example universal/isomorphic application demonstrating react-hot-loader-3 with webpack-3, react and friends, and hapi.
+
+>  [Check out the JavaScript version here](https://github.com/codeBelt/hapi-react-hot-loader-example)
+
+> Found it usefull? [give it a :star:](https://github.com/codeBelt/typescript-hapi-react-hot-loader-example/stargazers)
 
 ## get started
 1. $ `yarn`
@@ -22,3 +26,9 @@ Example application demonstrating react-hot-loader-3 with webpack-2, react and f
 ## staging tasks
 - $ `yarn staging` (staging build w/ server)
 - $ `yarn staging:build` (staging build)
+
+---
+
+##### Other features/examples I am working:
+* Jest / Enzyme
+* Code Splitting
