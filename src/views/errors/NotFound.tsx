@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import MetaAction from '../../store/meta/MetaAction';
+import MetaAction from '../../stores/meta/MetaAction';
 import IMetaReducerState from '../../interfaces/store/reducers/IMetaReducerState';
 import IStore from '../../interfaces/store/IStore';
 import {Dispatch} from 'redux';
@@ -23,7 +23,7 @@ class NotFound extends React.Component<IStateToProps & IDispatchToProps, {}> {
         this.props.setMeta({title: '404 Page Not Found'});
     }
 
-    render() {
+    public render() {
         return (
             <div>
                 <div className="jumbotron">

@@ -7,7 +7,13 @@ interface IProps extends InjectedFormProps<IContactForm> {}
 
 class ContactForm extends React.Component<IProps> {
 
-    private _handleSubmitHandler = (formData: IContactForm) => this._onFormSubmit(formData);
+    private _handleSubmitHandler: (formData: IContactForm) => void = null;
+
+    constructor(props: IProps) {
+        super(props);
+
+        this._handleSubmitHandler = (formData: IContactForm) => this._onFormSubmit(formData);
+    }
 
     public render(): JSX.Element {
         const {handleSubmit, reset} = this.props;
