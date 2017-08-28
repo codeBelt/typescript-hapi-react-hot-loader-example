@@ -1,6 +1,6 @@
 import UserAction from './UserAction';
-import IUserReducerState from '../../interfaces/store/reducers/IUserReducerState';
-import IAction from '../../interfaces/store/IAction';
+import IUserReducerState from '../../interfaces/stores/reducers/IUserReducerState';
+import IAction from '../../interfaces/stores/IAction';
 
 class UserReducer {
 

@@ -1,4 +1,4 @@
-import IAction from '../../interfaces/store/IAction';
+import IAction from '../../interfaces/stores/IAction';
 
 class UserAction {
 

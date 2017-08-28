@@ -9,8 +9,8 @@ import * as Hapi from 'hapi';
 import RouterWrapper from '../../RouterWrapper';
 import ProviderService from '../../services/ProviderService';
 import rootSaga from '../../stores/rootSaga';
-import ISagaStore from '../../interfaces/store/ISagaStore';
-import IStore from '../../interfaces/store/IStore';
+import ISagaStore from '../../interfaces/stores/ISagaStore';
+import IStore from '../../interfaces/stores/IStore';
 import IController from '../../interfaces/server/IController';
 
 class ReactController implements IController {
