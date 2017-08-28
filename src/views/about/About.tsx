@@ -67,4 +67,3 @@ class About extends React.Component<IStateToProps & IDispatchToProps, {}> {
 }
 
 export default connect<IStateToProps, IDispatchToProps, {}>(mapStateToProps, mapDispatchToProps)(About);
-

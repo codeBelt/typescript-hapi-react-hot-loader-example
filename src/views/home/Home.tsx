@@ -62,4 +62,3 @@ class Home extends React.Component<IStateToProps & IDispatchToProps, {}> {
 }
 
 export default connect<IStateToProps, IDispatchToProps, {}>(mapStateToProps, mapDispatchToProps)(Home);
-

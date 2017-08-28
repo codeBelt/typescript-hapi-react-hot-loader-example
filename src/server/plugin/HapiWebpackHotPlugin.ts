@@ -7,7 +7,7 @@ import ServerManager from '../ServerManager';
 class HapiWebpackHotPlugin {
 
     constructor(server: Hapi.Server) {
-        const config: Webpack.Configuration = require('../../../webpack.config.js');
+        const config: Webpack.Configuration = require('../../../webpack.config.js'); // tslint:disable-line no-require-imports
         const compiler: Webpack.Compiler = Webpack(config);
 
         compiler.plugin('done', (stats: any) => this._onDone(stats));
@@ -34,7 +34,7 @@ class HapiWebpackHotPlugin {
     }
 
     private _onDone(stats: any): void {
-        const pkg = require('../../../package.json');
+        const pkg = require('../../../package.json'); // tslint:disable-line no-require-imports
         const time = ((stats.endTime - stats.startTime) / 1000).toFixed(2);
 
         setTimeout(() => {

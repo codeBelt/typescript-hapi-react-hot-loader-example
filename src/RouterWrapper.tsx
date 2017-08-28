@@ -31,7 +31,7 @@ const RouterWrapper: React.StatelessComponent<IProviderWrapperProps> = (props: I
                     <Header />
                     <Switch>
                         <Route
-                            exact
+                            exact={true}
                             path="/"
                             component={Home}
                         />

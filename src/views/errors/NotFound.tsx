@@ -23,7 +23,7 @@ class NotFound extends React.Component<IStateToProps & IDispatchToProps, {}> {
         this.props.setMeta({title: '404 Page Not Found'});
     }
 
-    render() {
+    public render() {
         return (
             <div>
                 <div className="jumbotron">
