@@ -1,26 +1,35 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "alwaysStrict": true,
     "declaration": false,
+    "emitDecoratorMetadata": true,
+    "allowJs": false,
+    "experimentalDecorators": true,
     "importHelpers": true,
-    "jsx": "react",
+    "inlineSourceMap": false,
+    "inlineSources": false,
+    "lib": [
+      "DOM",
+      "ES5",
+      "ES6",
+      "ES7"
+    ],
+    "listFiles": false,
     "module": "commonjs",
-    "moduleResolution": "node",
+    "jsx": "react",
+    "noEmitOnError": true,
     "noImplicitAny": true,
-    "noUnusedParameters": false,
-    "removeComments": true,
-    "pretty": true,
-    "sourceMap": false,
+    "noImplicitReturns": true,
     "noImplicitThis": true,
-    "target": "es2015"
+    "preserveConstEnums": false,
+    "pretty": false,
+    "removeComments": false,
+    "strictNullChecks": false,
+    "strict": true,
+    "target": "es5"
   },
   "include": [
-    "src/**/*",
-    "src/interfaces",
-    "./Server.ts"
+    "src/**/*"
   ],
   "exclude": [
     "node_modules"

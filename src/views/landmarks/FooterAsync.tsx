@@ -1,7 +1,11 @@
 import {asyncComponent} from 'react-async-component';
 
-export default asyncComponent({
+const FooterAsync = asyncComponent({
     name: 'FooterAsync',
     serverMode: 'defer',
-    resolve: () => import(/* webpackChunkName: "Footer" */ './Footer'),
+    resolve: () => {
+        return import(/* webpackChunkName: "Footer" */ './Footer');
+    },
 });
+
+export default FooterAsync;

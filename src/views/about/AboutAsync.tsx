@@ -1,7 +1,11 @@
 import {asyncComponent} from 'react-async-component';
 
-export default asyncComponent({
+const AboutAsync = asyncComponent({
     name: 'AboutAsync',
     serverMode: 'resolve',
-    resolve: () => import(/* webpackChunkName: "About" */ './About'),
+    resolve: () => {
+        return import(/* webpackChunkName: "About" */ './About');
+    },
 });
+
+export default AboutAsync;

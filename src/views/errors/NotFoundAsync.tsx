@@ -1,7 +1,11 @@
 import {asyncComponent} from 'react-async-component';
 
-export default asyncComponent({
+const NotFoundAsync = asyncComponent({
     name: 'NotFoundAsync',
     serverMode: 'resolve',
-    resolve: () => import(/* webpackChunkName: "NotFound" */ './NotFound'),
+    resolve: () => {
+        return import(/* webpackChunkName: "NotFound" */ './NotFound');
+    },
 });
+
+export default NotFoundAsync;
