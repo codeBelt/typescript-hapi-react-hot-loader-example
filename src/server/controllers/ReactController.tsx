@@ -20,12 +20,12 @@ class ReactController implements IController {
             path: '/{route*}',
             handler: async (request: Hapi.Request, reply: Hapi.ReplyNoContinue): Promise<void> => {
                 const store: ISagaStore<IStore> = ProviderService.createProviderStore({}, true);
-                const context: any = {};
+                const routeContext: any = {};
                 const app = (
                     <RouterWrapper
                         store={store}
                         location={request.path}
-                        context={context}
+                        context={routeContext}
                         isServerSide={true}
                     />
                 );
@@ -33,8 +33,8 @@ class ReactController implements IController {
                 this._html = (this._html === null) ? await this._loadHtmlFile() : this._html;
 
                 store.runSaga(rootSaga).done.then(() => {
-                    if (context.url) {
-                        return reply().redirect(context.url);
+                    if (routeContext.url) {
+                        return reply().redirect(routeContext.url);
                     }
 
                     const renderedHtml: string = renderToString(app);
