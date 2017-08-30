@@ -21,7 +21,7 @@ class ProviderService {
             store.runSaga = sagaMiddleware.run;
             store.endSaga = () => store.dispatch(END);
         } else {
-            sagaMiddleware.run(rootSaga as any);
+            sagaMiddleware.run(rootSaga);
         }
 
         ProviderService._setupHotReloading(store);
@@ -30,8 +30,8 @@ class ProviderService {
     }
 
     private static _setupHotReloading(store: ISagaStore<IStore>) {
-        if ((module as any).hot) {
-            (module as any).hot.accept('../store/rootReducer', () => {
+        if (module.hot) {
+            module.hot.accept('../store/rootReducer', () => {
                 const nextReducer = require('../store/rootReducer').default; // eslint-disable-line global-require
 
                 store.replaceReducer(nextReducer);
