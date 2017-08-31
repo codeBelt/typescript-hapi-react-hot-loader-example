@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const SimpleProgressPlugin = require('webpack-simple-progress-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin').default;
 const pkg = require('./package.json');
@@ -79,7 +79,7 @@ const config = {
 
     plugins: [
         isNotDevelopment
-            ? new ProgressBarPlugin()
+            ? new SimpleProgressPlugin()
             : null,
 
         new webpack.DefinePlugin({
