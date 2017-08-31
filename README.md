@@ -31,4 +31,3 @@ TypeScript example universal/isomorphic application demonstrating react-hot-load
 
 ##### Other features/examples I am working:
 * Jest / Enzyme
-* Code Splitting

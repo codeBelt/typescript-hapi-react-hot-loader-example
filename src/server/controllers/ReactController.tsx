@@ -1,8 +1,11 @@
+import {renderToString} from 'react-dom/server';
+import {AsyncComponentProvider, createAsyncContext} from 'react-async-component';
+import asyncBootstrapper from 'react-async-bootstrapper';
+import * as serialize from 'serialize-javascript';
 import * as path from 'path';
 import * as fse from 'fs-extra';
 import * as React from 'react';
 import * as Hapi from 'hapi';
-import {renderToString} from 'react-dom/server';
 import RouterWrapper from '../../RouterWrapper';
 import ProviderService from '../../services/ProviderService';
 import rootSaga from '../../stores/rootSaga';
@@ -20,17 +23,22 @@ class ReactController implements IController {
             path: '/{route*}',
             handler: async (request: Hapi.Request, reply: Hapi.ReplyNoContinue): Promise<void> => {
                 const store: ISagaStore<IStore> = ProviderService.createProviderStore({}, true);
+                const asyncContext: any = createAsyncContext();
                 const routeContext: any = {};
                 const app = (
-                    <RouterWrapper
-                        store={store}
-                        location={request.path}
-                        context={routeContext}
-                        isServerSide={true}
-                    />
+                    <AsyncComponentProvider asyncContext={asyncContext}>
+                        <RouterWrapper
+                            store={store}
+                            location={request.path}
+                            context={routeContext}
+                            isServerSide={true}
+                        />
+                    </AsyncComponentProvider>
                 );
 
                 this._html = (this._html === null) ? await this._loadHtmlFile() : this._html;
+
+                await asyncBootstrapper(app);
 
                 store.runSaga(rootSaga).done.then(() => {
                     if (routeContext.url) {
@@ -38,6 +46,7 @@ class ReactController implements IController {
                     }
 
                     const renderedHtml: string = renderToString(app);
+                    const asyncComponentsState: IStore = asyncContext.getState();
                     const state: IStore = store.getState();
 
                     const initialState: IStore = {
@@ -52,7 +61,8 @@ class ReactController implements IController {
                         .replace('{title}', initialState.metaReducer.title)
                         .replace('{description}', initialState.metaReducer.description)
                         .replace('{content}', renderedHtml)
-                        .replace('{state}', JSON.stringify(initialState));
+                        .replace('{state}', JSON.stringify(initialState))
+                        .replace('{asyncComponentsState}', serialize(asyncComponentsState));
 
                     return reply(html);
                 }).catch((error: Error) => {

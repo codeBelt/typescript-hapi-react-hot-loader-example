@@ -1,25 +1,30 @@
 {
+  "docs": "https://www.typescriptlang.org/docs/handbook/compiler-options.html",
   "compilerOptions": {
     "outDir": "dist",
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "alwaysStrict": true,
-    "declaration": false,
-    "importHelpers": true,
-    "jsx": "react",
+    "target": "es2015",
     "module": "commonjs",
     "moduleResolution": "node",
+    "jsx": "react",
+    "removeComments": false,
     "noImplicitAny": true,
-    "noUnusedParameters": false,
-    "removeComments": true,
-    "pretty": true,
-    "sourceMap": false,
     "noImplicitThis": true,
-    "target": "es2015"
+    "strictNullChecks": false,
+    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "lib": [
+      "dom",
+      "es2016"
+    ],
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "sourceMap": false,
+    "forceConsistentCasingInFileNames": true,
+    "pretty": true
   },
   "include": [
-    "src/**/*",
-    "./Server.ts"
+    "src/**/*"
   ],
   "exclude": [
     "node_modules"
