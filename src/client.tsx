@@ -11,7 +11,7 @@ import ProviderService from './services/ProviderService';
 import IStore from './interfaces/stores/IStore';
 import ISagaStore from './interfaces/stores/ISagaStore';
 
-const rehydrateState = window.__ASYNC_COMPONENTS_STATE__;
+const codeSplittingState = window.__ASYNC_COMPONENTS_STATE__;
 const initialState: IStore = {
     ...window.__STATE__,
     renderReducer: {
@@ -26,7 +26,7 @@ delete window.__ASYNC_COMPONENTS_STATE__;
 
 const composeApp = (Component: any) => (
     <ReactHotLoader key={Math.random()}>
-        <AsyncComponentProvider rehydrateState={rehydrateState}>
+        <AsyncComponentProvider rehydrateState={codeSplittingState}>
             <Component store={store} />
         </AsyncComponentProvider>
     </ReactHotLoader>
