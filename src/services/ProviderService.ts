@@ -32,7 +32,7 @@ class ProviderService {
     private static _setupHotReloading(store: ISagaStore<IStore>) {
         if (module.hot) {
             module.hot.accept('../stores/rootReducer', () => {
-                const nextReducer = require('../stores/rootReducer').default; // eslint-disable-line global-require
+                const nextReducer = require('../stores/rootReducer').default; // tslint:disable-line:no-require-imports
 
                 store.replaceReducer(nextReducer);
             });

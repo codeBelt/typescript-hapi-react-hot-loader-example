@@ -33,7 +33,7 @@ const composeApp = (Component: any) => (
 );
 
 const renderApp = () => {
-    const routerWrapper = require('./RouterWrapper').default; // eslint-disable-line global-require
+    const routerWrapper = require('./RouterWrapper').default; // tslint:disable-line:no-require-imports
 
     ReactDOM.render(
         composeApp(routerWrapper),
