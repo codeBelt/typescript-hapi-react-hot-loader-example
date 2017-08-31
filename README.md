@@ -3,7 +3,7 @@ TypeScript example universal/isomorphic application demonstrating react-hot-load
 
 >  [Check out the JavaScript version here](https://github.com/codeBelt/hapi-react-hot-loader-example)
 
-> Found it usefull? [give it a :star:](https://github.com/codeBelt/typescript-hapi-react-hot-loader-example/stargazers)
+> Found this usefull? give it a :star:
 
 ## get started
 1. $ `yarn`
