@@ -5,6 +5,8 @@ TypeScript example universal/isomorphic application demonstrating react-hot-load
 
 > Found this usefull? give it a :star:
 
+**Windows users see the last section of this README**
+
 ## get started
 1. $ `yarn`
 2. $ `yarn dev`
@@ -31,3 +33,8 @@ TypeScript example universal/isomorphic application demonstrating react-hot-load
 
 ##### Other features/examples I am working:
 * Jest / Enzyme
+
+## Window Users
+Use  $ `yarn devWindows` during development. Note `rs` to restart nodemon will not work on windows.
+
+If you want `rs` to restart nodemon you will need to run `yarn watchServer` and `yarn devServer` in two separate terminals.
