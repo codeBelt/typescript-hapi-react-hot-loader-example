@@ -20,7 +20,7 @@ interface IDispatchToProps {
 const mapStateToProps = (state: IStore): IStateToProps => ({
     user: state.userReducer,
 });
-const mapDispatchToProps = (dispatch: Dispatch<any>): IDispatchToProps => ({
+const mapDispatchToProps = (dispatch: Dispatch<IStore>): IDispatchToProps => ({
     loadUser: () => dispatch(UserAction.loadUser()),
     setMeta: (meta: IMetaReducerState) => dispatch(MetaAction.setMeta(meta)),
 });

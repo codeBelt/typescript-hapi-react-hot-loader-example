@@ -12,8 +12,8 @@ interface IDispatchToProps {
     setMeta: (meta: IMetaReducerState) => void;
 }
 
-const mapStateToProps = (state: IStore) => ({});
-const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
+const mapStateToProps = (state: IStore): IStateToProps => ({});
+const mapDispatchToProps = (dispatch: Dispatch<IStore>): IDispatchToProps => ({
     setMeta: (meta: IMetaReducerState) => dispatch(MetaAction.setMeta(meta)),
 });
 
