@@ -6,19 +6,19 @@ import IMetaReducerState from '../../interfaces/stores/reducers/IMetaReducerStat
 import IStore from '../../interfaces/stores/IStore';
 import ContactForm from './ContactForm';
 
+interface IState {}
+interface IProps {}
 interface IStateToProps {}
-
 interface IDispatchToProps {
     setMeta: (meta: IMetaReducerState) => void;
 }
 
 const mapStateToProps = (state: IStore): IStateToProps => ({});
-
 const mapDispatchToProps = (dispatch: Dispatch<any>): IDispatchToProps => ({
     setMeta: (meta: IMetaReducerState) => dispatch(MetaAction.setMeta(meta)),
 });
 
-class Contact extends React.Component<IStateToProps & IDispatchToProps, {}> {
+class Contact extends React.Component<IStateToProps & IDispatchToProps & IProps, IState> {
 
     public componentWillMount(): void {
         this.props.setMeta({title: 'Contact Page'});
@@ -38,4 +38,4 @@ class Contact extends React.Component<IStateToProps & IDispatchToProps, {}> {
 
 }
 
-export default connect<IStateToProps, IDispatchToProps, {}>(mapStateToProps, mapDispatchToProps)(Contact);
+export default connect<IStateToProps, IDispatchToProps, IProps>(mapStateToProps, mapDispatchToProps)(Contact);

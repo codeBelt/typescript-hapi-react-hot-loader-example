@@ -5,19 +5,19 @@ import IMetaReducerState from '../../interfaces/stores/reducers/IMetaReducerStat
 import IStore from '../../interfaces/stores/IStore';
 import {Dispatch} from 'redux';
 
+interface IState {}
+interface IProps {}
 interface IStateToProps {}
-
 interface IDispatchToProps {
     setMeta: (meta: IMetaReducerState) => void;
 }
 
 const mapStateToProps = (state: IStore): IStateToProps => ({});
-
 const mapDispatchToProps = (dispatch: Dispatch<any>): IDispatchToProps => ({
     setMeta: (meta: IMetaReducerState) => dispatch(MetaAction.setMeta(meta)),
 });
 
-class NotFound extends React.Component<IStateToProps & IDispatchToProps, {}> {
+class NotFound extends React.Component<IStateToProps & IDispatchToProps & IProps, IState> {
 
     public componentWillMount(): void {
         this.props.setMeta({title: '404 Page Not Found'});
@@ -36,4 +36,4 @@ class NotFound extends React.Component<IStateToProps & IDispatchToProps, {}> {
 
 }
 
-export default connect<IStateToProps, IDispatchToProps, {}>(mapStateToProps, mapDispatchToProps)(NotFound);
+export default connect<IStateToProps, IDispatchToProps, IProps>(mapStateToProps, mapDispatchToProps)(NotFound);

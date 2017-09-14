@@ -5,19 +5,19 @@ import IStore from '../../interfaces/stores/IStore';
 import {Dispatch} from 'redux';
 import IMetaReducerState from '../../interfaces/stores/reducers/IMetaReducerState';
 
+interface IState {}
+interface IProps {}
 interface IStateToProps {}
-
 interface IDispatchToProps {
     setMeta: (meta: IMetaReducerState) => void;
 }
 
 const mapStateToProps = (state: IStore) => ({});
-
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
     setMeta: (meta: IMetaReducerState) => dispatch(MetaAction.setMeta(meta)),
 });
 
-class About extends React.Component<IStateToProps & IDispatchToProps, {}> {
+class About extends React.Component<IStateToProps & IDispatchToProps & IProps, IState> {
 
     public componentWillMount(): void {
         this.props.setMeta({title: 'About Page'});
@@ -66,4 +66,4 @@ class About extends React.Component<IStateToProps & IDispatchToProps, {}> {
 
 }
 
-export default connect<IStateToProps, IDispatchToProps, {}>(mapStateToProps, mapDispatchToProps)(About);
+export default connect<IStateToProps, IDispatchToProps, IProps>(mapStateToProps, mapDispatchToProps)(About);
