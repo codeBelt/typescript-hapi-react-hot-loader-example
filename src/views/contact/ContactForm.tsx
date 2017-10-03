@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {reduxForm, Field, FormProps, FormErrors, InjectedFormProps, SubmitHandler} from 'redux-form';
-import IContactForm from '../../interfaces/views/IContactForm';
+import IContactForm from './IContactForm';
 import CustomField from './CustomField';
 
 interface IProps extends InjectedFormProps<IContactForm> {}

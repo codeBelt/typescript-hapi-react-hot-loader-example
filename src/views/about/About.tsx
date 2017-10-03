@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import MetaAction from '../../stores/meta/MetaAction';
-import IStore from '../../interfaces/stores/IStore';
+import IStore from '../../stores/IStore';
 import {Dispatch} from 'redux';
-import IMetaReducerState from '../../interfaces/stores/reducers/IMetaReducerState';
+import IMetaReducerState from '../../stores/meta/IMetaReducerState';
 
 interface IState {}
 interface IProps {}

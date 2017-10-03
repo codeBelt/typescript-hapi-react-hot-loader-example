@@ -1,7 +1,7 @@
 import {all, fork, takeLatest, select, ForkEffect} from 'redux-saga/effects';
 import UserSaga from './user/UserSaga';
 import UserAction from './user/UserAction';
-import IStore from '../interfaces/stores/IStore';
+import IStore from './IStore';
 
 export default function* rootSaga() {
     const store: IStore = yield select();

@@ -9,8 +9,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import RouterWrapper from './RouterWrapper';
 import ProviderService from './services/ProviderService';
-import IStore from './interfaces/stores/IStore';
-import ISagaStore from './interfaces/stores/ISagaStore';
+import IStore from './stores/IStore';
+import ISagaStore from './stores/ISagaStore';
 
 const codeSplittingState = window.__ASYNC_COMPONENTS_STATE__;
 const initialState: IStore = {

@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as Hapi from 'hapi';
-import IController from '../../interfaces/server/IController';
+import IController from './IController';
 
 class AssetsController implements IController {
 

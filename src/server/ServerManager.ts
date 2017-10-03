@@ -1,5 +1,5 @@
 import * as Hapi from 'hapi';
-import IController from '../interfaces/server/IController';
+import IController from './controllers/IController';
 
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || 'localhost';

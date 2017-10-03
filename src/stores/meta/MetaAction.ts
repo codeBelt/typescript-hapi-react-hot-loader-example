@@ -1,5 +1,5 @@
-import IMetaReducerState from '../../interfaces/stores/reducers/IMetaReducerState';
-import IAction from '../../interfaces/stores/IAction';
+import IMetaReducerState from './IMetaReducerState';
+import IAction from '../IAction';
 
 class MetaAction {
 

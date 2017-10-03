@@ -3,8 +3,8 @@ import rootReducer from '../stores/rootReducer';
 import {composeWithDevTools} from 'redux-devtools-extension/developmentOnly';
 import createSagaMiddleware, {END, SagaMiddleware} from 'redux-saga';
 import rootSaga from '../stores/rootSaga';
-import IStore from '../interfaces/stores/IStore';
-import ISagaStore from '../interfaces/stores/ISagaStore';
+import IStore from '../stores/IStore';
+import ISagaStore from '../stores/ISagaStore';
 
 class ProviderService {
 

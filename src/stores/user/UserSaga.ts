@@ -1,8 +1,8 @@
 import {put} from 'redux-saga/effects';
 import UserAction from './UserAction';
 import LoadingAction from '../loading/LoadingAction';
-import IAction from '../../interfaces/stores/IAction';
-import IUserReducerState from '../../interfaces/stores/reducers/IUserReducerState';
+import IAction from '../IAction';
+import IUserReducerState from './IUserReducerState';
 
 class UserSaga {
 

@@ -1,6 +1,6 @@
 import LoadingAction from './LoadingAction';
-import ILoadingReducerState from '../../interfaces/stores/reducers/ILoadingReducerState';
-import IAction from '../../interfaces/stores/IAction';
+import ILoadingReducerState from './ILoadingReducerState';
+import IAction from '../IAction';
 
 class LoadingReducer {
 
