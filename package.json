@@ -1,5 +1,5 @@
 {
-  "name": "hapi-react-hot-loader-example",
+  "name": "typescript-hapi-react-hot-loader-example",
   "version": "1.0.0",
   "description": "Simple React Hot Loading example with Hapi Server-side rendering",
   "scripts": {
