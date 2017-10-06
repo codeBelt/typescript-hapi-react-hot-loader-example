@@ -13,7 +13,7 @@ class UserSaga {
         });
 
         const response: Response = yield fetch('https://randomuser.me/api/?inc=picture,name,email,phone,id,dob');
-        const type: symbol = (response.status === 200) ? UserAction.LOAD_USER_SUCCESS : UserAction.LOAD_USER_FAIL;
+        const type: string = (response.status === 200) ? UserAction.LOAD_USER_SUCCESS : UserAction.LOAD_USER_FAIL;
 
         let data: IUserReducerState = null;
 
