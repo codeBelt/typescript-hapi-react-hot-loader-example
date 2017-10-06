@@ -1,5 +1,5 @@
 interface IAction<T> {
-    type: string;
+    type: symbol;
     payload?: T;
     error?: boolean;
     meta?: any;

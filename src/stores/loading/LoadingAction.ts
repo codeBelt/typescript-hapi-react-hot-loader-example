@@ -2,7 +2,7 @@ import IAction from '../IAction';
 
 class LoadingAction {
 
-    public static readonly SET_LOADING: string = 'LoadingAction.SET_LOADING';
+    public static readonly SET_LOADING: symbol = Symbol('SET_LOADING');
 
     public static showLoader(isLoading: boolean): IAction<boolean> {
         return {
