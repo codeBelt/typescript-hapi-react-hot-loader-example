@@ -1,4 +1,5 @@
 import {combineReducers, Reducer} from 'redux';
+import {routerReducer} from 'react-router-redux';
 import UserReducer from './user/UserReducer';
 import LoadingReducer from './loading/LoadingReducer';
 import MetaReducer from './meta/MetaReducer';
@@ -12,6 +13,7 @@ const reducers: IStore = {
     metaReducer: MetaReducer.reduce as any,
     renderReducer: RenderReducer.reduce as any,
     userReducer: UserReducer.reduce as any,
+    router: routerReducer,
 };
 
 export default combineReducers<IStore>(reducers as any) as Reducer<IStore>;
