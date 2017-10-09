@@ -22,7 +22,7 @@ class ReactController implements IController {
             method: 'GET',
             path: '/{route*}',
             handler: async (request: Hapi.Request, reply: Hapi.ReplyNoContinue): Promise<void> => {
-                const store: ISagaStore<IStore> = ProviderService.createProviderStore({}, true);
+                const store: ISagaStore<IStore> = ProviderService.createProviderStore({}, null, true);
                 const asyncContext: any = createAsyncContext();
                 const routeContext: any = {};
                 const app = (

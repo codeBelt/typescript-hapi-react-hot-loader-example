@@ -1,7 +1,9 @@
 import * as React from 'react';
 import {Provider} from 'react-redux';
-import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
+import {ConnectedRouter} from 'react-router-redux';
+import {History, createMemoryHistory} from 'history';
 import {StaticRouter} from 'react-router';
+import {Route, Switch, Redirect} from 'react-router-dom';
 import AboutAsync from './views/about/AboutAsync';
 import Home from './views/home/Home';
 import Contact from './views/contact/Contact';
@@ -16,16 +18,19 @@ interface IProviderWrapperProps {
     isServerSide: boolean;
     location?: string;
     context?: any;
+    history?: History;
 }
 
 const RouterWrapper: React.StatelessComponent<IProviderWrapperProps> = (props: IProviderWrapperProps): JSX.Element  => {
-    const Router: any = props.isServerSide ? StaticRouter : BrowserRouter;
+    const Router: any = props.isServerSide ? StaticRouter : ConnectedRouter;
+    const history: History = props.isServerSide ? createMemoryHistory() : props.history;
 
     return (
         <Provider store={props.store}>
             <Router
                 context={props.context}
                 location={props.location}
+                history={history}
             >
                 <div className="container">
                     <Header />
