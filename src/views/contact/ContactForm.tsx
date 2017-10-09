@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {reduxForm, Field, FormProps, FormErrors, InjectedFormProps, SubmitHandler} from 'redux-form';
+import {reduxForm, FormErrors, InjectedFormProps} from 'redux-form';
 import IContactForm from './IContactForm';
 import CustomField from './CustomField';
 

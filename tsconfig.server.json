@@ -11,7 +11,7 @@
     "noImplicitThis": true,
     "strictNullChecks": false,
     "noImplicitReturns": true,
-    "noUnusedLocals": false,
+    "noUnusedLocals": true,
     "lib": [
       "dom",
       "es2016"
