@@ -10,7 +10,7 @@ import ISagaStore from '../stores/ISagaStore';
 
 class ProviderService {
 
-    public static createProviderStore(initialState: any = {}, history: History, isServerSide: boolean = false): ISagaStore<IStore> {
+    public static createProviderStore(initialState: any = {}, history: History = null, isServerSide: boolean = false): ISagaStore<IStore> {
         const sagaMiddleware: SagaMiddleware<any> = createSagaMiddleware();
 
         const store = createStore(
