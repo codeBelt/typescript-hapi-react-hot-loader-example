@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
+import {push} from 'react-router-redux';
 import UserAction from '../../stores/user/UserAction';
 import MetaAction from '../../stores/meta/MetaAction';
 import IStore from '../../stores/IStore';
@@ -13,6 +14,7 @@ interface IStateToProps {
     readonly user: IUserReducerState;
 }
 interface IDispatchToProps {
+    historyPush: (route: string) => void;
     loadUser: () => void;
     setMeta: (meta: IMetaReducerState) => void;
 }
@@ -21,11 +23,14 @@ const mapStateToProps = (state: IStore): IStateToProps => ({
     user: state.userReducer,
 });
 const mapDispatchToProps = (dispatch: Dispatch<IStore>): IDispatchToProps => ({
+    historyPush: (route: string) => dispatch(push(route)),
     loadUser: () => dispatch(UserAction.loadUser()),
     setMeta: (meta: IMetaReducerState) => dispatch(MetaAction.setMeta(meta)),
 });
 
 class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IState> {
+
+    private _onClickPushExampleHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickPushExample.bind(this);
 
     public componentWillMount(): void {
         this.props.setMeta({
@@ -55,8 +60,15 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
                         </button>
                     </p>
                 </div>
+                <button onClick={this._onClickPushExampleHandler}>{'Go to About'}</button>
             </div>
         );
+    }
+
+    private _onClickPushExample(event: React.MouseEvent<HTMLButtonElement>): void {
+        event.preventDefault();
+
+        this.props.historyPush('/About');
     }
 
 }
