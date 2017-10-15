@@ -1,2 +1,12 @@
 @import "styles";
-@import "modal";
+
+/* helpers
+------------------------------------------------- */
+@import "helpers/easing";
+@import "helpers/vars";
+@import "helpers/utils";
+
+/* components
+------------------------------------------------- */
+
+@import "components/modal";
