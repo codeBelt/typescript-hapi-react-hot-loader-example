@@ -7,6 +7,8 @@ import IStore from '../../stores/IStore';
 import {Dispatch} from 'redux';
 import IMetaReducerState from '../../stores/meta/IMetaReducerState';
 import IUserReducerState from '../../stores/user/IUserReducerState';
+import GeneralModalAsync from '../modals/GeneralModalAsync';
+import ModalAction from '../../stores/modal/ModalAction';
 
 interface IState {}
 interface IProps {}
@@ -17,6 +19,7 @@ interface IDispatchToProps {
     historyPush: (route: string) => void;
     loadUser: () => void;
     setMeta: (meta: IMetaReducerState) => void;
+    addModal: (modal: JSX.Element) => void;
 }
 
 const mapStateToProps = (state: IStore): IStateToProps => ({
@@ -26,11 +29,13 @@ const mapDispatchToProps = (dispatch: Dispatch<IStore>): IDispatchToProps => ({
     historyPush: (route: string) => dispatch(push(route)),
     loadUser: () => dispatch(UserAction.loadUser()),
     setMeta: (meta: IMetaReducerState) => dispatch(MetaAction.setMeta(meta)),
+    addModal: (modal: JSX.Element) => dispatch(ModalAction.addModal(modal)),
 });
 
 class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IState> {
 
     private _onClickPushExampleHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickPushExample.bind(this);
+    private _onClickOpenModalHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickOpenModal.bind(this);
 
     public componentWillMount(): void {
         this.props.setMeta({
@@ -61,6 +66,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
                     </p>
                 </div>
                 <button onClick={this._onClickPushExampleHandler}>{'Go to About'}</button>
+                <button onClick={this._onClickOpenModalHandler}>{'Open Modal'}</button>
             </div>
         );
     }
@@ -69,6 +75,18 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
         event.preventDefault();
 
         this.props.historyPush('/About');
+    }
+
+    private _onClickOpenModal(event: React.MouseEvent<HTMLButtonElement>): void {
+        event.preventDefault();
+
+        const modal: JSX.Element = (
+            <GeneralModalAsync
+                isRequired={true}
+            />
+        );
+
+        this.props.addModal(modal);
     }
 
 }
