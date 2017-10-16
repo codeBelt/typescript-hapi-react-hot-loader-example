@@ -1,9 +1,16 @@
 import * as React from 'react';
 import withBaseModal, {TProps as BaseModelProps} from './withBaseModal';
 
+interface IProps extends BaseModelProps {
+    modalData: {
+        message: string;
+        rejectLabel?: string;
+        acceptLabel?: string;
+    };
+}
 interface IState {}
 
-class GeneralModal extends React.Component<BaseModelProps, IState> {
+class GeneralModal extends React.Component<IProps, IState> {
 
     public render(): JSX.Element {
         return (

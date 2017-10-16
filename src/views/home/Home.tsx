@@ -83,6 +83,9 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
         const modal: JSX.Element = (
             <GeneralModalAsync
                 isRequired={true}
+                modalData={{
+                    message: 'test',
+                }}
             />
         );
 
