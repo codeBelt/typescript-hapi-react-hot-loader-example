@@ -84,7 +84,12 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
             <GeneralModalAsync
                 isRequired={true}
                 modalData={{
-                    message: [<h3>Generic Modal</h3>, <p>Example of a generic modal that forcing the user to click a button.</p>],
+                    message: (
+                        <div>
+                            <h3>Generic Modal</h3>
+                            <p>Example of a generic modal that forcing the user to click a button. User cannot click esc or click on the background to close the modal.</p>
+                        </div>
+                    ),
                     acceptLabel: 'Ok',
                     rejectLabel: 'Cancel',
                 }}
