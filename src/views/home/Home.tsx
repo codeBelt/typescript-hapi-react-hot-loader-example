@@ -9,6 +9,7 @@ import IMetaReducerState from '../../stores/meta/IMetaReducerState';
 import IUserReducerState from '../../stores/user/IUserReducerState';
 import GeneralModalAsync from '../modals/GeneralModalAsync';
 import ModalAction from '../../stores/modal/ModalAction';
+import ExampleFormModalAsync from "../modals/ExampleFormModalAsync";
 
 interface IState {}
 interface IProps {}
@@ -36,6 +37,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
 
     private _onClickPushExampleHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickPushExample.bind(this);
     private _onClickOpenModalHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickOpenModal.bind(this);
+    private _onClickFormModalHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickFormModal.bind(this);
 
     public componentWillMount(): void {
         this.props.setMeta({
@@ -66,7 +68,8 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
                     </p>
                 </div>
                 <button onClick={this._onClickPushExampleHandler}>{'Go to About'}</button>
-                <button onClick={this._onClickOpenModalHandler}>{'Open Modal'}</button>
+                <button onClick={this._onClickOpenModalHandler}>{'Open Example Generic Modal'}</button>
+                <button onClick={this._onClickFormModalHandler}>{'Open Example Form Modal'}</button>
             </div>
         );
     }
@@ -80,7 +83,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
     private _onClickOpenModal(event: React.MouseEvent<HTMLButtonElement>): void {
         event.preventDefault();
 
-        const modal: JSX.Element = (
+        const genericModal: JSX.Element = (
             <GeneralModalAsync
                 isRequired={true}
                 modalData={{
@@ -96,7 +99,29 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
             />
         );
 
-        this.props.addModal(modal);
+        this.props.addModal(genericModal);
+    }
+
+    private _onClickFormModal(event: React.MouseEvent<HTMLButtonElement>): void {
+        event.preventDefault();
+
+        const formModal: JSX.Element = (
+            <ExampleFormModalAsync
+                isRequired={true}
+                modalData={{
+                    message: (
+                        <div>
+                            <h3>Generic Modal</h3>
+                            <p>Example of a generic modal that forcing the user to click a button. User cannot click esc or click on the background to close the modal.</p>
+                        </div>
+                    ),
+                    acceptLabel: 'Ok',
+                    rejectLabel: 'Cancel',
+                }}
+            />
+        );
+
+        this.props.addModal(formModal);
     }
 
 }
