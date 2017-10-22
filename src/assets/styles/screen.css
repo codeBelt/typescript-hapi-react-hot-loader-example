@@ -1,5 +1,9 @@
 @import "styles";
 
+/* base
+------------------------------------------------- */
+@import "base/elements";
+
 /* helpers
 ------------------------------------------------- */
 @import "helpers/easing";
@@ -8,5 +12,6 @@
 
 /* components
 ------------------------------------------------- */
-
+@import "components/inputField";
 @import "components/modal";
+@import "components/modalForm";

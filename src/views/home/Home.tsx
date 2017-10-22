@@ -67,9 +67,11 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
                         </button>
                     </p>
                 </div>
-                <button onClick={this._onClickPushExampleHandler}>{'Go to About'}</button>
-                <button onClick={this._onClickOpenModalHandler}>{'Open Example Generic Modal'}</button>
-                <button onClick={this._onClickFormModalHandler}>{'Open Example Form Modal'}</button>
+                <ol>
+                    <li><button onClick={this._onClickPushExampleHandler}>{'Go to About'}</button></li>
+                    <li><button onClick={this._onClickOpenModalHandler}>{'Open Example Generic Modal'}</button></li>
+                    <li><button onClick={this._onClickFormModalHandler}>{'Open Example Form Modal'}</button></li>
+                </ol>
             </div>
         );
     }
@@ -85,7 +87,6 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
 
         const genericModal: JSX.Element = (
             <GeneralModalAsync
-                isRequired={true}
                 modalData={{
                     message: (
                         <div>

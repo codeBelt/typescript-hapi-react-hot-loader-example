@@ -12,6 +12,7 @@ interface IProps {
     type?: string;
     isRequired?: boolean;
     step?: string;
+    pattern?: string;
     onChangeHandler?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 interface IState {}
@@ -43,6 +44,7 @@ class InputField extends React.Component<IProps, IState> {
                     onChange={this.props.onChangeHandler}
                     required={this.props.isRequired}
                     step={this.props.step}
+                    pattern={this.props.pattern}
                 />
             </div>
         );

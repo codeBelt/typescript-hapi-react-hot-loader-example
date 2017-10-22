@@ -16,7 +16,7 @@ class ExampleFormModal extends React.Component<IProps, IState> {
     public render(): JSX.Element {
         return (
             <section className="modal-content">
-                <h2 className="modal-header modal-header_left">{'language.customOrganicVaporTitle'}</h2>
+                <h2 className="modal-header modal-header_left">{'Modal Form Title'}</h2>
                 <div className="modal-body">
                     {this._buildVaporFormJsx()}
                 </div>
@@ -43,34 +43,20 @@ class ExampleFormModal extends React.Component<IProps, IState> {
                 }}
             >
                 <p className="modalForm-warning">
-                    {'language.customOrganicVaporWarning'}
+                    {'This is a custom modal which doesn\'t allow you to esc or click outside of the modal to close it. It forces the user to click one of the buttons.' }
                 </p>
                 <div className="modalForm-item">
                     <label
                         htmlFor="vapor-modal-form-name"
                         className="modalForm-item-label"
                     >
-                        {'language.customOrganicVaporName'}<sup>{'*'}</sup>
+                        {'Nmae'}<sup>{'*'}</sup>
                     </label>
                     <div className="modalForm-item-input">
                         <InputField
                             id={'vapor-modal-form-name'}
-                            name="primaryName"
+                            name="name"
                             isRequired={true}
-                        />
-                    </div>
-                </div>
-                <div className="modalForm-item">
-                    <label
-                        htmlFor="vapor-modal-form-cas-number"
-                        className="modalForm-item-label"
-                    >
-                        {'language.customOrganicVaporCasNumber'}
-                    </label>
-                    <div className="modalForm-item-input">
-                        <InputField
-                            id={'vapor-modal-form-cas-number'}
-                            name="cas"
                         />
                     </div>
                 </div>
@@ -79,13 +65,13 @@ class ExampleFormModal extends React.Component<IProps, IState> {
                         htmlFor="vapor-modal-form-exposure-limit"
                         className="modalForm-item-label"
                     >
-                        {'language.customOrganicVaporExposureLimit'}<sup>{'*'}</sup>
+                        {'Age'}<sup>{'*'}</sup>
                     </label>
                     <div className="modalForm-item-input">
                         <InputField
-                            id={'vapor-modal-form-exposure-limit'}
-                            name="exposureLimit.value"
-                            step={'0.1'}
+                            id={'example-form-age'}
+                            name="age"
+                            step={'1'}
                             type={'number'}
                             isRequired={true}
                         />
@@ -96,97 +82,28 @@ class ExampleFormModal extends React.Component<IProps, IState> {
                         htmlFor="vapor-modal-form-molecular-weight"
                         className="modalForm-item-label"
                     >
-                        {'language.customOrganicVaporMolecularWeight'}<sup>{'*'}</sup>
+                        {'Email'}<sup>{'*'}</sup>
                     </label>
                     <div className="modalForm-item-input">
                         <InputField
-                            id={'vapor-modal-form-molecular-weight'}
-                            name="molecularWeight"
-                            step={'0.1'}
-                            type={'number'}
+                            id={'example-form-modal-email'}
+                            name="email"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
                             isRequired={true}
                         />
                     </div>
                 </div>
                 <div className="modalForm-item">
                     <label
-                        htmlFor="vapor-modal-form-index-of-refraction"
+                        htmlFor="example-form-modal"
                         className="modalForm-item-label"
                     >
-                        {'language.customOrganicVaporIndexOfRefraction'}<sup>{'*'}</sup>
+                        {'Address'}
                     </label>
                     <div className="modalForm-item-input">
                         <InputField
-                            id={'vapor-modal-form-index-of-refraction'}
-                            name="indexOfRefraction"
-                            step={'0.1'}
-                            type={'number'}
-                            isRequired={true}
-                        />
-                    </div>
-                </div>
-                <div className="modalForm-item">
-                    <label
-                        htmlFor="vapor-modal-form-idlh"
-                        className="modalForm-item-label"
-                    >
-                        {'language.customOrganicVaporIdhl'}
-                    </label>
-                    <div className="modalForm-item-input">
-                        <InputField
-                            id={'vapor-modal-form-idlh'}
-                            name="idlh"
-                        />
-                    </div>
-                </div>
-                <div className="modalForm-item">
-                    <label
-                        htmlFor="vapor-modal-form-liquid-density"
-                        className="modalForm-item-label"
-                    >
-                        {'language.customOrganicVaporLiquidDensity'}<sup>{'*'}</sup>
-                    </label>
-                    <div className="modalForm-item-input">
-                        <InputField
-                            id={'vapor-modal-form-liquid-density'}
-                            name="liquidDensity"
-                            step={'0.1'}
-                            type={'number'}
-                            isRequired={true}
-                        />
-                    </div>
-                    <div className="modalForm-item-modifier">{'g/cm3'}</div>
-                </div>
-                <div className="modalForm-item">
-                    <label
-                        htmlFor="vapor-modal-form-saturated-vapor-pressure"
-                        className="modalForm-item-label"
-                    >
-                        {'language.customOrganicVaporSaturatedVaporPressure'}
-                    </label>
-                    <div className="modalForm-item-input">
-                        <InputField
-                            id={'vapor-modal-form-saturated-vapor-pressure'}
-                            name="saturatedVaporPressure"
-                            step={'0.1'}
-                            type={'number'}
-                        />
-                    </div>
-                    <div className="modalForm-item-modifier">{'mm Hg'}</div>
-                </div>
-                <div className="modalForm-item">
-                    <label
-                        htmlFor="vapor-modal-form-exposure"
-                        className="modalForm-item-label"
-                    >
-                        {'language.exposure'}
-                    </label>
-                    <div className="modalForm-item-input">
-                        <InputField
-                            id={'vapor-modal-form-exposure'}
-                            name="exposure.value"
-                            step={'0.1'}
-                            type={'number'}
+                            id={'example-form-modal-address'}
+                            name="address"
                         />
                     </div>
                 </div>
@@ -195,6 +112,8 @@ class ExampleFormModal extends React.Component<IProps, IState> {
     }
 
     private _onClickAccept(event: React.MouseEvent<HTMLButtonElement>): void {
+        event.preventDefault();
+
         if (this._formElement.checkValidity()) {
             const formData: any = form2js(this._formElement, '.', false);
 
