@@ -38,6 +38,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
     private _onClickPushExampleHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickPushExample.bind(this);
     private _onClickOpenModalHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickOpenModal.bind(this);
     private _onClickFormModalHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickFormModal.bind(this);
+    private _onAcceptHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onAccept.bind(this);
 
     public componentWillMount(): void {
         this.props.setMeta({
@@ -68,7 +69,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
                     </p>
                 </div>
                 <ol>
-                    <li><button onClick={this._onClickPushExampleHandler}>{'Go to About'}</button></li>
+                    <li><button onClick={this._onClickPushExampleHandler}>{'Example of Manual Routing'}</button></li>
                     <li><button onClick={this._onClickOpenModalHandler}>{'Open Example Generic Modal'}</button></li>
                     <li><button onClick={this._onClickFormModalHandler}>{'Open Example Form Modal'}</button></li>
                 </ol>
@@ -90,12 +91,32 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
                 modalData={{
                     message: (
                         <div>
-                            <h3>Generic Modal</h3>
-                            <p>Example of a generic modal that forcing the user to click a button. User cannot click esc or click on the background to close the modal.</p>
+                            <h3>{'Generic Modal'}</h3>
+                            <p>{'Example of a generic modal. Used for simple messages.'}</p>
+                        </div>
+                    ),
+                    acceptLabel: 'Open Another Modal',
+                    rejectLabel: 'Close',
+                }}
+                onAccept={this._onAcceptHandler}
+            />
+        );
+
+        this.props.addModal(genericModal);
+    }
+
+    private _onAccept(event: React.MouseEvent<HTMLButtonElement>): void {
+        event.preventDefault();
+
+        const genericModal: JSX.Element = (
+            <GeneralModalAsync
+                modalData={{
+                    message: (
+                        <div>
+                            <p>{'Handles opening multiple modals.'}</p>
                         </div>
                     ),
                     acceptLabel: 'Ok',
-                    rejectLabel: 'Cancel',
                 }}
             />
         );
@@ -107,19 +128,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
         event.preventDefault();
 
         const formModal: JSX.Element = (
-            <ExampleFormModalAsync
-                isRequired={true}
-                modalData={{
-                    message: (
-                        <div>
-                            <h3>Generic Modal</h3>
-                            <p>Example of a generic modal that forcing the user to click a button. User cannot click esc or click on the background to close the modal.</p>
-                        </div>
-                    ),
-                    acceptLabel: 'Ok',
-                    rejectLabel: 'Cancel',
-                }}
-            />
+            <ExampleFormModalAsync isRequired={true} />
         );
 
         this.props.addModal(formModal);

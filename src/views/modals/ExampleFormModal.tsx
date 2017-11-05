@@ -43,14 +43,14 @@ class ExampleFormModal extends React.Component<IProps, IState> {
                 }}
             >
                 <p className="modalForm-warning">
-                    {'This is a custom modal which doesn\'t allow you to esc or click outside of the modal to close it. It forces the user to click one of the buttons.' }
+                    {'This is an example of a custom modal. The "isRequired" attribute is set to "true" which prevents the user from clicking the esc key or click outside of the modal to close it. It also has form validation.' }
                 </p>
                 <div className="modalForm-item">
                     <label
                         htmlFor="vapor-modal-form-name"
                         className="modalForm-item-label"
                     >
-                        {'Nmae'}<sup>{'*'}</sup>
+                        {'Name'}<sup>{'*'}</sup>
                     </label>
                     <div className="modalForm-item-input">
                         <InputField
