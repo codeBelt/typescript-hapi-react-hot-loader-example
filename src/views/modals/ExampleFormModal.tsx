@@ -18,7 +18,7 @@ class ExampleFormModal extends React.Component<IProps, IState> {
             <section className="modal-content">
                 <h2 className="modal-header modal-header_left">{'Modal Form Title'}</h2>
                 <div className="modal-body">
-                    {this._buildVaporFormJsx()}
+                    {this._buildFormJsx()}
                 </div>
                 <div className="modal-footer modal-footer_stack">
                     <button onClick={this.props.closeModal}>
@@ -32,7 +32,7 @@ class ExampleFormModal extends React.Component<IProps, IState> {
         );
     }
 
-    private _buildVaporFormJsx(): JSX.Element {
+    private _buildFormJsx(): JSX.Element {
         return (
             <form
                 autoComplete="off"
