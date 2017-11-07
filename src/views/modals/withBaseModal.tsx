@@ -55,7 +55,7 @@ const withBaseModal = (ModalContent: any) => {
                     aria-live="polite"
                 >
                     <div
-                        className={this._buildModalOverlayClasses()}
+                        className={this._buildModalOverlayClassames()}
                         onClick={this._onClickOverlayHandler}
                     />
                     <ModalContent {...this.props} />
@@ -77,7 +77,7 @@ const withBaseModal = (ModalContent: any) => {
             }
         }
 
-        private _buildModalOverlayClasses(): string {
+        private _buildModalOverlayClassames(): string {
             return classNames({
                 'modal-overlay': true,
                 'modal-overlay_required': this.props.isRequired,
