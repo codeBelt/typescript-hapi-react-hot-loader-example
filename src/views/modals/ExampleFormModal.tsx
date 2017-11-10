@@ -47,14 +47,14 @@ class ExampleFormModal extends React.Component<IProps, IState> {
                 </p>
                 <div className="modalForm-item">
                     <label
-                        htmlFor="vapor-modal-form-name"
+                        htmlFor="modal-form-name"
                         className="modalForm-item-label"
                     >
                         {'Name'}<sup>{'*'}</sup>
                     </label>
                     <div className="modalForm-item-input">
                         <InputField
-                            id={'vapor-modal-form-name'}
+                            id={'modal-form-name'}
                             name="name"
                             isRequired={true}
                         />
@@ -62,7 +62,7 @@ class ExampleFormModal extends React.Component<IProps, IState> {
                 </div>
                 <div className="modalForm-item">
                     <label
-                        htmlFor="vapor-modal-form-exposure-limit"
+                        htmlFor="modal-form-exposure-limit"
                         className="modalForm-item-label"
                     >
                         {'Age'}<sup>{'*'}</sup>
@@ -79,7 +79,7 @@ class ExampleFormModal extends React.Component<IProps, IState> {
                 </div>
                 <div className="modalForm-item">
                     <label
-                        htmlFor="vapor-modal-form-molecular-weight"
+                        htmlFor="modal-form-molecular-weight"
                         className="modalForm-item-label"
                     >
                         {'Email'}<sup>{'*'}</sup>
