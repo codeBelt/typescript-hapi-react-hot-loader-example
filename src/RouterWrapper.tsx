@@ -12,6 +12,7 @@ import Header from './views/landmarks/Header';
 import NotFoundAsync from './views/errors/NotFoundAsync';
 import IStore from './stores/IStore';
 import ISagaStore from './stores/ISagaStore';
+import ModalHub from './views/modals/ModalHub';
 
 interface IProviderWrapperProps {
     store: ISagaStore<IStore>;
@@ -55,6 +56,7 @@ const RouterWrapper: React.StatelessComponent<IProviderWrapperProps> = (props: I
                         <Route component={NotFoundAsync} />
                     </Switch>
                     <FooterAsync />
+                    <ModalHub />
                 </div>
             </Router>
         </Provider>
