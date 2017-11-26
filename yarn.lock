@@ -26,21 +26,9 @@
   dependencies:
     "@types/node" "*"
 
-"@types/hapi@*":
+"@types/hapi@*", "@types/hapi@16.1.11":
   version "16.1.11"
   resolved "https://registry.yarnpkg.com/@types/hapi/-/hapi-16.1.11.tgz#a9b8fe6eee2f8cefb94f4f447d3c23a2b2c308cf"
-  dependencies:
-    "@types/boom" "*"
-    "@types/catbox" "*"
-    "@types/joi" "*"
-    "@types/mimos" "*"
-    "@types/node" "*"
-    "@types/podium" "*"
-    "@types/shot" "*"
-
-"@types/hapi@16.1.10":
-  version "16.1.10"
-  resolved "https://registry.yarnpkg.com/@types/hapi/-/hapi-16.1.10.tgz#7fab660b199aeebc5f5393b4aeb1b6e926162734"
   dependencies:
     "@types/boom" "*"
     "@types/catbox" "*"
@@ -54,9 +42,9 @@
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.6.2.tgz#12cfaba693ba20f114ed5765467ff25fdf67ddb0"
 
-"@types/inert@4.2.3":
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/@types/inert/-/inert-4.2.3.tgz#995a28fd1ba9dc93a0aafdb7f06c44cf2cd71e12"
+"@types/inert@4.2.4":
+  version "4.2.4"
+  resolved "https://registry.yarnpkg.com/@types/inert/-/inert-4.2.4.tgz#43a1a57506f7aa424b8eaaa07e3860a158377893"
   dependencies:
     "@types/hapi" "*"
 
