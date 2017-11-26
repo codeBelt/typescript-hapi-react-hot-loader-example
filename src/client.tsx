@@ -41,7 +41,7 @@ const composeApp = (Component: any) => (
 const renderApp = () => {
     const routerWrapper = require('./RouterWrapper').default; // tslint:disable-line:no-require-imports
 
-    ReactDOM.render(
+    ReactDOM.hydrate(
         composeApp(routerWrapper),
         rootEl,
     );

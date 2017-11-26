@@ -8,7 +8,7 @@ class AssetsController implements IController {
         server.route({
             method: 'GET',
             path: '/assets/{file*}',
-            handler: (request: Hapi.Request, reply: Hapi.ReplyNoContinue): void => {
+            handler: (request: Hapi.Request, reply: any): void => {
                 reply.file(path.resolve(__dirname, `../../public${request.path}`));
             },
         });
