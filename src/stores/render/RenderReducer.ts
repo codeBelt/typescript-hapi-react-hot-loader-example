@@ -7,7 +7,7 @@ class RenderReducer {
         isServerSide: true,
     };
 
-    public static reduce(state: IRenderReducerState = RenderReducer._initialState, action: IAction<IRenderReducerState>): IRenderReducerState {
+    public static reducer(state: IRenderReducerState = RenderReducer._initialState, action: IAction<IRenderReducerState>): IRenderReducerState {
         return state;
     }
 

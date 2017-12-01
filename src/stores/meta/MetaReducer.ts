@@ -9,7 +9,7 @@ class MetaReducer {
         description: '',
     };
 
-    public static reduce(state: IMetaReducerState = MetaReducer._initialState, action: IAction<any>): IMetaReducerState {
+    public static reducer(state: IMetaReducerState = MetaReducer._initialState, action: IAction<any>): IMetaReducerState {
         switch (action.type) {
             case MetaAction.SET_META:
                 return MetaReducer._setMeta(state, action);

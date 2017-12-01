@@ -24,7 +24,7 @@ class UserReducer {
         },
     };
 
-    public static reduce(state: IUserReducerState = UserReducer._initialState, action: IAction<any>): IUserReducerState {
+    public static reducer(state: IUserReducerState = UserReducer._initialState, action: IAction<any>): IUserReducerState {
         switch (action.type) {
             case UserAction.LOAD_USER_SUCCESS:
                 return UserReducer._loadUser(state, action);

@@ -8,7 +8,7 @@ class LoadingReducer {
         isLoading: false,
     };
 
-    public static reduce(state: ILoadingReducerState = LoadingReducer._initialState, action: IAction<any>): ILoadingReducerState {
+    public static reducer(state: ILoadingReducerState = LoadingReducer._initialState, action: IAction<any>): ILoadingReducerState {
         switch (action.type) {
             case LoadingAction.SET_LOADING:
                 return LoadingReducer._setLoading(state, action);

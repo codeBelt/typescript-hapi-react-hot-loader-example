@@ -10,12 +10,12 @@ import ModalReducer from './modal/ModalReducer';
 
 const reducers: IStore = {
     form: formReducer,
-    loadingReducer: LoadingReducer.reduce as any,
-    metaReducer: MetaReducer.reduce as any,
-    modalReducer: ModalReducer.reduce as any,
-    renderReducer: RenderReducer.reduce as any,
+    loadingReducer: LoadingReducer.reducer as any,
+    metaReducer: MetaReducer.reducer as any,
+    modalReducer: ModalReducer.reducer as any,
+    renderReducer: RenderReducer.reducer as any,
     router: routerReducer,
-    userReducer: UserReducer.reduce as any,
+    userReducer: UserReducer.reducer as any,
 };
 
 export default combineReducers<IStore>(reducers as any) as Reducer<IStore>;

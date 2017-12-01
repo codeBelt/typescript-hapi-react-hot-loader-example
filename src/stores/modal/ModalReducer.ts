@@ -9,7 +9,7 @@ class ModalReducer {
         modalList: [],
     };
 
-    public static reduce(state: IModalReducerState = ModalReducer._initialState, action: IAction<any>): IModalReducerState {
+    public static reducer(state: IModalReducerState = ModalReducer._initialState, action: IAction<any>): IModalReducerState {
         switch (action.type) {
             case ModalAction.ADD_MODAL:
                 return ModalReducer._addModal(state, action);
