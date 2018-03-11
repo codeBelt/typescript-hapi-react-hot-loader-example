@@ -3,7 +3,7 @@ import * as Hapi from 'hapi';
 class ServerService {
 
     public static createLocationObject(request: Hapi.Request): any {
-        const protocol: string = request.headers['x-forwarded-proto'] || request.connection.info.protocol;
+        const protocol: string = request.headers['x-forwarded-proto'];
 
         return {
             ...request.url,
