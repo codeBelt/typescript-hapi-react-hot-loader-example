@@ -21,7 +21,7 @@ class ReactController implements IController {
         server.route({
             method: 'GET',
             path: '/{route*}',
-            handler: async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<void> => {
+            handler: async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<Hapi.ResponseObject> => {
                 const store: ISagaStore<IStore> = ProviderService.createProviderStore({}, null, true);
                 const asyncContext: any = createAsyncContext();
                 const routeContext: any = {};
@@ -40,11 +40,19 @@ class ReactController implements IController {
 
                 await asyncBootstrapper(app);
 
-                store.runSaga(rootSaga).done.then(() => {
-                    if (routeContext.url) {
-                        return h.redirect(routeContext.url);
-                    }
+                const sagas: any = store.runSaga(rootSaga);
 
+                renderToString(app);
+
+                store.endSaga();
+
+                await sagas.done;
+
+                if (routeContext.url) {
+                    return h.redirect(routeContext.url);
+                }
+
+                try {
                     const renderedHtml: string = renderToString(app);
                     const asyncComponentsState: IStore = asyncContext.getState();
                     const state: IStore = store.getState();
@@ -65,13 +73,9 @@ class ReactController implements IController {
                         .replace('{asyncComponentsState}', serialize(asyncComponentsState));
 
                     return h.response(html);
-                }).catch((error: Error) => {
+                } catch (error) {
                     return error.toString();
-                });
-
-                renderToString(app);
-
-                store.endSaga();
+                }
             },
         });
     }
