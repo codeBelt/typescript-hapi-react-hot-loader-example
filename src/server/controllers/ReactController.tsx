@@ -40,13 +40,13 @@ class ReactController implements IController {
 
                 await asyncBootstrapper(app);
 
-                const sagas: any = store.runSaga(rootSaga);
+                const sagaDone: Promise<any> = store.runSaga(rootSaga).done;
 
                 renderToString(app);
 
                 store.endSaga();
 
-                await sagas.done;
+                await sagaDone;
 
                 if (routeContext.url) {
                     return h.redirect(routeContext.url);
