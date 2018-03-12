@@ -2,10 +2,10 @@
   "env": {
     "client": {
       "presets": [
-        ["es2015", {"modules": false}],
         "stage-2",
         "react",
         ["env", {
+          "modules": false,
           "targets": {
             "browsers": [
               "last 2 versions"
