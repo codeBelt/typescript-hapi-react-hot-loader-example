@@ -1,4 +1,5 @@
 import * as Hapi from 'hapi';
+import * as path from 'path';
 import IController from './IController';
 
 class AssetsController implements IController {
@@ -7,12 +8,10 @@ class AssetsController implements IController {
         server.route({
             method: 'GET',
             path: '/assets/{file*}',
-            handler: {
-                directory: {
-                    path: '.',
-                    redirectToSlash: true,
-                    index: true,
-                },
+            handler: (request: Hapi.Request, h: any/*inert.ResponseToolkit*/) => {
+                const file: string = path.resolve(__dirname, `../../public${request.path}`);
+
+                return h.file(file);
             },
         });
     }

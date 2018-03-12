@@ -1,6 +1,4 @@
 import * as Hapi from 'hapi';
-import * as inert from 'inert';
-import * as path from 'path';
 import IController from './controllers/IController';
 
 class ServerManager {
@@ -18,7 +16,12 @@ class ServerManager {
     }
 
     constructor() {
-        this._setup();
+        const options: Hapi.ServerOptions = {
+            host: ServerManager.HOST,
+            port: ServerManager.PORT,
+        };
+
+        this._server = new Hapi.Server(options);
     }
 
     public static log(): void {
@@ -43,22 +46,6 @@ class ServerManager {
         } catch (err) {
             console.error(err);
         }
-    }
-
-    private async _setup(): Promise<void> {
-        const options: Hapi.ServerOptions = {
-            host: ServerManager.HOST,
-            port: ServerManager.PORT,
-            routes: {
-                files: {
-                    relativeTo: path.join(__dirname, '../../public'),
-                },
-            },
-        };
-
-        this._server = new Hapi.Server(options);
-
-        await this.registerPlugin(inert);
     }
 
 }
