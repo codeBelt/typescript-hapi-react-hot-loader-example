@@ -21,7 +21,7 @@ class ReactController implements IController {
         server.route({
             method: 'GET',
             path: '/{route*}',
-            handler: async (request: Hapi.Request, reply: Hapi.ReplyNoContinue): Promise<void> => {
+            handler: async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<Hapi.ResponseObject> => {
                 const store: ISagaStore<IStore> = ProviderService.createProviderStore({}, null, true);
                 const asyncContext: any = createAsyncContext();
                 const routeContext: any = {};
@@ -40,11 +40,19 @@ class ReactController implements IController {
 
                 await asyncBootstrapper(app);
 
-                store.runSaga(rootSaga).done.then(() => {
-                    if (routeContext.url) {
-                        return reply().redirect(routeContext.url);
-                    }
+                const sagaDone: Promise<any> = store.runSaga(rootSaga).done;
 
+                renderToString(app);
+
+                store.endSaga();
+
+                await sagaDone;
+
+                if (routeContext.url) {
+                    return h.redirect(routeContext.url);
+                }
+
+                try {
                     const renderedHtml: string = renderToString(app);
                     const asyncComponentsState: IStore = asyncContext.getState();
                     const state: IStore = store.getState();
@@ -64,14 +72,10 @@ class ReactController implements IController {
                         .replace('{state}', JSON.stringify(initialState))
                         .replace('{asyncComponentsState}', serialize(asyncComponentsState));
 
-                    return reply(html);
-                }).catch((error: Error) => {
-                    reply(error.toString());
-                });
-
-                renderToString(app);
-
-                store.endSaga();
+                    return h.response(html);
+                } catch (error) {
+                    return error.toString();
+                }
             },
         });
     }

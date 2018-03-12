@@ -46,7 +46,7 @@ const webpackConfig = {
     module: {
         rules: [
             {
-                test: /\.css$/,
+                test: /\.s?css$/,
                 use: ['css-hot-loader'].concat(
                     ExtractTextPlugin.extract({
                         fallback: 'style-loader',
@@ -59,12 +59,9 @@ const webpackConfig = {
                                 },
                             },
                             {
-                                loader: 'postcss-loader',
+                                loader: 'sass-loader',
                                 options: {
-                                    sourceMap: !isProduction,
-                                    config: {
-                                        path: './postcss.config.js'
-                                    }
+                                    sourceMap: !isProduction
                                 }
                             },
                         ],
