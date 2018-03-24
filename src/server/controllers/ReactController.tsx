@@ -1,6 +1,6 @@
 import {renderToString} from 'react-dom/server';
 import {AsyncComponentProvider, createAsyncContext} from 'react-async-component';
-import asyncBootstrapper from 'react-async-bootstrapper';
+import * as bootstrap from 'react-async-bootstrapper';
 import * as serialize from 'serialize-javascript';
 import * as path from 'path';
 import * as fse from 'fs-extra';
@@ -38,7 +38,7 @@ class ReactController implements IController {
 
                 this._html = (this._html === null) ? await this._loadHtmlFile() : this._html;
 
-                await asyncBootstrapper(app);
+                await bootstrap(app);
 
                 const sagaDone: Promise<any> = store.runSaga(rootSaga).done;
 
