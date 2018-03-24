@@ -2,12 +2,12 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './assets/styles/screen.scss';
 
 import 'fetch-everywhere';
+import * as bootstrap from 'react-async-bootstrapper';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {History, createBrowserHistory} from 'history';
 import {AppContainer as ReactHotLoader} from 'react-hot-loader';
 import {AsyncComponentProvider} from 'react-async-component';
-import asyncBootstrapper from 'react-async-bootstrapper';
 import RouterWrapper from './RouterWrapper';
 import ProviderService from './services/ProviderService';
 import IStore from './stores/IStore';
@@ -47,7 +47,7 @@ const renderApp = () => {
     );
 };
 
-asyncBootstrapper(composeApp(RouterWrapper)).then(renderApp);
+bootstrap(composeApp(RouterWrapper)).then(renderApp);
 
 if (module.hot) {
     module.hot.accept('./RouterWrapper', renderApp);
