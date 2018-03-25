@@ -27,7 +27,7 @@
     "prod": "npm run prod:build && npm run start",
     "---------- TESTING -----------------------------------------------------------------------------": "",
     "test": "npm run lint && npm run unit",
-    "lint": "tslint 'src/**/*.ts{,x}' --exclude 'src/_declare/**/*'",
+    "lint": "tslint 'src/**/*.ts{,x}' --exclude 'src/typings.d.ts'",
     "unit": "jest",
     "------------------------------------------------------------------------------------------------": ""
   },
