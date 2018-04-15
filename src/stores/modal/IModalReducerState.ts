@@ -1,6 +1,6 @@
-interface IModelReducerState {
+interface IModalReducerState {
     readonly currentModal: JSX.Element;
     readonly modalList: JSX.Element[];
 }
 
-export default IModelReducerState;
+export default IModalReducerState;
