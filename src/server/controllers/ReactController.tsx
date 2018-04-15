@@ -7,7 +7,7 @@ import * as fse from 'fs-extra';
 import * as React from 'react';
 import * as Hapi from 'hapi';
 import RouterWrapper from '../../RouterWrapper';
-import ProviderService from '../../services/ProviderService';
+import ProviderUtility from '../../utilities/ProviderUtility';
 import rootSaga from '../../stores/rootSaga';
 import ISagaStore from '../../stores/ISagaStore';
 import IStore from '../../stores/IStore';
@@ -22,7 +22,7 @@ class ReactController implements IController {
             method: 'GET',
             path: '/{route*}',
             handler: async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<Hapi.ResponseObject> => {
-                const store: ISagaStore<IStore> = ProviderService.createProviderStore({}, null, true);
+                const store: ISagaStore<IStore> = ProviderUtility.createProviderStore({}, null, true);
                 const asyncContext: any = createAsyncContext();
                 const routeContext: any = {};
                 const app = (

@@ -9,7 +9,7 @@ import {History, createBrowserHistory} from 'history';
 import {AppContainer as ReactHotLoader} from 'react-hot-loader';
 import {AsyncComponentProvider} from 'react-async-component';
 import RouterWrapper from './RouterWrapper';
-import ProviderService from './services/ProviderService';
+import ProviderUtility from './utilities/ProviderUtility';
 import IStore from './stores/IStore';
 import ISagaStore from './stores/ISagaStore';
 
@@ -24,7 +24,7 @@ const initialState: IStore = {
 };
 
 const history: History = createBrowserHistory();
-const store: ISagaStore<IStore> = ProviderService.createProviderStore(initialState, history);
+const store: ISagaStore<IStore> = ProviderUtility.createProviderStore(initialState, history);
 const rootEl: HTMLElement = document.getElementById('root');
 
 delete window.__STATE__;
