@@ -8,7 +8,7 @@ import rootSaga from '../stores/rootSaga';
 import IStore from '../stores/IStore';
 import ISagaStore from '../stores/ISagaStore';
 
-class ProviderService {
+class ProviderUtility {
 
     public static createProviderStore(initialState: any = {}, history: History = null, isServerSide: boolean = false): ISagaStore<IStore> {
         const sagaMiddleware: SagaMiddleware<any> = createSagaMiddleware();
@@ -29,7 +29,7 @@ class ProviderService {
             sagaMiddleware.run(rootSaga);
         }
 
-        ProviderService._setupHotReloading(store);
+        ProviderUtility._setupHotReloading(store);
 
         return store;
     }
@@ -46,4 +46,4 @@ class ProviderService {
 
 }
 
-export default ProviderService;
+export default ProviderUtility;

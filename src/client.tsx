@@ -9,46 +9,50 @@ import {History, createBrowserHistory} from 'history';
 import {AppContainer as ReactHotLoader} from 'react-hot-loader';
 import {AsyncComponentProvider} from 'react-async-component';
 import RouterWrapper from './RouterWrapper';
-import ProviderService from './services/ProviderService';
+import ProviderUtility from './utilities/ProviderUtility';
 import IStore from './stores/IStore';
 import ISagaStore from './stores/ISagaStore';
 
-const codeSplittingState = window.__ASYNC_COMPONENTS_STATE__;
-const serverState: IStore = window.__STATE__;
-const initialState: IStore = {
-    ...serverState,
-    renderReducer: {
-        ...serverState.renderReducer,
-        isServerSide: false,
-    },
-};
+(async (window: Window) => {
 
-const history: History = createBrowserHistory();
-const store: ISagaStore<IStore> = ProviderService.createProviderStore(initialState, history);
-const rootEl: HTMLElement = document.getElementById('root');
+    const codeSplittingState = window.__ASYNC_COMPONENTS_STATE__;
+    const serverState: IStore = window.__STATE__;
+    const initialState: IStore = {
+        ...serverState,
+        renderReducer: {
+            ...serverState.renderReducer,
+            isServerSide: false,
+        },
+    };
 
-delete window.__STATE__;
-delete window.__ASYNC_COMPONENTS_STATE__;
+    const history: History = createBrowserHistory();
+    const store: ISagaStore<IStore> = ProviderUtility.createProviderStore(initialState, history);
+    const rootEl: HTMLElement = document.getElementById('root');
 
-const composeApp = (Component: any) => (
-    <ReactHotLoader key={Math.random()}>
-        <AsyncComponentProvider rehydrateState={codeSplittingState}>
-            <Component store={store} history={history} />
-        </AsyncComponentProvider>
-    </ReactHotLoader>
-);
+    delete window.__STATE__;
+    delete window.__ASYNC_COMPONENTS_STATE__;
 
-const renderApp = () => {
-    const routerWrapper = require('./RouterWrapper').default; // tslint:disable-line:no-require-imports
-
-    ReactDOM.hydrate(
-        composeApp(routerWrapper),
-        rootEl,
+    const composeApp = (Component: any) => (
+        <ReactHotLoader key={Math.random()}>
+            <AsyncComponentProvider rehydrateState={codeSplittingState}>
+                <Component store={store} history={history} />
+            </AsyncComponentProvider>
+        </ReactHotLoader>
     );
-};
 
-bootstrap(composeApp(RouterWrapper)).then(renderApp);
+    const renderApp = () => {
+        const routerWrapper = require('./RouterWrapper').default; // tslint:disable-line:no-require-imports
 
-if (module.hot) {
-    module.hot.accept('./RouterWrapper', renderApp);
-}
+        ReactDOM.hydrate(
+            composeApp(routerWrapper),
+            rootEl,
+        );
+    };
+
+    bootstrap(composeApp(RouterWrapper)).then(renderApp);
+
+    if (module.hot) {
+        module.hot.accept('./RouterWrapper', renderApp);
+    }
+
+})(window);

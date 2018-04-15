@@ -1,6 +1,6 @@
 import * as Hapi from 'hapi';
 
-class ServerService {
+class ServerUtility {
 
     public static createLocationObject(request: Hapi.Request): any {
         const protocol: string = request.headers['x-forwarded-proto'];
@@ -18,4 +18,4 @@ class ServerService {
 
 }
 
-export default ServerService;
+export default ServerUtility;
