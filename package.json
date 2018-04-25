@@ -7,7 +7,7 @@
   },
   "scripts": {
     "---------- HELPERS -----------------------------------------------------------------------------": "",
-    "remove": "rimraf dist",
+    "clean": "rimraf dist",
     "buildServer": "tsc -project tsconfig.server.json",
     "watchServer": "tsc -watch -project tsconfig.server.json",
     "removeAndBuildServer": "npm run remove && npm run buildServer",
