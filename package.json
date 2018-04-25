@@ -10,7 +10,7 @@
     "clean": "rimraf dist",
     "buildServer": "tsc -project tsconfig.server.json",
     "watchServer": "tsc -watch -project tsconfig.server.json",
-    "removeAndBuildServer": "npm run remove && npm run buildServer",
+    "removeAndBuildServer": "npm run clean && npm run buildServer",
     "start": "cross-env NODE_ENV=production node ./dist/server.js",
     "---------- DEVELOPMENT -------------------------------------------------------------------------": "",
     "predev": "npm run removeAndBuildServer",
