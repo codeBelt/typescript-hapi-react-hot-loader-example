@@ -7,9 +7,9 @@ import IStore from '../../stores/IStore';
 import {Dispatch} from 'redux';
 import IMetaReducerState from '../../stores/meta/IMetaReducerState';
 import IUserReducerState from '../../stores/user/IUserReducerState';
-import GeneralModalAsync from '../modals/GeneralModalAsync';
+import GenericModal from '../modals/GenericModal';
 import ModalAction from '../../stores/modal/ModalAction';
-import ExampleFormModalAsync from "../modals/ExampleFormModalAsync";
+import IAction from '../../stores/IAction';
 
 interface IState {}
 interface IProps {}
@@ -26,7 +26,7 @@ interface IDispatchToProps {
 const mapStateToProps = (state: IStore): IStateToProps => ({
     user: state.userReducer,
 });
-const mapDispatchToProps = (dispatch: Dispatch<IStore>): IDispatchToProps => ({
+const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
     historyPush: (route: string) => dispatch(push(route)),
     loadUser: () => dispatch(UserAction.loadUser()),
     setMeta: (meta: IMetaReducerState) => dispatch(MetaAction.setMeta(meta)),
@@ -87,7 +87,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
         event.preventDefault();
 
         const genericModal: JSX.Element = (
-            <GeneralModalAsync
+            <GenericModal
                 modalData={{
                     message: (
                         <div>
@@ -109,7 +109,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
         event.preventDefault();
 
         const genericModal: JSX.Element = (
-            <GeneralModalAsync
+            <GenericModal
                 modalData={{
                     message: (
                         <div>
@@ -127,11 +127,11 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
     private _onClickFormModal(event: React.MouseEvent<HTMLButtonElement>): void {
         event.preventDefault();
 
-        const formModal: JSX.Element = (
-            <ExampleFormModalAsync isRequired={true} />
-        );
-
-        this.props.addModal(formModal);
+        // const formModal: JSX.Element = (
+        //     <ExampleFormModal isRequired={true} />
+        // );
+        //
+        // this.props.addModal(formModal);
     }
 
 }

@@ -26,7 +26,7 @@ import ISagaStore from './stores/ISagaStore';
     };
 
     const history: History = createBrowserHistory();
-    const store: ISagaStore<IStore> = ProviderUtility.createProviderStore(initialState, history);
+    const store: ISagaStore = ProviderUtility.createProviderStore(initialState, history);
     const rootEl: HTMLElement = document.getElementById('root');
 
     delete window.__STATE__;
