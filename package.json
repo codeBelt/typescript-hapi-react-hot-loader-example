@@ -51,7 +51,6 @@
   "license": "MIT",
   "devDependencies": {
     "@types/classnames": "2.2.6",
-    "@types/fs-extra": "5.0.4",
     "@types/hapi": "17.6.2",
     "@types/history": "4.7.2",
     "@types/inert": "5.1.2",
@@ -110,7 +109,6 @@
     "classnames": "2.2.6",
     "fetch-everywhere": "1.0.5",
     "form2js": "1.0.0",
-    "fs-extra": "5.0.0",
     "hapi": "17.6.4",
     "hapi-webpack-plugin": "3.0.0",
     "history": "4.7.2",
