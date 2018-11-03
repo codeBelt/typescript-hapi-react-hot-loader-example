@@ -38,7 +38,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
     private _onClickPushExampleHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickPushExample.bind(this);
     private _onClickOpenModalHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickOpenModal.bind(this);
     private _onClickFormModalHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickFormModal.bind(this);
-    private _onAcceptHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onAccept.bind(this);
+    private _onAcceptHandler: (props: any) => void = this._onAccept.bind(this);
 
     public componentWillMount(): void {
         this.props.setMeta({
@@ -105,9 +105,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
         this.props.addModal(genericModal);
     }
 
-    private _onAccept(event: React.MouseEvent<HTMLButtonElement>): void {
-        event.preventDefault();
-
+    private _onAccept(props: any): void {
         const genericModal: JSX.Element = (
             <GenericModal
                 modalData={{
