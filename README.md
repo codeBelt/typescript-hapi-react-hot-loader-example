@@ -25,10 +25,6 @@ TypeScript example universal/isomorphic application demonstrating react-hot-load
 - $ `yarn prod` (production build w/ server)
 - $ `yarn prod:build` (production build)
 
-## staging tasks
-- $ `yarn staging` (staging build w/ server)
-- $ `yarn staging:build` (staging build)
-
 ---
 
 ##### Other features/examples I am working:

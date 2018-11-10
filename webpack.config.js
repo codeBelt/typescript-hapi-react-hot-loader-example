@@ -3,10 +3,13 @@ const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const SimpleProgressPlugin = require('webpack-simple-progress-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin').default;
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackHardDiskPlugin = require('html-webpack-harddisk-plugin');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const pkg = require('./package.json');
 
 const PORT = process.env.PORT || 3000;
@@ -84,57 +87,28 @@ const webpackConfig = {
     },
 
     plugins: [
-        new SimpleProgressPlugin(),
-
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
-        }),
-
-        isDevelopment
-            ? null
-            : new webpack.optimize.ModuleConcatenationPlugin(),
+        new CleanWebpackPlugin(['dist']),
 
         isDevelopment
             ? new webpack.HotModuleReplacementPlugin() // enable HMR globally
-            : null,
-        isDevelopment
-            ? new webpack.NamedModulesPlugin() // prints more readable module names in the browser console on HMR updates
-            : null,
-        isDevelopment
-            ? new webpack.NoEmitOnErrorsPlugin() // do not emit compiled assets that include errors
-            : null,
-
-        new ExtractTextPlugin({
-            filename: isDevelopment
-                ? 'assets/styles/main.css'
-                : 'assets/styles/[name].[chunkhash].css',
-        }),
-
-        isDevelopment
-            ? null
-            : new webpack.optimize.CommonsChunkPlugin({
-                name: 'vendor',
-                minChunks: module => /node_modules/.test(module.resource),
-            }),
-
-        isDevelopment
-            ? null
-            : new webpack.optimize.CommonsChunkPlugin({name: 'manifest'}),
-
-        isProduction
-            ? new webpack.optimize.UglifyJsPlugin()
             : null,
 
         isDevelopment
             ? null
             : new webpack.BannerPlugin(`${pkg.version} ${new Date().toString()}`),
 
-        new HtmlWebpackPlugin({
+        new MiniCssExtractPlugin({
+            filename: isDevelopment
+                ? 'assets/styles/[name].css'
+                : 'assets/styles/[name].[hash].css',
+        }),
+
+        new HtmlWebPackPlugin({
             template: path.resolve(__dirname, 'src/index.html'),
             minify: isProduction ? {collapseWhitespace: true, collapseInlineTagWhitespace: true} : false,
             alwaysWriteToDisk: true,
         }),
-        new HtmlWebpackHarddiskPlugin(),
+        new HtmlWebpackHardDiskPlugin(),
 
         new CopyWebpackPlugin([
             {
@@ -155,6 +129,20 @@ const webpackConfig = {
 
         new WriteFilePlugin(), // Forces webpack-dev-server to write files.
     ].filter(Boolean),
+
+    // optimization: {
+    //     runtimeChunk: 'single',
+    //     splitChunks: {
+    //         cacheGroups: {
+    //             vendors: {
+    //                 test: /[\\/]node_modules[\\/]/,
+    //                 name: 'vendors',
+    //                 chunks: 'all',
+    //                 enforce: true,
+    //             },
+    //         }
+    //     }
+    // },
 
     devtool: isProduction
         ? 'none'

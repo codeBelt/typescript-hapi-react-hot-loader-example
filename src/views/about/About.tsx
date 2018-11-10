@@ -35,7 +35,7 @@ class About extends React.Component<IStateToProps & IDispatchToProps & IProps, I
                 <div className="row marketing">
                     <div className="col-lg-6">
                         <h4>{'Webpack 3'}</h4>
-                        <p>{'Facilitates creating builds for production, staging, and development.'}</p>
+                        <p>{'Facilitates creating builds for production, and development.'}</p>
 
                         <h4>{'React'}</h4>
                         <p>{'Library to build user interfaces.'}</p>
