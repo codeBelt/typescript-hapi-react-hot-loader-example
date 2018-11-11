@@ -5,7 +5,6 @@ import {Dispatch} from 'redux';
 import ModalAction from '../../stores/modal/ModalAction';
 import IStore from '../../stores/IStore';
 import KeyCode from '../../constants/KeyCode';
-import IAction from '../../stores/IAction';
 
 interface IState {}
 interface IProps {
@@ -23,7 +22,7 @@ export type TProps = IStateToProps & IDispatchToProps & IProps;
 const withBaseModal = (ModalContent: any) => {
 
     const mapStateToProps = (state: IStore) => ({});
-    const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>) => ({
+    const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
         closeModal: () => dispatch(ModalAction.closeModal()),
     });
 
