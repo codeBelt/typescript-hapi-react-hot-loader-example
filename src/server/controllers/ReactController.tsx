@@ -2,8 +2,9 @@ import {renderToString} from 'react-dom/server';
 import {AsyncComponentProvider, createAsyncContext} from 'react-async-component';
 import * as bootstrap from 'react-async-bootstrapper';
 import * as serialize from 'serialize-javascript';
+import * as util from 'util';
+import * as fs from 'fs';
 import * as path from 'path';
-import * as fse from 'fs-extra';
 import * as React from 'react';
 import * as Hapi from 'hapi';
 import RouterWrapper from '../../RouterWrapper';
@@ -12,6 +13,8 @@ import rootSaga from '../../stores/rootSaga';
 import ISagaStore from '../../stores/ISagaStore';
 import IStore from '../../stores/IStore';
 import IController from './IController';
+
+const readFileAsync = util.promisify(fs.readFile);
 
 class ReactController implements IController {
 
@@ -22,7 +25,7 @@ class ReactController implements IController {
             method: 'GET',
             path: '/{route*}',
             handler: async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<Hapi.ResponseObject> => {
-                const store: ISagaStore<IStore> = ProviderUtility.createProviderStore({}, null, true);
+                const store: ISagaStore = ProviderUtility.createProviderStore({}, null, true);
                 const asyncContext: any = createAsyncContext();
                 const routeContext: any = {};
                 const app = (
@@ -83,7 +86,7 @@ class ReactController implements IController {
     private async _loadHtmlFile(): Promise<string> {
         const htmlPath = path.resolve(__dirname, '../../public/index.html');
 
-        return fse.readFile(htmlPath, 'utf8');
+        return readFileAsync(htmlPath, 'utf8');
     }
 
 }

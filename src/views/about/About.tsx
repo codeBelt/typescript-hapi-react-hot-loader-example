@@ -4,6 +4,7 @@ import MetaAction from '../../stores/meta/MetaAction';
 import IStore from '../../stores/IStore';
 import {Dispatch} from 'redux';
 import IMetaReducerState from '../../stores/meta/IMetaReducerState';
+import IAction from '../../stores/IAction';
 
 interface IState {}
 interface IProps {}
@@ -13,7 +14,7 @@ interface IDispatchToProps {
 }
 
 const mapStateToProps = (state: IStore): IStateToProps => ({});
-const mapDispatchToProps = (dispatch: Dispatch<IStore>): IDispatchToProps => ({
+const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
     setMeta: (meta: IMetaReducerState) => dispatch(MetaAction.setMeta(meta)),
 });
 
@@ -34,7 +35,7 @@ class About extends React.Component<IStateToProps & IDispatchToProps & IProps, I
                 <div className="row marketing">
                     <div className="col-lg-6">
                         <h4>{'Webpack 3'}</h4>
-                        <p>{'Facilitates creating builds for production, staging, and development.'}</p>
+                        <p>{'Facilitates creating builds for production, and development.'}</p>
 
                         <h4>{'React'}</h4>
                         <p>{'Library to build user interfaces.'}</p>

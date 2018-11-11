@@ -1,4 +1,4 @@
-import {combineReducers, ReducersMapObject} from 'redux';
+import {combineReducers, Reducer, ReducersMapObject} from 'redux';
 import {routerReducer} from 'react-router-redux';
 import UserReducer from './user/UserReducer';
 import LoadingReducer from './loading/LoadingReducer';
@@ -8,7 +8,7 @@ import RenderReducer from './render/RenderReducer';
 import IStore from './IStore';
 import ModalReducer from './modal/ModalReducer';
 
-const reducers: ReducersMapObject = {
+const reducerMap: ReducersMapObject = {
     form: formReducer,
     loadingReducer: LoadingReducer.reducer,
     metaReducer: MetaReducer.reducer,
@@ -18,4 +18,4 @@ const reducers: ReducersMapObject = {
     userReducer: UserReducer.reducer,
 };
 
-export default combineReducers<IStore>(reducers);
+export default combineReducers(reducerMap) as Reducer<IStore>;

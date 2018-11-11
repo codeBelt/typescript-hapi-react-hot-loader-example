@@ -5,12 +5,11 @@ import rootReducer from '../stores/rootReducer';
 import {composeWithDevTools} from 'redux-devtools-extension/developmentOnly';
 import createSagaMiddleware, {END, SagaMiddleware} from 'redux-saga';
 import rootSaga from '../stores/rootSaga';
-import IStore from '../stores/IStore';
 import ISagaStore from '../stores/ISagaStore';
 
 class ProviderUtility {
 
-    public static createProviderStore(initialState: any = {}, history: History = null, isServerSide: boolean = false): ISagaStore<IStore> {
+    public static createProviderStore(initialState: any = {}, history: History = null, isServerSide: boolean = false): ISagaStore {
         const sagaMiddleware: SagaMiddleware<any> = createSagaMiddleware();
 
         const store = createStore(
@@ -20,7 +19,7 @@ class ProviderUtility {
                 sagaMiddleware,
                 routerMiddleware(history),
             )),
-        ) as ISagaStore<IStore>;
+        ) as ISagaStore;
 
         if (isServerSide) {
             store.runSaga = sagaMiddleware.run;
@@ -34,7 +33,7 @@ class ProviderUtility {
         return store;
     }
 
-    private static _setupHotReloading(store: ISagaStore<IStore>): void {
+    private static _setupHotReloading(store: ISagaStore): void {
         if (module.hot) {
             module.hot.accept('../stores/rootReducer', () => {
                 const nextReducer = require('../stores/rootReducer').default; // tslint:disable-line:no-require-imports
