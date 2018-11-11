@@ -1,41 +1,13 @@
 {
-  "env": {
-    "client": {
-      "presets": [
-        "stage-2",
-        "react",
-        ["env", {
-          "modules": false,
-          "targets": {
-            "browsers": [
-              "last 2 versions"
-            ]
-          },
-          "useBuiltIns": true
-        }]
-      ],
-      "plugins": [
-        "react-hot-loader/babel"
-      ]
-    },
-    "server": {
-      "presets": [
-        "stage-2",
-        "react",
-        ["env", {
-          "targets": {
-            "node": "8.2.0"
-          }
-        }]
-      ],
-      "plugins": [
-        "transform-class-properties",
-        "transform-object-rest-spread",
-        "system-import-transformer"
-      ],
-      "ignore": [
-        "main.js"
-      ]
-    }
-  }
+  "presets": [
+    "@babel/env",
+    "@babel/typescript",
+    "@babel/react"
+  ],
+  "plugins": [
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/proposal-class-properties",
+    "@babel/proposal-object-rest-spread",
+    "@babel/plugin-transform-runtime"
+  ]
 }

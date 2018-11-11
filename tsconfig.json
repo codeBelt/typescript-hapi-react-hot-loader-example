@@ -1,31 +1,38 @@
 {
-  "docs": "https://www.typescriptlang.org/docs/handbook/compiler-options.html",
   "compilerOptions": {
-    "target": "es5",
+    "baseUrl": ".",
+    "outDir": "build/dist",
     "module": "esnext",
-    "moduleResolution": "node",
-    "jsx": "react",
-    "removeComments": false,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "strictNullChecks": false,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
+    "target": "es5",
     "lib": [
       "dom",
-      "es2016"
+      "es2016",
+      "es2017"
     ],
-    "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
     "sourceMap": true,
+    "allowJs": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "rootDir": "src",
     "forceConsistentCasingInFileNames": true,
-    "pretty": true
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strictNullChecks": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "allowSyntheticDefaultImports": true,
+    "noUnusedLocals": true
   },
   "include": [
     "src/**/*"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "build",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "src/setupTests.ts"
   ]
 }
