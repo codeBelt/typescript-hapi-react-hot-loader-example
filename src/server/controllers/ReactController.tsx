@@ -2,9 +2,6 @@ import {renderToString} from 'react-dom/server';
 import {AsyncComponentProvider, createAsyncContext} from 'react-async-component';
 import * as bootstrap from 'react-async-bootstrapper';
 import * as serialize from 'serialize-javascript';
-import * as util from 'util';
-import * as fs from 'fs';
-import * as path from 'path';
 import * as React from 'react';
 import * as Hapi from 'hapi';
 import RouterWrapper from '../../RouterWrapper';
@@ -13,8 +10,8 @@ import rootSaga from '../../stores/rootSaga';
 import ISagaStore from '../../stores/ISagaStore';
 import IStore from '../../stores/IStore';
 import IController from './IController';
-
-const readFileAsync = util.promisify(fs.readFile);
+import RequestMethodEnum from '../../constants/RequestMethodEnum';
+import ServerUtility from '../utilities/ServerUtility';
 
 class ReactController implements IController {
 
@@ -22,7 +19,7 @@ class ReactController implements IController {
 
     public mapRoutes(server: Hapi.Server): void {
         server.route({
-            method: 'GET',
+            method: RequestMethodEnum.GET,
             path: '/{route*}',
             handler: async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<Hapi.ResponseObject> => {
                 const store: ISagaStore = ProviderUtility.createProviderStore({}, null, true);
@@ -39,7 +36,7 @@ class ReactController implements IController {
                     </AsyncComponentProvider>
                 );
 
-                this._html = (this._html === null) ? await this._loadHtmlFile() : this._html;
+                this._html = (this._html === null) ? await ServerUtility.loadHtmlFile() : this._html;
 
                 await bootstrap(app);
 
@@ -64,6 +61,7 @@ class ReactController implements IController {
                         ...state,
                         renderReducer: {
                             isServerSide: true,
+                            serverSideLocation: ServerUtility.createLocationObject(request),
                         },
                     };
 
@@ -81,12 +79,6 @@ class ReactController implements IController {
                 }
             },
         });
-    }
-
-    private async _loadHtmlFile(): Promise<string> {
-        const htmlPath = path.resolve(__dirname, '../../public/index.html');
-
-        return readFileAsync(htmlPath, 'utf8');
     }
 
 }
