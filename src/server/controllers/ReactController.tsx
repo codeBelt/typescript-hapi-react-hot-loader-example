@@ -2,16 +2,18 @@ import {renderToString} from 'react-dom/server';
 import {AsyncComponentProvider, createAsyncContext} from 'react-async-component';
 import * as bootstrap from 'react-async-bootstrapper';
 import * as serialize from 'serialize-javascript';
-import * as path from 'path';
-import * as fse from 'fs-extra';
 import * as React from 'react';
 import * as Hapi from 'hapi';
 import RouterWrapper from '../../RouterWrapper';
 import ProviderUtility from '../../utilities/ProviderUtility';
+import ServerUtility from '../utilities/ServerUtility';
 import rootSaga from '../../stores/rootSaga';
 import ISagaStore from '../../stores/ISagaStore';
 import IStore from '../../stores/IStore';
 import IController from './IController';
+import IRenderReducerState from '../../stores/render/IRenderReducerState';
+import RequestMethodEnum from '../../constants/RequestMethodEnum';
+import {createMemoryHistory, History} from 'history';
 
 class ReactController implements IController {
 
@@ -19,12 +21,16 @@ class ReactController implements IController {
 
     public mapRoutes(server: Hapi.Server): void {
         server.route({
-            method: 'GET',
+            method: RequestMethodEnum.GET,
             path: '/{route*}',
             handler: async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<Hapi.ResponseObject> => {
-                const store: ISagaStore<IStore> = ProviderUtility.createProviderStore({}, null, true);
+                let initialState: Partial<IStore> = {renderReducer: this._getRenderReducer(request)};
+                const history: History = createMemoryHistory();
+                const isServerSide: boolean = true;
+                const store: ISagaStore = ProviderUtility.createProviderStore(initialState, history, isServerSide);
                 const asyncContext: any = createAsyncContext();
                 const routeContext: any = {};
+
                 const app = (
                     <AsyncComponentProvider asyncContext={asyncContext}>
                         <RouterWrapper
@@ -36,7 +42,7 @@ class ReactController implements IController {
                     </AsyncComponentProvider>
                 );
 
-                this._html = (this._html === null) ? await this._loadHtmlFile() : this._html;
+                this._html = (this._html === null) ? await ServerUtility.loadHtmlFile() : this._html;
 
                 await bootstrap(app);
 
@@ -57,11 +63,9 @@ class ReactController implements IController {
                     const asyncComponentsState: IStore = asyncContext.getState();
                     const state: IStore = store.getState();
 
-                    const initialState: IStore = {
+                    initialState = {
                         ...state,
-                        renderReducer: {
-                            isServerSide: true,
-                        },
+                        renderReducer: this._getRenderReducer(request),
                     };
 
                     const html: string = this._html
@@ -80,10 +84,11 @@ class ReactController implements IController {
         });
     }
 
-    private async _loadHtmlFile(): Promise<string> {
-        const htmlPath = path.resolve(__dirname, '../../public/index.html');
-
-        return fse.readFile(htmlPath, 'utf8');
+    private _getRenderReducer(request: Hapi.Request): IRenderReducerState {
+        return {
+            isServerSide: true,
+            serverSideLocation: ServerUtility.createLocationObject(request),
+        };
     }
 
 }

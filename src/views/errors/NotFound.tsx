@@ -4,6 +4,7 @@ import MetaAction from '../../stores/meta/MetaAction';
 import IMetaReducerState from '../../stores/meta/IMetaReducerState';
 import IStore from '../../stores/IStore';
 import {Dispatch} from 'redux';
+import IAction from '../../stores/IAction';
 
 interface IState {}
 interface IProps {}
@@ -13,7 +14,7 @@ interface IDispatchToProps {
 }
 
 const mapStateToProps = (state: IStore): IStateToProps => ({});
-const mapDispatchToProps = (dispatch: Dispatch<IStore>): IDispatchToProps => ({
+const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
     setMeta: (meta: IMetaReducerState) => dispatch(MetaAction.setMeta(meta)),
 });
 

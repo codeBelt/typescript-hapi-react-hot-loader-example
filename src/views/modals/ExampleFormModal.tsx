@@ -43,7 +43,7 @@ class ExampleFormModal extends React.Component<IProps, IState> {
                 }}
             >
                 <p className="modalForm-warning">
-                    {'This is an example of a custom modal. The "isRequired" attribute is set to "true" which prevents the user from clicking the esc key or click outside of the modal to close it. It also has form validation.' }
+                    {'This is an example of a custom modal. The "isRequired" attribute is set to "true" which prevents the user from clicking the esc key or click outside of the modal to close it. It also has form validation.'}
                 </p>
                 <div className="modalForm-item">
                     <label
@@ -117,7 +117,7 @@ class ExampleFormModal extends React.Component<IProps, IState> {
         if (this._formElement.checkValidity()) {
             const formData: any = form2js(this._formElement, '.', false);
 
-            console.log(formData);
+            console.info(formData);
 
             this.props.closeModal();
         } else {

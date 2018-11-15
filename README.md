@@ -1,5 +1,5 @@
 # `typescript-hapi-react-hot-loader-example`
-TypeScript example universal/isomorphic application demonstrating react-hot-loader-3 with webpack-3, react and friends, async code splitting, and hapi.
+TypeScript example universal/isomorphic application demonstrating react-hot-loader-4 with webpack-4, react and friends, async code splitting, and hapi.
 
 >  [Check out the JavaScript version here](https://github.com/codeBelt/hapi-react-hot-loader-example)
 
@@ -26,8 +26,8 @@ TypeScript example universal/isomorphic application demonstrating react-hot-load
 - $ `yarn prod:build` (production build)
 
 ## staging tasks
-- $ `yarn staging` (staging build w/ server)
-- $ `yarn staging:build` (staging build)
+- $ `yarn local` (local build w/ server)
+- $ `yarn local:build` (local build)
 
 ---
 

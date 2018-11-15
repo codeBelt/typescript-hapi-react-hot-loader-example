@@ -3,8 +3,6 @@ interface Window {
     __ASYNC_COMPONENTS_STATE__?: any;
 }
 
-declare module 'form2js';
-
 declare namespace NodeJS {
     interface Global {
         document: Document;
@@ -13,9 +11,7 @@ declare namespace NodeJS {
     }
 }
 
+declare module 'form2js';
 declare module 'react-async-bootstrapper';
-
 declare module 'react-async-component';
-
 declare module 'hapi-webpack-plugin';
-

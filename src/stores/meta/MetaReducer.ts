@@ -1,6 +1,7 @@
 import MetaAction from './MetaAction';
 import IMetaReducerState from './IMetaReducerState';
 import IAction from '../IAction';
+import ITitleDescription from './models/ITitleDescription';
 
 class MetaReducer {
 
@@ -18,10 +19,11 @@ class MetaReducer {
         }
     }
 
-    private static _setMeta(state: IMetaReducerState, action: IAction<IMetaReducerState>): IMetaReducerState {
+    private static _setMeta(state: IMetaReducerState, action: IAction<ITitleDescription>): IMetaReducerState {
         return {
             ...state,
-            ...action.payload,
+            description: action.payload.description || '',
+            title: action.payload.title,
         };
     }
 
