@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {reduxForm, FormErrors, InjectedFormProps} from 'redux-form';
+import {FormErrors, InjectedFormProps, reduxForm} from 'redux-form';
 import IContactForm from './IContactForm';
 import CustomField from './CustomField';
 
@@ -110,7 +110,7 @@ class ContactForm extends React.Component<IProps> {
 
     private _renderInputField(field: any): JSX.Element {
         const {meta: {touched, error}} = field;
-        const className = `small text-danger ${touched && error ? '' : 'd-none'}`;
+        const className: string = `small text-danger ${touched && error ? '' : 'd-none'}`;
 
         return (
             <div>
@@ -166,7 +166,7 @@ class ContactForm extends React.Component<IProps> {
 
     private _renderTextArea(field: any): JSX.Element {
         const {meta: {touched, error}} = field;
-        const className = `small text-danger ${touched && error ? '' : 'd-none'}`;
+        const className: string = `small text-danger ${touched && error ? '' : 'd-none'}`;
 
         return (
             <div>
