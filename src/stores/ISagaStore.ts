@@ -1,6 +1,6 @@
-import {Store} from 'redux';
+import IStore from './IStore';
 
-interface ISagaStore<S> extends Store<S> {
+interface ISagaStore extends IStore {
     runSaga: any; // TODO: figure out type
     endSaga: any; // TODO: figure out type
 }

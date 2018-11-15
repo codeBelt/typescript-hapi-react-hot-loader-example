@@ -1,7 +1,7 @@
-import * as Hapi from 'hapi';
+import * as Webpack from 'webpack';
 import * as HapiWebpackPlugin from 'hapi-webpack-plugin';
 import * as notifier from 'node-notifier';
-import * as Webpack from 'webpack';
+import * as Hapi from 'hapi';
 import ServerManager from '../ServerManager';
 
 class HapiWebpackHotPlugin {
@@ -10,7 +10,7 @@ class HapiWebpackHotPlugin {
         const config: Webpack.Configuration = require('../../../webpack.config.js'); // tslint:disable-line no-require-imports
         const compiler: Webpack.Compiler = Webpack(config);
 
-        compiler.plugin('done', (stats: any) => this._onDone(stats));
+        compiler.hooks.done.tap('BuildStatsPlugin', (stats: any) => this._onDone(stats));
 
         const assets = {
             // webpack-dev-middleware options - See https://github.com/webpack/webpack-dev-middleware

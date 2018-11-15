@@ -5,13 +5,14 @@ import 'fetch-everywhere';
 import * as bootstrap from 'react-async-bootstrapper';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {History, createBrowserHistory} from 'history';
+import {createBrowserHistory, History} from 'history';
 import {AppContainer as ReactHotLoader} from 'react-hot-loader';
 import {AsyncComponentProvider} from 'react-async-component';
 import RouterWrapper from './RouterWrapper';
 import ProviderUtility from './utilities/ProviderUtility';
 import IStore from './stores/IStore';
 import ISagaStore from './stores/ISagaStore';
+import rootReducer from './stores/rootReducer';
 
 (async (window: Window) => {
 
@@ -26,7 +27,7 @@ import ISagaStore from './stores/ISagaStore';
     };
 
     const history: History = createBrowserHistory();
-    const store: ISagaStore<IStore> = ProviderUtility.createProviderStore(initialState, history);
+    const store: ISagaStore = ProviderUtility.createProviderStore(initialState, history);
     const rootEl: HTMLElement = document.getElementById('root');
 
     delete window.__STATE__;
@@ -35,7 +36,10 @@ import ISagaStore from './stores/ISagaStore';
     const composeApp = (Component: any) => (
         <ReactHotLoader key={Math.random()}>
             <AsyncComponentProvider rehydrateState={codeSplittingState}>
-                <Component store={store} history={history} />
+                <Component
+                    store={store}
+                    history={history}
+                />
             </AsyncComponentProvider>
         </ReactHotLoader>
     );
@@ -52,7 +56,13 @@ import ISagaStore from './stores/ISagaStore';
     bootstrap(composeApp(RouterWrapper)).then(renderApp);
 
     if (module.hot) {
+        // Reload components
         module.hot.accept('./RouterWrapper', renderApp);
+
+        // Reload reducers
+        module.hot.accept('./stores/rootReducer', () => {
+            store.replaceReducer(rootReducer(history));
+        });
     }
 
 })(window);

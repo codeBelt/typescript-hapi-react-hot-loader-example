@@ -4,10 +4,10 @@ import IController from './controllers/IController';
 class ServerManager {
 
     public static readonly PORT: number = parseInt(process.env.PORT, 10) || 3000;
-    public static readonly HOST: string = process.env.HOST || 'localhost';
+    public static readonly HOST: string = process.env.HOST || '0.0.0.0';
     public static readonly NODE_ENV: string = process.env.NODE_ENV;
 
-    public isDevelopment: boolean = (ServerManager.NODE_ENV === 'development');
+    public isDevelopment: boolean = (ServerManager.NODE_ENV !== 'production');
 
     private _server: Hapi.Server = null;
 
@@ -37,6 +37,11 @@ class ServerManager {
     }
 
     public async startServer(): Promise<void> {
+        process.on('unhandledRejection', (err) => {
+            console.error(err);
+            process.exit(1);
+        });
+
         try {
             await this._server.start();
 

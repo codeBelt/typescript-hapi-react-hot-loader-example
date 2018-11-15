@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
 import ModalAction from '../../stores/modal/ModalAction';
 import IStore from '../../stores/IStore';
-import KeyCode from '../../constants/KeyCode';
+import KeyboardKeyEnum from '../../constants/KeyboardKeyEnum';
+import IAction from '../../stores/IAction';
 
 interface IState {}
 interface IProps {
@@ -22,7 +23,7 @@ export type TProps = IStateToProps & IDispatchToProps & IProps;
 const withBaseModal = (ModalContent: any) => {
 
     const mapStateToProps = (state: IStore) => ({});
-    const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
+    const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
         closeModal: () => dispatch(ModalAction.closeModal()),
     });
 
@@ -70,7 +71,7 @@ const withBaseModal = (ModalContent: any) => {
         }
 
         private _onKeyDownModal(event: KeyboardEvent): void {
-            if (event.keyCode === KeyCode.ESCAPE) {
+            if (event.key === KeyboardKeyEnum.ESCAPE) {
                 event.preventDefault();
 
                 this.props.closeModal();

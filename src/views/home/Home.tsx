@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {push} from 'react-router-redux';
+import {push} from 'connected-react-router';
 import UserAction from '../../stores/user/UserAction';
 import MetaAction from '../../stores/meta/MetaAction';
 import IStore from '../../stores/IStore';
@@ -9,7 +9,8 @@ import IMetaReducerState from '../../stores/meta/IMetaReducerState';
 import IUserReducerState from '../../stores/user/IUserReducerState';
 import GeneralModalAsync from '../modals/GeneralModalAsync';
 import ModalAction from '../../stores/modal/ModalAction';
-import ExampleFormModalAsync from "../modals/ExampleFormModalAsync";
+import ExampleFormModalAsync from '../modals/ExampleFormModalAsync';
+import IAction from '../../stores/IAction';
 
 interface IState {}
 interface IProps {}
@@ -26,7 +27,7 @@ interface IDispatchToProps {
 const mapStateToProps = (state: IStore): IStateToProps => ({
     user: state.userReducer,
 });
-const mapDispatchToProps = (dispatch: Dispatch<IStore>): IDispatchToProps => ({
+const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
     historyPush: (route: string) => dispatch(push(route)),
     loadUser: () => dispatch(UserAction.loadUser()),
     setMeta: (meta: IMetaReducerState) => dispatch(MetaAction.setMeta(meta)),

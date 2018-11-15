@@ -6,7 +6,7 @@ class ModalReducer {
 
     private static readonly _initialState: IModalReducerState = {
         currentModal: null,
-        modalList: [],
+        modals: [],
     };
 
     public static reducer(state: IModalReducerState = ModalReducer._initialState, action: IAction<any>): IModalReducerState {
@@ -24,23 +24,23 @@ class ModalReducer {
         return {
             ...state,
             currentModal: action.payload,
-            modalList: [...state.modalList, action.payload],
+            modals: [...state.modals, action.payload],
         };
     }
 
     private static _closeCurrentModal(state: IModalReducerState, action: IAction<void>): IModalReducerState {
         const currentModal: JSX.Element = state.currentModal;
-        const modalIndex: number = state.modalList.indexOf(currentModal);
-        const modals: JSX.Element[] = [
-            ...state.modalList.slice(0, modalIndex),
-            ...state.modalList.slice(modalIndex + 1),
+        const modalIndex: number = state.modals.indexOf(currentModal);
+        const modals = [
+            ...state.modals.slice(0, modalIndex),
+            ...state.modals.slice(modalIndex + 1),
         ];
         const previousModal: JSX.Element = modals[modals.length - 1];
 
         return {
             ...state,
             currentModal: previousModal || null,
-            modalList: modals,
+            modals,
         };
     }
 
