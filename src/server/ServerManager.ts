@@ -37,8 +37,8 @@ class ServerManager {
     }
 
     public async startServer(): Promise<void> {
-        process.on('unhandledRejection', (err) => {
-            console.error(err);
+        process.on('unhandledRejection', (error: Error) => {
+            console.error(error);
             process.exit(1);
         });
 

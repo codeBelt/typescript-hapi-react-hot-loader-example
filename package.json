@@ -1,9 +1,9 @@
 {
   "name": "typescript-hapi-react-hot-loader-example",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Simple React Hot Loading example with Hapi Server-side rendering",
   "engines": {
-    "node": ">=8.9.1"
+    "node": ">=10.11.0"
   },
   "scripts": {
     "---------- HELPERS -----------------------------------------------------------------------------": "",
