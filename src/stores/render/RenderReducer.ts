@@ -1,7 +1,7 @@
 import IRenderReducerState from './IRenderReducerState';
 import IAction from '../IAction';
 
-class RenderReducer {
+export default class RenderReducer {
 
     private static readonly _initialState: IRenderReducerState = {
         isServerSide: true,
@@ -13,5 +13,3 @@ class RenderReducer {
     }
 
 }
-
-export default RenderReducer;

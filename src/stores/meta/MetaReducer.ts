@@ -3,7 +3,7 @@ import IMetaReducerState from './IMetaReducerState';
 import IAction from '../IAction';
 import ITitleDescription from './models/ITitleDescription';
 
-class MetaReducer {
+export default class MetaReducer {
 
     private static readonly _initialState: IMetaReducerState = {
         title: 'Robert is cool',
@@ -28,5 +28,3 @@ class MetaReducer {
     }
 
 }
-
-export default MetaReducer;

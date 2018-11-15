@@ -2,7 +2,7 @@ import ModalAction from './ModalAction';
 import IModalReducerState from './IModalReducerState';
 import IAction from '../IAction';
 
-class ModalReducer {
+export default class ModalReducer {
 
     private static readonly _initialState: IModalReducerState = {
         currentModal: null,
@@ -45,5 +45,3 @@ class ModalReducer {
     }
 
 }
-
-export default ModalReducer;

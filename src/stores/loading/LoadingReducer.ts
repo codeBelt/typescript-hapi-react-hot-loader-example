@@ -2,7 +2,7 @@ import LoadingAction from './LoadingAction';
 import ILoadingReducerState from './ILoadingReducerState';
 import IAction from '../IAction';
 
-class LoadingReducer {
+export default class LoadingReducer {
 
     private static readonly _initialState: ILoadingReducerState = {
         isLoading: false,
@@ -25,5 +25,3 @@ class LoadingReducer {
     }
 
 }
-
-export default LoadingReducer;

@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom';
 interface IProps {}
 interface IState {}
 
-class Header extends React.Component<IProps, IState> {
+export default class Header extends React.Component<IProps, IState> {
 
     public render(): JSX.Element {
         return (
@@ -47,5 +47,3 @@ class Header extends React.Component<IProps, IState> {
     }
 
 }
-
-export default Header;

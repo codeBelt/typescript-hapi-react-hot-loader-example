@@ -1,4 +1,4 @@
-interface IContactForm {
+export default interface IContactForm {
     name: string;
     email: string;
     message: string;
@@ -6,5 +6,3 @@ interface IContactForm {
     codeQualityRadio: string;
     starred: string;
 }
-
-export default IContactForm;

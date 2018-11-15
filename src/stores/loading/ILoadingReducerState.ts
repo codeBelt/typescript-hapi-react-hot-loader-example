@@ -1,5 +1,3 @@
-interface ILoadingReducerState {
+export default interface ILoadingReducerState {
     readonly isLoading: boolean;
 }
-
-export default ILoadingReducerState;

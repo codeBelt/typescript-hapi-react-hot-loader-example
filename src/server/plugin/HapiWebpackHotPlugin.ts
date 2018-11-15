@@ -4,7 +4,7 @@ import * as notifier from 'node-notifier';
 import * as Hapi from 'hapi';
 import ServerManager from '../ServerManager';
 
-class HapiWebpackHotPlugin {
+export default class HapiWebpackHotPlugin {
 
     public get plugin(): Hapi.ServerRegisterPluginObject<any> {
         const config: Webpack.Configuration = require('../../../webpack.config.js'); // tslint:disable-line no-require-imports
@@ -43,5 +43,3 @@ class HapiWebpackHotPlugin {
     }
 
 }
-
-export default HapiWebpackHotPlugin;

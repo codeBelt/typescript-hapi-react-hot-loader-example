@@ -17,7 +17,7 @@ interface IProps {
 }
 interface IState {}
 
-class InputField extends React.Component<IProps, IState> {
+export default class InputField extends React.Component<IProps, IState> {
 
     public static defaultProps: Partial<IProps> = {
         type: 'text',
@@ -59,5 +59,3 @@ class InputField extends React.Component<IProps, IState> {
     }
 
 }
-
-export default InputField;

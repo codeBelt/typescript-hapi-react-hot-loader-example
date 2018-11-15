@@ -4,7 +4,7 @@ import LoadingAction from '../loading/LoadingAction';
 import IAction from '../IAction';
 import IUserReducerState from './IUserReducerState';
 
-class UserSaga {
+export default class UserSaga {
 
     public static* loadUser(action: IAction<void> = null) {
         yield put({
@@ -37,5 +37,3 @@ class UserSaga {
     }
 
 }
-
-export default UserSaga;

@@ -1,6 +1,4 @@
-interface IMetaReducerState {
+export default interface IMetaReducerState {
     readonly title: string;
     readonly description?: string;
 }
-
-export default IMetaReducerState;
