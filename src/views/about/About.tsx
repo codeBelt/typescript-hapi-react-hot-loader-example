@@ -34,7 +34,7 @@ class About extends React.Component<IStateToProps & IDispatchToProps & IProps, I
 
                 <div className="row marketing">
                     <div className="col-lg-6">
-                        <h4>{'Webpack 3'}</h4>
+                        <h4>{'Webpack 4'}</h4>
                         <p>{'Facilitates creating builds for production, staging, and development.'}</p>
 
                         <h4>{'React'}</h4>
@@ -54,7 +54,7 @@ class About extends React.Component<IStateToProps & IDispatchToProps & IProps, I
                         <h4>{'Redux Form'}</h4>
                         <p>{'Manages form data in Redux and does validation.'}</p>
 
-                        <h4>{'React Hot Loader 3'}</h4>
+                        <h4>{'React Hot Loader 4'}</h4>
                         <p>{'Updates the browser with JavaScript and CSS changes without having to refresh the page.'}</p>
 
                         <h4>{'Hapi'}</h4>
