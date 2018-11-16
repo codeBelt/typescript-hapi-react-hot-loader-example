@@ -1,7 +1,7 @@
 import * as Hapi from 'hapi';
 import IController from './controllers/IController';
 
-class ServerManager {
+export default class ServerManager {
 
     public static readonly PORT: number = parseInt(process.env.PORT, 10) || 3000;
     public static readonly HOST: string = process.env.HOST || '0.0.0.0';
@@ -54,5 +54,3 @@ class ServerManager {
     }
 
 }
-
-export default ServerManager;

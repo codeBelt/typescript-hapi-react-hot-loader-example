@@ -1,4 +1,4 @@
-import {all, fork, takeLatest, select, ForkEffect} from 'redux-saga/effects';
+import {all, fork, ForkEffect, select, takeLatest} from 'redux-saga/effects';
 import UserSaga from './user/UserSaga';
 import UserAction from './user/UserAction';
 import IStore from './IStore';

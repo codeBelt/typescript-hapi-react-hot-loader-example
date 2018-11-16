@@ -15,7 +15,7 @@ import IRenderReducerState from '../../stores/render/IRenderReducerState';
 import RequestMethodEnum from '../../constants/RequestMethodEnum';
 import {createMemoryHistory, History} from 'history';
 
-class ReactController implements IController {
+export default class ReactController implements IController {
 
     private _html: string = null;
 
@@ -92,5 +92,3 @@ class ReactController implements IController {
     }
 
 }
-
-export default ReactController;

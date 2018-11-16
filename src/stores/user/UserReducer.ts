@@ -2,7 +2,7 @@ import UserAction from './UserAction';
 import IUserReducerState from './IUserReducerState';
 import IAction from '../IAction';
 
-class UserReducer {
+export default class UserReducer {
 
     private static readonly _initialState: IUserReducerState = {
         name: {
@@ -41,5 +41,3 @@ class UserReducer {
     }
 
 }
-
-export default UserReducer;

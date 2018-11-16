@@ -1,6 +1,6 @@
 import IAction from '../IAction';
 
-class LoadingAction {
+export default class LoadingAction {
 
     public static readonly SET_LOADING: string = 'LoadingAction.SET_LOADING';
 
@@ -12,5 +12,3 @@ class LoadingAction {
     }
 
 }
-
-export default LoadingAction;

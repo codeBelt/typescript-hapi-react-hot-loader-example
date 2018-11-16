@@ -1,8 +1,6 @@
 import {IServerLocation} from '../../server/utilities/ServerUtility';
 
-interface IRenderReducerState {
+export default interface IRenderReducerState {
     readonly isServerSide: boolean;
     readonly serverSideLocation: IServerLocation;
 }
-
-export default IRenderReducerState;

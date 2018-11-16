@@ -7,7 +7,7 @@ import IUserReducerState from './user/IUserReducerState';
 import IRenderReducerState from './render/IRenderReducerState';
 import IModalReducerState from './modal/IModalReducerState';
 
-interface IStore extends Store<IStore> {
+export default interface IStore extends Store<IStore> {
     readonly form: FormReducer;
     readonly loadingReducer: ILoadingReducerState;
     readonly metaReducer: IMetaReducerState;
@@ -16,5 +16,3 @@ interface IStore extends Store<IStore> {
     readonly userReducer: IUserReducerState;
     readonly router: RouterState;
 }
-
-export default IStore;

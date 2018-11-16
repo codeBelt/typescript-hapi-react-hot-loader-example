@@ -1,7 +1,7 @@
 import IMetaReducerState from './IMetaReducerState';
 import IAction from '../IAction';
 
-class MetaAction {
+export default class MetaAction {
 
     public static readonly SET_META: string = 'MetaAction.SET_META';
 
@@ -17,5 +17,3 @@ class MetaAction {
     }
 
 }
-
-export default MetaAction;

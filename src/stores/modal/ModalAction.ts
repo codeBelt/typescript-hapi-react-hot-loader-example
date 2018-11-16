@@ -1,6 +1,6 @@
 import IAction from '../IAction';
 
-class ModalAction {
+export default class ModalAction {
 
     public static readonly ADD_MODAL: string = 'ModalAction.ADD_MODAL';
     public static readonly REMOVE_MODAL: string = 'ModalAction.REMOVE_MODAL';
@@ -19,5 +19,3 @@ class ModalAction {
     }
 
 }
-
-export default ModalAction;

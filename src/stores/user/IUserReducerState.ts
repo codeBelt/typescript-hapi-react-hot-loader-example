@@ -1,4 +1,4 @@
-interface IUserReducerState {
+export default interface IUserReducerState {
     readonly name: {
         title: string;
         first: string;
@@ -17,5 +17,3 @@ interface IUserReducerState {
         thumbnail: string;
     };
 }
-
-export default IUserReducerState;

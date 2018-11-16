@@ -17,7 +17,7 @@ interface IProps {
 }
 interface IState {}
 
-class InputField extends React.Component<IProps, IState> {
+export default class InputField extends React.Component<IProps, IState> {
 
     public static defaultProps: Partial<IProps> = {
         type: 'text',
@@ -26,14 +26,14 @@ class InputField extends React.Component<IProps, IState> {
     public render(): JSX.Element {
         return (
             <div className={this._buildClassNames()}>
-                {this.props.label &&
+                {this.props.label && (
                     <label
                         className="inputField-label"
                         htmlFor={this.props.id}
                     >
                         {this.props.label}
                     </label>
-                }
+                )}
                 <input
                     className="inputField-input"
                     id={this.props.id}
@@ -59,5 +59,3 @@ class InputField extends React.Component<IProps, IState> {
     }
 
 }
-
-export default InputField;

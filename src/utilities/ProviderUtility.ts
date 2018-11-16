@@ -1,4 +1,4 @@
-import {createStore, applyMiddleware} from 'redux';
+import {applyMiddleware, createStore} from 'redux';
 import {routerMiddleware} from 'connected-react-router';
 import {History} from 'history';
 import rootReducer from '../stores/rootReducer';
@@ -8,7 +8,7 @@ import rootSaga from '../stores/rootSaga';
 import IStore from '../stores/IStore';
 import ISagaStore from '../stores/ISagaStore';
 
-class ProviderUtility {
+export default class ProviderUtility {
 
     public static createProviderStore(initialState: Partial<IStore> = {}, history: History = null, isServerSide: boolean = false): ISagaStore {
         const sagaMiddleware: SagaMiddleware<any> = createSagaMiddleware();
@@ -35,5 +35,3 @@ class ProviderUtility {
     }
 
 }
-
-export default ProviderUtility;

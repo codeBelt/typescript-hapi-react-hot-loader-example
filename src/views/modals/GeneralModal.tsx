@@ -19,20 +19,20 @@ class GeneralModal extends React.Component<IProps, IState> {
                     {this.props.modalData.message}
                 </div>
                 <div className="modal-footer modal-footer_block modal-footer_stack">
-                    {this.props.modalData.rejectLabel &&
+                    {this.props.modalData.rejectLabel && (
                         <button
                             onClick={this.props.onReject || this.props.closeModal}
                         >
                             {this.props.modalData.rejectLabel}
                         </button>
-                    }
-                    {this.props.modalData.acceptLabel &&
+                    )}
+                    {this.props.modalData.acceptLabel && (
                         <button
                             onClick={this.props.onAccept || this.props.closeModal}
                         >
                             {this.props.modalData.acceptLabel}
                         </button>
-                    }
+                    )}
                 </div>
             </section>
         );

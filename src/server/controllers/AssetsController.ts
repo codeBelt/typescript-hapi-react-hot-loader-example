@@ -3,7 +3,7 @@ import * as Hapi from 'hapi';
 import IController from './IController';
 import RequestMethodEnum from '../../constants/RequestMethodEnum';
 
-class AssetsController implements IController {
+export default class AssetsController implements IController {
 
     public mapRoutes(server: Hapi.Server): void {
         server.route({
@@ -16,5 +16,3 @@ class AssetsController implements IController {
     }
 
 }
-
-export default AssetsController;

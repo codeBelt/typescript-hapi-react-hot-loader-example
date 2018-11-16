@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Provider} from 'react-redux';
 import {ConnectedRouter} from 'connected-react-router';
 import {History} from 'history';
-import {Route, Switch, Redirect, StaticRouter} from 'react-router-dom';
+import {Redirect, Route, StaticRouter, Switch} from 'react-router-dom';
 import AboutAsync from './views/about/AboutAsync';
 import Home from './views/home/Home';
 import Contact from './views/contact/Contact';
