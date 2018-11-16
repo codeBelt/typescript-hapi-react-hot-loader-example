@@ -36,11 +36,6 @@ const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps 
 
 class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IState> {
 
-    private _onClickPushExampleHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickPushExample.bind(this);
-    private _onClickOpenModalHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickOpenModal.bind(this);
-    private _onClickFormModalHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickFormModal.bind(this);
-    private _onAcceptHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onAccept.bind(this);
-
     public componentWillMount(): void {
         this.props.setMeta({
             title: 'Home Page',
@@ -70,21 +65,21 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
                     </p>
                 </div>
                 <ol>
-                    <li><button onClick={this._onClickPushExampleHandler}>{'Example of Manual Routing'}</button></li>
-                    <li><button onClick={this._onClickOpenModalHandler}>{'Open Example Generic Modal'}</button></li>
-                    <li><button onClick={this._onClickFormModalHandler}>{'Open Example Form Modal'}</button></li>
+                    <li><button onClick={this._onClickPushExample}>{'Example of Manual Routing'}</button></li>
+                    <li><button onClick={this._onClickOpenModal}>{'Open Example Generic Modal'}</button></li>
+                    <li><button onClick={this._onClickFormModal}>{'Open Example Form Modal'}</button></li>
                 </ol>
             </div>
         );
     }
 
-    private _onClickPushExample(event: React.MouseEvent<HTMLButtonElement>): void {
+    private _onClickPushExample = (event: React.MouseEvent<HTMLButtonElement>): void => {
         event.preventDefault();
 
         this.props.historyPush('/About');
     }
 
-    private _onClickOpenModal(event: React.MouseEvent<HTMLButtonElement>): void {
+    private _onClickOpenModal = (event: React.MouseEvent<HTMLButtonElement>): void => {
         event.preventDefault();
 
         const genericModal: JSX.Element = (
@@ -99,14 +94,14 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
                     acceptLabel: 'Open Another Modal',
                     rejectLabel: 'Close',
                 }}
-                onAccept={this._onAcceptHandler}
+                onAccept={this._onAccept}
             />
         );
 
         this.props.addModal(genericModal);
     }
 
-    private _onAccept(event: React.MouseEvent<HTMLButtonElement>): void {
+    private _onAccept = (event: React.MouseEvent<HTMLButtonElement>): void => {
         event.preventDefault();
 
         const genericModal: JSX.Element = (
@@ -125,7 +120,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
         this.props.addModal(genericModal);
     }
 
-    private _onClickFormModal(event: React.MouseEvent<HTMLButtonElement>): void {
+    private _onClickFormModal = (event: React.MouseEvent<HTMLButtonElement>): void => {
         event.preventDefault();
 
         const formModal: JSX.Element = (
