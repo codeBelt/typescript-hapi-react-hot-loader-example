@@ -5,24 +5,26 @@ import UserAction from '../../stores/user/UserAction';
 import MetaAction from '../../stores/meta/MetaAction';
 import IStore from '../../stores/IStore';
 import {Dispatch} from 'redux';
-import IUserReducerState from '../../stores/user/IUserReducerState';
 import GenericModalAsync from '../modals/GenericModalAsync';
 import ModalAction from '../../stores/modal/ModalAction';
 import ExampleFormModalAsync from '../modals/ExampleFormModalAsync';
 import IAction from '../../stores/IAction';
 import {IProps as GenericModalProps} from '../modals/GenericModal';
+import IUser from '../../stores/user/models/IUser';
 
 interface IState {}
 interface IProps {}
 interface IStateToProps {
-    readonly user: IUserReducerState;
+    readonly user: IUser;
+    readonly isLoadingUser: boolean;
 }
 interface IDispatchToProps {
     dispatch: (action: IAction<any>) => void;
 }
 
 const mapStateToProps = (state: IStore): IStateToProps => ({
-    user: state.userReducer,
+    user: state.userReducer.currentUser,
+    isLoadingUser: state.userReducer.isLoadingUser,
 });
 const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
     dispatch,
@@ -38,17 +40,27 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
     }
 
     public render(): JSX.Element {
-        const user = this.props.user;
+        const {user, isLoadingUser} = this.props;
+        const showLoader: boolean = !user || isLoadingUser;
 
         return (
             <div>
                 <div className="jumbotron">
-                    <h1 className="display-3">{user.name.title} {user.name.first} {user.name.last}</h1>
-                    <img
-                        className="rounded mx-auto d-block"
-                        src={user.picture.large}
-                        alt=""
-                    />
+                    {!showLoader && (
+                        <>
+                            <h1 className="display-3">{user.name.title} {user.name.first} {user.name.last}</h1>
+                            <img
+                                className="rounded mx-auto d-block"
+                                src={user.picture.large}
+                                alt=""
+                            />
+                        </>
+                    )}
+                    {showLoader && (
+                        <div>
+                            Loading ...
+                        </div>
+                    )}
                     <p>
                         <button
                             className="btn btn-lg btn-success"

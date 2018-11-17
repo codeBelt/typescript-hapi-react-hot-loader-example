@@ -21,7 +21,7 @@ export default class ReactController implements IController {
 
     public mapRoutes(server: Hapi.Server): void {
         server.route({
-            method: RequestMethodEnum.GET,
+            method: RequestMethodEnum.Get,
             path: '/{route*}',
             handler: async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<Hapi.ResponseObject> => {
                 let initialState: Partial<IStore> = {renderReducer: this._getRenderReducer(request)};

@@ -11,7 +11,7 @@
     "buildServer": "tsc -project tsconfig.server.json",
     "watchServer": "tsc -watch -project tsconfig.server.json",
     "removeAndBuildServer": "npm run clean && npm run buildServer",
-    "prestart": "npm run prod:build",
+    "build": "npm run prod:build",
     "start": "cross-env NODE_ENV=production node ./dist/server.js",
     "---------- DEVELOPMENT -------------------------------------------------------------------------": "",
     "predev": "npm run removeAndBuildServer",
@@ -61,6 +61,7 @@
     "@babel/preset-env": "7.1.6",
     "@babel/preset-react": "7.0.0",
     "@babel/preset-typescript": "7.1.0",
+    "@types/axios": "0.14.0",
     "@types/classnames": "2.2.6",
     "@types/hapi": "17.6.3",
     "@types/inert": "5.1.2",
@@ -107,6 +108,7 @@
     "write-file-webpack-plugin": "4.4.1"
   },
   "dependencies": {
+    "axios": "0.18.0",
     "babel-polyfill": "6.26.0",
     "bootstrap": "4.1.3",
     "classnames": "2.2.6",
