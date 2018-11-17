@@ -145,7 +145,10 @@ class ContactForm extends React.Component<IProps> {
     private _renderRadio(field: any): JSX.Element {
         return (
             <div className="form-check">
-                <label htmlFor={field.input.name} className="form-check-label">
+                <label
+                    htmlFor={field.input.name}
+                    className="form-check-label"
+                >
                     <input
                         {...field.input}
                         checked={field.checked}

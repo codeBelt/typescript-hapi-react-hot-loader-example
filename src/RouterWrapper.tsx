@@ -20,7 +20,7 @@ interface IProviderWrapperProps {
     history?: History;
 }
 
-const RouterWrapper: React.StatelessComponent<IProviderWrapperProps> = (props: IProviderWrapperProps): JSX.Element  => {
+const RouterWrapper: React.StatelessComponent<IProviderWrapperProps> = (props: IProviderWrapperProps): JSX.Element => {
     const Router: any = props.isServerSide ? StaticRouter : ConnectedRouter;
     const history: History = props.isServerSide ? null : props.history;
 
