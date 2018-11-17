@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps 
 
 type PropsUnion = IStateToProps & IDispatchToProps & IProps;
 
-class GeneralModal extends React.Component<PropsUnion, IState> {
+class GenericModal extends React.Component<PropsUnion, IState> {
 
     public static defaultProps: Partial<PropsUnion> = {
         message: '',
@@ -81,4 +81,4 @@ class GeneralModal extends React.Component<PropsUnion, IState> {
 
 }
 
-export default connect<IStateToProps, IDispatchToProps, IProps>(mapStateToProps, mapDispatchToProps)(GeneralModal);
+export default connect<IStateToProps, IDispatchToProps, IProps>(mapStateToProps, mapDispatchToProps)(GenericModal);
