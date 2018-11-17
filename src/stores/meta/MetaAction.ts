@@ -1,11 +1,11 @@
-import IMetaReducerState from './IMetaReducerState';
 import IAction from '../IAction';
+import ITitleDescription from './models/ITitleDescription';
 
 export default class MetaAction {
 
     public static readonly SET_META: string = 'MetaAction.SET_META';
 
-    public static setMeta(meta: IMetaReducerState): IAction<IMetaReducerState> {
+    public static setMeta(meta: ITitleDescription): IAction<ITitleDescription> {
         if (global.document) {
             global.document.title = meta.title;
         }

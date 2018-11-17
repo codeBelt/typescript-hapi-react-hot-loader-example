@@ -2,7 +2,6 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import MetaAction from '../../stores/meta/MetaAction';
 import {Dispatch} from 'redux';
-import IMetaReducerState from '../../stores/meta/IMetaReducerState';
 import IStore from '../../stores/IStore';
 import ContactForm from './ContactForm';
 import IAction from '../../stores/IAction';
@@ -11,18 +10,18 @@ interface IState {}
 interface IProps {}
 interface IStateToProps {}
 interface IDispatchToProps {
-    setMeta: (meta: IMetaReducerState) => void;
+    dispatch: (action: IAction<any>) => void;
 }
 
 const mapStateToProps = (state: IStore): IStateToProps => ({});
 const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
-    setMeta: (meta: IMetaReducerState) => dispatch(MetaAction.setMeta(meta)),
+    dispatch,
 });
 
 class Contact extends React.Component<IStateToProps & IDispatchToProps & IProps, IState> {
 
     public componentWillMount(): void {
-        this.props.setMeta({title: 'Contact Page'});
+        this.props.dispatch(MetaAction.setMeta({title: 'Contact Page'}));
     }
 
     public render(): JSX.Element {

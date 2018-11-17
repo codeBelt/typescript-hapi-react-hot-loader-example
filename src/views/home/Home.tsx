@@ -5,7 +5,6 @@ import UserAction from '../../stores/user/UserAction';
 import MetaAction from '../../stores/meta/MetaAction';
 import IStore from '../../stores/IStore';
 import {Dispatch} from 'redux';
-import IMetaReducerState from '../../stores/meta/IMetaReducerState';
 import IUserReducerState from '../../stores/user/IUserReducerState';
 import GenericModalAsync from '../modals/GenericModalAsync';
 import ModalAction from '../../stores/modal/ModalAction';
@@ -19,29 +18,23 @@ interface IStateToProps {
     readonly user: IUserReducerState;
 }
 interface IDispatchToProps {
-    historyPush: (route: string) => void;
-    loadUser: () => void;
-    setMeta: (meta: IMetaReducerState) => void;
-    addModal: (modal: JSX.Element) => void;
+    dispatch: (action: IAction<any>) => void;
 }
 
 const mapStateToProps = (state: IStore): IStateToProps => ({
     user: state.userReducer,
 });
 const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
-    historyPush: (route: string) => dispatch(push(route)),
-    loadUser: () => dispatch(UserAction.loadUser()),
-    setMeta: (meta: IMetaReducerState) => dispatch(MetaAction.setMeta(meta)),
-    addModal: (modal: JSX.Element) => dispatch(ModalAction.addModal(modal)),
+    dispatch,
 });
 
 class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IState> {
 
     public componentWillMount(): void {
-        this.props.setMeta({
+        this.props.dispatch(MetaAction.setMeta({
             title: 'Home Page',
             description: 'This is the Home Page',
-        });
+        }));
     }
 
     public render(): JSX.Element {
@@ -59,7 +52,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
                     <p>
                         <button
                             className="btn btn-lg btn-success"
-                            onClick={this.props.loadUser}
+                            onClick={this._loadUser}
                         >
                             {'Load Another User'}
                         </button>
@@ -74,10 +67,16 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
         );
     }
 
+    private _loadUser = (event: React.MouseEvent<HTMLButtonElement>): void => {
+        event.preventDefault();
+
+        this.props.dispatch(UserAction.loadUser());
+    }
+
     private _onClickPushExample = (event: React.MouseEvent<HTMLButtonElement>): void => {
         event.preventDefault();
 
-        this.props.historyPush('/About');
+        this.props.dispatch(push('/About'));
     }
 
     private _onClickOpenModal = (event: React.MouseEvent<HTMLButtonElement>): void => {
@@ -97,7 +96,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
             />
         );
 
-        this.props.addModal(genericModal);
+        this.props.dispatch(ModalAction.addModal(genericModal));
     }
 
     private _onAccept = (modalProps: GenericModalProps): void => {
@@ -112,7 +111,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
             />
         );
 
-        this.props.addModal(genericModal);
+        this.props.dispatch(ModalAction.addModal(genericModal));
     }
 
     private _onClickFormModal = (event: React.MouseEvent<HTMLButtonElement>): void => {
@@ -120,7 +119,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
             <ExampleFormModalAsync isRequired={true} />
         );
 
-        this.props.addModal(formModal);
+        this.props.dispatch(ModalAction.addModal(formModal));
     }
 
 }
