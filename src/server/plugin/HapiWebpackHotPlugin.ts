@@ -38,7 +38,7 @@ export default class HapiWebpackHotPlugin {
         notifier.notify({
             title: pkg.name,
             message: `WebPack is done!\n${stats.compilation.errors.length} errors in ${time}s`,
-            timeout: 1,
+            timeout: 2,
         } as any);
     }
 

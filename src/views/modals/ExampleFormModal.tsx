@@ -32,8 +32,6 @@ class ExampleFormModal extends React.Component<PropsUnion, IState> {
     };
 
     private _formElement: HTMLFormElement = null;
-    private _onClickAcceptHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickAccept.bind(this);
-    private _onClickCloseHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickClose.bind(this);
 
     public render(): JSX.Element {
         return (
@@ -44,10 +42,10 @@ class ExampleFormModal extends React.Component<PropsUnion, IState> {
                         {this._buildFormJsx()}
                     </div>
                     <div className="modal-footer modal-footer_stack">
-                        <button onClick={this._onClickCloseHandler}>
+                        <button onClick={this._onClickClose}>
                             {'Cancel'}
                         </button>
-                        <button onClick={this._onClickAcceptHandler}>
+                        <button onClick={this._onClickAccept}>
                             {'Accept'}
                         </button>
                     </div>
@@ -135,7 +133,7 @@ class ExampleFormModal extends React.Component<PropsUnion, IState> {
         );
     }
 
-    private _onClickAccept(event: React.MouseEvent<HTMLButtonElement>): void {
+    private _onClickAccept = (event: React.MouseEvent<HTMLButtonElement>): void => {
         event.preventDefault();
 
         if (this._formElement.checkValidity()) {
@@ -149,7 +147,7 @@ class ExampleFormModal extends React.Component<PropsUnion, IState> {
         }
     }
 
-    private _onClickClose(event: React.MouseEvent<HTMLButtonElement> = null): void {
+    private _onClickClose = (event: React.MouseEvent<HTMLButtonElement> = null): void => {
         this.props.dispatch(ModalAction.closeModal());
     }
 

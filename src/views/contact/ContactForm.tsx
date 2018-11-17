@@ -7,13 +7,11 @@ interface IProps extends InjectedFormProps<IContactForm> {}
 
 class ContactForm extends React.Component<IProps> {
 
-    private _onSubmitHandler: (formData: IContactForm) => void = this._onSubmit.bind(this);
-
     public render(): JSX.Element {
         const {handleSubmit, reset} = this.props;
 
         return (
-            <form onSubmit={handleSubmit(this._onSubmitHandler)}>
+            <form onSubmit={handleSubmit(this._onSubmit)}>
                 <div className="form-group">
                     <CustomField
                         component={this._renderInputField}
@@ -102,7 +100,7 @@ class ContactForm extends React.Component<IProps> {
         );
     }
 
-    private _onSubmit(formData: IContactForm): void {
+    private _onSubmit = (formData: IContactForm): void => {
         console.info(formData);
 
         window.alert(JSON.stringify(formData, null, 2));

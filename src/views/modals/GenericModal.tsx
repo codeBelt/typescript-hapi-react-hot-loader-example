@@ -35,10 +35,6 @@ class GenericModal extends React.Component<PropsUnion, IState> {
         isRequired: false,
     };
 
-    private _onClickAcceptHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickAccept.bind(this);
-    private _onClickRejectHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickReject.bind(this);
-    private _onClickCloseHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickClose.bind(this);
-
     public render(): JSX.Element {
         return (
             <BaseModal isRequired={this.props.isRequired}>
@@ -49,14 +45,14 @@ class GenericModal extends React.Component<PropsUnion, IState> {
                     <div className="modal-footer">
                         {this.props.rejectLabel && (
                             <button
-                                onClick={this.props.onReject ? this._onClickRejectHandler : this._onClickCloseHandler}
+                                onClick={this.props.onReject ? this._onClickReject : this._onClickClose}
                             >
                                 {this.props.rejectLabel}
                             </button>
                         )}
                         {this.props.acceptLabel && (
                             <button
-                                onClick={this.props.onAccept ? this._onClickAcceptHandler : this._onClickCloseHandler}
+                                onClick={this.props.onAccept ? this._onClickAccept : this._onClickClose}
                             >
                                 {this.props.acceptLabel}
                             </button>
@@ -67,15 +63,15 @@ class GenericModal extends React.Component<PropsUnion, IState> {
         );
     }
 
-    private _onClickReject(): void {
+    private _onClickReject = (): void => {
         this.props.onReject(this.props);
     }
 
-    private _onClickAccept(): void {
+    private _onClickAccept = (): void => {
         this.props.onAccept(this.props);
     }
 
-    private _onClickClose(): void {
+    private _onClickClose = (): void => {
         this.props.dispatch(ModalAction.closeModal());
     }
 
