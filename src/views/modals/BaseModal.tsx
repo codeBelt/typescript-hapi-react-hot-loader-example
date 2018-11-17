@@ -5,6 +5,7 @@ import IAction from '../../stores/IAction';
 import IStore from '../../stores/IStore';
 import ModalAction from '../../stores/modal/ModalAction';
 import KeyboardKeyEnum from '../../constants/KeyboardKeyEnum';
+import * as classNames from 'classnames';
 
 interface IProps {
     isRequired?: boolean;
@@ -48,6 +49,7 @@ class BaseModal extends React.Component<PropsUnion, IState> {
                 aria-live="polite"
             >
                 <div
+                    className={this._buildModalOverlayClassNames()}
                     onClick={this._onClickOverlay}
                 />
                 {this.props.children}
@@ -67,6 +69,13 @@ class BaseModal extends React.Component<PropsUnion, IState> {
 
             this.props.dispatch(ModalAction.closeModal());
         }
+    }
+
+    private _buildModalOverlayClassNames = (): string => {
+        return classNames({
+            'modal-overlay': true,
+            'modal-overlay_required': this.props.isRequired,
+        });
     }
 
 }
