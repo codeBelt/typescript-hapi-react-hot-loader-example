@@ -1,34 +1,58 @@
 import * as React from 'react';
 import {form2js} from 'form2js';
-import withBaseModal, {TProps as BaseModelProps} from './withBaseModal';
 import InputField from '../components/InputField';
+import {connect} from 'react-redux';
+import IAction from '../../stores/IAction';
+import IStore from '../../stores/IStore';
+import {Dispatch} from 'redux';
+import ModalAction from '../../stores/modal/ModalAction';
+import BaseModal from './BaseModal';
 
-interface IProps extends BaseModelProps {
-    modalData: {};
+export interface IProps {
+    isRequired: boolean;
+    data: any;
 }
 interface IState {}
+interface IStateToProps {}
+interface IDispatchToProps {
+    dispatch: (action: IAction<any>) => void;
+}
 
-class ExampleFormModal extends React.Component<IProps, IState> {
+const mapStateToProps = (state: IStore) => ({});
+const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
+    dispatch,
+});
+
+type PropsUnion = IStateToProps & IDispatchToProps & IProps;
+
+class ExampleFormModal extends React.Component<PropsUnion, IState> {
+
+    public static defaultProps: Partial<PropsUnion> = {
+        isRequired: false,
+    };
 
     private _formElement: HTMLFormElement = null;
     private _onClickAcceptHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickAccept.bind(this);
+    private _onClickCloseHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickClose.bind(this);
 
     public render(): JSX.Element {
         return (
-            <section className="modal-content">
-                <h2 className="modal-header modal-header_left">{'Modal Form Title'}</h2>
-                <div className="modal-body">
-                    {this._buildFormJsx()}
-                </div>
-                <div className="modal-footer modal-footer_stack">
-                    <button onClick={this.props.closeModal}>
-                        {'Cancel'}
-                    </button>
-                    <button onClick={this._onClickAcceptHandler}>
-                        {'Accept'}
-                    </button>
-                </div>
-            </section>
+            <BaseModal isRequired={this.props.isRequired}>
+                <section className="modal-content">
+                    <h2 className="modal-header modal-header_left">{'Modal Form Title'}</h2>
+                    <div className="modal-body">
+                        {this._buildFormJsx()}
+                    </div>
+                    <div className="modal-footer modal-footer_stack">
+                        <button onClick={this._onClickCloseHandler}>
+                            {'Cancel'}
+                        </button>
+                        <button onClick={this._onClickAcceptHandler}>
+                            {'Accept'}
+                        </button>
+                    </div>
+                </section>
+            </BaseModal>
         );
     }
 
@@ -119,12 +143,16 @@ class ExampleFormModal extends React.Component<IProps, IState> {
 
             console.info(formData);
 
-            this.props.closeModal();
+            this._onClickClose();
         } else {
             this._formElement.classList.remove('u-validate');
         }
     }
 
+    private _onClickClose(event: React.MouseEvent<HTMLButtonElement> = null): void {
+        this.props.dispatch(ModalAction.closeModal());
+    }
+
 }
 
-export default withBaseModal(ExampleFormModal);
+export default connect<IStateToProps, IDispatchToProps, IProps>(mapStateToProps, mapDispatchToProps)(ExampleFormModal);

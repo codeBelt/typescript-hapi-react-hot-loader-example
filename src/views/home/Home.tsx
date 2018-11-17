@@ -7,10 +7,11 @@ import IStore from '../../stores/IStore';
 import {Dispatch} from 'redux';
 import IMetaReducerState from '../../stores/meta/IMetaReducerState';
 import IUserReducerState from '../../stores/user/IUserReducerState';
-import GeneralModalAsync from '../modals/GeneralModalAsync';
+import GenericModalAsync from '../modals/GenericModalAsync';
 import ModalAction from '../../stores/modal/ModalAction';
 import ExampleFormModalAsync from '../modals/ExampleFormModalAsync';
 import IAction from '../../stores/IAction';
+import {IProps as GenericModalProps} from '../modals/GenericModal';
 
 interface IState {}
 interface IProps {}
@@ -39,7 +40,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
     private _onClickPushExampleHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickPushExample.bind(this);
     private _onClickOpenModalHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickOpenModal.bind(this);
     private _onClickFormModalHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClickFormModal.bind(this);
-    private _onAcceptHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onAccept.bind(this);
+    private _onAcceptHandler: (modalProps: GenericModalProps) => void = this._onAccept.bind(this);
 
     public componentWillMount(): void {
         this.props.setMeta({
@@ -88,17 +89,15 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
         event.preventDefault();
 
         const genericModal: JSX.Element = (
-            <GeneralModalAsync
-                modalData={{
-                    message: (
-                        <div>
-                            <h3>{'Generic Modal'}</h3>
-                            <p>{'Example of a generic modal. Used for simple messages.'}</p>
-                        </div>
-                    ),
-                    acceptLabel: 'Open Another Modal',
-                    rejectLabel: 'Close',
-                }}
+            <GenericModalAsync
+                message={(
+                    <div>
+                        <h3>{'Generic Modal'}</h3>
+                        <p>{'Example of a generic modal. Used for simple messages.'}</p>
+                    </div>
+                )}
+                acceptLabel={'Open Another Modal'}
+                rejectLabel={'Close'}
                 onAccept={this._onAcceptHandler}
             />
         );
@@ -106,19 +105,15 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
         this.props.addModal(genericModal);
     }
 
-    private _onAccept(event: React.MouseEvent<HTMLButtonElement>): void {
-        event.preventDefault();
-
+    private _onAccept(modalProps: GenericModalProps): void {
         const genericModal: JSX.Element = (
-            <GeneralModalAsync
-                modalData={{
-                    message: (
-                        <div>
-                            <p>{'Handles opening multiple modals.'}</p>
-                        </div>
-                    ),
-                    acceptLabel: 'Ok',
-                }}
+            <GenericModalAsync
+                message={(
+                    <div>
+                        <p>{'Handles opening multiple modals.'}</p>
+                    </div>
+                )}
+                acceptLabel={'Ok'}
             />
         );
 
@@ -126,8 +121,6 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
     }
 
     private _onClickFormModal(event: React.MouseEvent<HTMLButtonElement>): void {
-        event.preventDefault();
-
         const formModal: JSX.Element = (
             <ExampleFormModalAsync isRequired={true} />
         );
