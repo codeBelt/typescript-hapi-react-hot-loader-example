@@ -11,6 +11,7 @@ import ExampleFormModalAsync from '../modals/ExampleFormModalAsync';
 import IAction from '../../stores/IAction';
 import {IProps as GenericModalProps} from '../modals/GenericModal';
 import IUser from '../../stores/user/models/IUser';
+import * as PropTypes from 'prop-types';
 
 interface IState {}
 interface IProps {}
@@ -30,7 +31,17 @@ const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps 
     dispatch,
 });
 
+type PropsUnion = IStateToProps | IProps;
+
 class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IState> {
+
+    public static defaultProps: Partial<PropsUnion> = {
+        // Need defaultProps so compiler doesn't complain about propTypes.
+    };
+
+    public static propTypes: Partial<PropsUnion> = {
+        isLoadingUser: PropTypes.bool.isRequired,
+    };
 
     public componentWillMount(): void {
         this.props.dispatch(MetaAction.setMeta({
