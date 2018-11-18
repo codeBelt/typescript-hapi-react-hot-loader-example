@@ -1,6 +1,6 @@
-import IUser from './models/IUser';
+import UserModel from './models/UserModel';
 
 export default interface IUserReducerState {
-    readonly currentUser: IUser;
+    readonly currentUser: UserModel;
     readonly isLoadingUser: boolean;
 }

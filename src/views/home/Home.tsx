@@ -10,13 +10,13 @@ import ModalAction from '../../stores/modal/ModalAction';
 import ExampleFormModalAsync from '../modals/ExampleFormModalAsync';
 import IAction from '../../stores/IAction';
 import {IProps as GenericModalProps} from '../modals/GenericModal';
-import IUser from '../../stores/user/models/IUser';
+import UserModel from '../../stores/user/models/UserModel';
 import * as PropTypes from 'prop-types';
 
 interface IState {}
 interface IProps {}
 interface IStateToProps {
-    readonly user: IUser;
+    readonly user: UserModel;
     readonly isLoadingUser: boolean;
 }
 interface IDispatchToProps {
@@ -41,6 +41,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
 
     public static propTypes: Partial<PropsUnion> = {
         isLoadingUser: PropTypes.bool.isRequired,
+        user: PropTypes.instanceOf(UserModel),
     };
 
     public componentWillMount(): void {
@@ -59,7 +60,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
                 <div className="jumbotron">
                     {!showLoader && (
                         <>
-                            <h1 className="display-3">{user.name.title} {user.name.first} {user.name.last}</h1>
+                            <h1 className="display-3">{user.name.title} {user.name.fullName}</h1>
                             <img
                                 className="rounded mx-auto d-block"
                                 src={user.picture.large}

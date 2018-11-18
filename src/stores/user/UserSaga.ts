@@ -2,14 +2,14 @@ import IAction from '../IAction';
 import UserService from './UserService';
 import UserAction from './UserAction';
 import {put} from 'redux-saga/effects';
-import IUser from './models/IUser';
+import UserModel from './models/UserModel';
 
 export default class UserSaga {
 
     public static* loadUser(action: IAction<void> = null) {
-        const responseModel: IUser = yield UserService.loadUser();
+        const userModel: UserModel = yield UserService.loadUser();
 
-        yield put(UserAction.loadUserSuccess(responseModel));
+        yield put(UserAction.loadUserSuccess(userModel));
     }
 
 }

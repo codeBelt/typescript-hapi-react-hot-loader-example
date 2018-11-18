@@ -13,6 +13,7 @@ import ProviderUtility from './utilities/ProviderUtility';
 import IStore from './stores/IStore';
 import ISagaStore from './stores/ISagaStore';
 import rootReducer from './stores/rootReducer';
+import UserModel from './stores/user/models/UserModel';
 
 (async (window: Window) => {
 
@@ -23,6 +24,10 @@ import rootReducer from './stores/rootReducer';
         renderReducer: {
             ...serverState.renderReducer,
             isServerSide: false,
+        },
+        userReducer: {
+            ...serverState.userReducer,
+            currentUser: new UserModel(serverState.userReducer.currentUser), // Fixes propTypes validation issue
         },
     };
 
