@@ -10,10 +10,16 @@ export default class UserService {
 
     public static async loadUser(): Promise<UserModel> {
         const endpoint: string = `${environment.endpointUrl.randomuser}?inc=picture,name,email,phone,id,dob`;
-        const response: AxiosResponse = await UserService._http.get(endpoint);
-        const randomUser = new RandomUserResponseModel(response.data);
 
-        return randomUser.results[0];
+        try {
+            const response: AxiosResponse = await UserService._http.get(endpoint);
+            const randomUser = new RandomUserResponseModel(response.data);
+
+            return randomUser.results[0];
+        } catch (error) {
+            console.error(`error`, error);
+            return null;
+        }
     }
 
 }

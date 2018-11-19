@@ -4,7 +4,7 @@ export default {
     endpointUrl: {
         ...environment.endpointUrl,
         // override any endpoints
-        randomuser: '/api/mock-data/randomuser/data.json',
+        randomuser: 'http://0.0.0.0:3000/api/mock-data/randomuser/data.json',
     },
     isProduction: false,
 };
