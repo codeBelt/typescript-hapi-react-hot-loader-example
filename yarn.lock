@@ -887,6 +887,11 @@
   dependencies:
     "@types/mime-db" "*"
 
+"@types/module-alias@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/module-alias/-/module-alias-2.0.0.tgz#882668f8b8cdbda44812c3b592c590909e18849e"
+  integrity sha512-e3sW4oEH0qS1QxSfX7PT6xIi5qk/YSMsrB9Lq8EtkhQBZB+bKyfkP+jpLJRySanvBhAQPSv2PEBe81M8Iy/7yg==
+
 "@types/node-notifier@0.0.28":
   version "0.0.28"
   resolved "https://registry.yarnpkg.com/@types/node-notifier/-/node-notifier-0.0.28.tgz#86ba3d3aa8d918352cc3191d88de328b20dc93c1"
@@ -5629,6 +5634,11 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0:
   integrity sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
   dependencies:
     minimist "0.0.8"
+
+module-alias@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/module-alias/-/module-alias-2.1.0.tgz#c36d4fd15f7f9d7112f62fa015385e7b65a286c1"
+  integrity sha1-w21P0V9/nXES9i+gFThee2WihsE=
 
 moment@^2.22.1:
   version "2.22.2"
