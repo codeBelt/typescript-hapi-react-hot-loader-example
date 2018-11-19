@@ -124,6 +124,11 @@ const webpackConfig = {
                 from: '**/*',
                 to: 'assets',
                 ignore: ['styles/**/*']
+            },
+            {
+                context: 'src/api',
+                from: '**/*',
+                to: 'api',
             }
         ]),
 
