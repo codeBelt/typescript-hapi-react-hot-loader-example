@@ -1473,7 +1473,7 @@ atob@^2.1.1:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-autoprefixer@^9.0.0:
+autoprefixer@9.3.1, autoprefixer@^9.0.0:
   version "9.3.1"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-9.3.1.tgz#71b622174de2b783d5fd99f9ad617b7a3c78443e"
   integrity sha512-DY9gOh8z3tnCbJ13JIWaeQsoYncTGdsrgCceBaQSIL4nvdrLxgbRSBPevg2XbX7u4QCSfLheSJEEIUUSlkbx6Q==
@@ -2426,6 +2426,16 @@ core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
+
+cosmiconfig@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-4.0.0.tgz#760391549580bbd2df1e562bc177b13c290972dc"
+  integrity sha512-6e5vDdrXZD+t5v0L8CrurPeybg4Fmf+FCSYxXKYVAqLUtyCSbuyqE059d0kDthTNRzKVjL7QMgNpEUlsoYH3iQ==
+  dependencies:
+    is-directory "^0.3.1"
+    js-yaml "^3.9.0"
+    parse-json "^4.0.0"
+    require-from-string "^2.0.1"
 
 cosmiconfig@^5.0.0:
   version "5.0.7"
@@ -4333,12 +4343,26 @@ immutable@^3.8.1:
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.2.tgz#c2439951455bb39913daf281376f1530e104adf3"
   integrity sha1-wkOZUUVbs5kT2vKBN28VMOEErfM=
 
+import-cwd@^2.0.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/import-cwd/-/import-cwd-2.1.0.tgz#aa6cf36e722761285cb371ec6519f53e2435b0a9"
+  integrity sha1-qmzzbnInYShcs3HsZRn1PiQ1sKk=
+  dependencies:
+    import-from "^2.1.0"
+
 import-fresh@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-2.0.0.tgz#d81355c15612d386c61f9ddd3922d4304822a546"
   integrity sha1-2BNVwVYS04bGH53dOSLUMEgipUY=
   dependencies:
     caller-path "^2.0.0"
+    resolve-from "^3.0.0"
+
+import-from@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/import-from/-/import-from-2.1.0.tgz#335db7f2a7affd53aaa471d4b8021dee36b7f3b1"
+  integrity sha1-M1238qev/VOqpHHUuAId7ja387E=
+  dependencies:
     resolve-from "^3.0.0"
 
 import-lazy@^2.1.0:
@@ -6554,6 +6578,24 @@ postcss-less@^3.0.1:
   dependencies:
     postcss "^7.0.3"
 
+postcss-load-config@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/postcss-load-config/-/postcss-load-config-2.0.0.tgz#f1312ddbf5912cd747177083c5ef7a19d62ee484"
+  integrity sha512-V5JBLzw406BB8UIfsAWSK2KSwIJ5yoEIVFb4gVkXci0QdKgA24jLmHZ/ghe/GgX0lJ0/D1uUK1ejhzEY94MChQ==
+  dependencies:
+    cosmiconfig "^4.0.0"
+    import-cwd "^2.0.0"
+
+postcss-loader@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/postcss-loader/-/postcss-loader-3.0.0.tgz#6b97943e47c72d845fa9e03f273773d4e8dd6c2d"
+  integrity sha512-cLWoDEY5OwHcAjDnkyRQzAXfs2jrKjXpO/HQFcc5b5u/r7aa471wdmChmwfnv7x2u840iat/wi0lQ5nbRgSkUA==
+  dependencies:
+    loader-utils "^1.1.0"
+    postcss "^7.0.0"
+    postcss-load-config "^2.0.0"
+    schema-utils "^1.0.0"
+
 postcss-markdown@^0.34.0:
   version "0.34.0"
   resolved "https://registry.yarnpkg.com/postcss-markdown/-/postcss-markdown-0.34.0.tgz#7a043e6eee3ab846a4cefe3ab43d141038e2da79"
@@ -7389,6 +7431,11 @@ require-directory@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"
   integrity sha1-jGStX9MNqxyXbiNE/+f3kqam30I=
+
+require-from-string@^2.0.1:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/require-from-string/-/require-from-string-2.0.2.tgz#89a7fdd938261267318eafe14f9c32e598c36909"
+  integrity sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==
 
 require-main-filename@^1.0.1:
   version "1.0.1"

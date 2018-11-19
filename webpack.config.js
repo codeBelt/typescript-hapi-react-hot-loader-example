@@ -8,6 +8,7 @@ const HtmlWebpackHardDiskPlugin = require('html-webpack-harddisk-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin').default;
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 const pkg = require('./package.json');
 
 const PORT = process.env.PORT || 3000;
@@ -71,6 +72,12 @@ const webpackConfig = {
                         },
                     },
                     {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: !isProduction
+                        },
+                    },
+                    {
                         loader: 'sass-loader',
                         options: {
                             sourceMap: !isProduction
@@ -101,6 +108,14 @@ const webpackConfig = {
             filename: isDevelopment
                 ? 'assets/styles/[name].css'
                 : 'assets/styles/[name].[hash].css',
+        }),
+
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                postcss: [
+                    autoprefixer()
+                ]
+            }
         }),
 
         isDevelopment
