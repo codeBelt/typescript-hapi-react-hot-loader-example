@@ -14,6 +14,7 @@ import AssetsController from './server/controllers/AssetsController';
 import HapiWebpackHotPlugin from './server/plugin/HapiWebpackHotPlugin';
 import ReactController from './server/controllers/ReactController';
 import ServerManager from './server/ServerManager';
+import ApiController from './server/controllers/ApiController';
 
 (async () => {
 
@@ -29,6 +30,7 @@ import ServerManager from './server/ServerManager';
 
     manager.registerController(new AssetsController());
     manager.registerController(new ReactController());
+    manager.registerController(new ApiController());
 
     await manager.startServer();
 

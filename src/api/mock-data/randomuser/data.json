@@ -1,0 +1,32 @@
+{
+  "results": [
+    {
+      "name": {
+        "title": "mrs",
+        "first": "clara",
+        "last": "nielsen"
+      },
+      "email": "clara.nielsen@example.com",
+      "dob": {
+        "date": "1992-07-13T03:28:06Z",
+        "age": 26
+      },
+      "phone": "76661752",
+      "id": {
+        "name": "CPR",
+        "value": "192779-0944"
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/21.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/21.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/21.jpg"
+      }
+    }
+  ],
+  "info": {
+    "seed": "8a33ce0664c198bc",
+    "results": 1,
+    "page": 1,
+    "version": "1.2"
+  }
+}
