@@ -1,3 +1,13 @@
+/*
+ * module-alias is used to resolve the environment path for node.
+ *
+ * // import environment from 'environment';
+ */
+import * as moduleAlias from 'module-alias';
+moduleAlias.addAliases({
+    environment: `${__dirname}/environments/${process.env.NODE_ENV}.js`,
+});
+
 import 'fetch-everywhere';
 import * as inert from 'inert';
 import AssetsController from './server/controllers/AssetsController';
