@@ -1,5 +1,5 @@
 /*
- * module-alias is used to resolve the environment path for node.
+ * module-alias is used to resolve the environment path for node files.
  *
  * // import environment from 'environment';
  */
