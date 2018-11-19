@@ -1,7 +1,7 @@
 import UserAction from './UserAction';
 import IUserReducerState from './IUserReducerState';
 import IAction from '../IAction';
-import IUser from './models/IUser';
+import UserModel from './models/UserModel';
 
 export default class UserReducer {
 
@@ -21,14 +21,14 @@ export default class UserReducer {
         }
     }
 
-    private static _loadUser(state: IUserReducerState, action: IAction<IUser>): IUserReducerState {
+    private static _loadUser(state: IUserReducerState, action: IAction<UserModel>): IUserReducerState {
         return {
             ...state,
             isLoadingUser: true,
         };
     }
 
-    private static _loadUserSuccess(state: IUserReducerState, action: IAction<IUser>): IUserReducerState {
+    private static _loadUserSuccess(state: IUserReducerState, action: IAction<UserModel>): IUserReducerState {
         return {
             ...state,
             currentUser: action.payload,

@@ -1,5 +1,5 @@
 import IAction from '../IAction';
-import IUser from './models/IUser';
+import UserModel from './models/UserModel';
 
 export default class UserAction {
 
@@ -12,7 +12,7 @@ export default class UserAction {
         };
     }
 
-    public static loadUserSuccess(model: IUser): IAction<IUser> {
+    public static loadUserSuccess(model: UserModel): IAction<UserModel> {
         return {
             payload: model,
             type: UserAction.LOAD_USER_SUCCESS,

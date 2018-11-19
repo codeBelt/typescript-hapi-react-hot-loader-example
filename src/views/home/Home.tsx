@@ -10,12 +10,13 @@ import ModalAction from '../../stores/modal/ModalAction';
 import ExampleFormModalAsync from '../modals/ExampleFormModalAsync';
 import IAction from '../../stores/IAction';
 import {IProps as GenericModalProps} from '../modals/GenericModal';
-import IUser from '../../stores/user/models/IUser';
+import UserModel from '../../stores/user/models/UserModel';
+import * as PropTypes from 'prop-types';
 
 interface IState {}
 interface IProps {}
 interface IStateToProps {
-    readonly user: IUser;
+    readonly user: UserModel;
     readonly isLoadingUser: boolean;
 }
 interface IDispatchToProps {
@@ -30,7 +31,18 @@ const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps 
     dispatch,
 });
 
+type PropsUnion = IStateToProps | IProps;
+
 class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IState> {
+
+    public static defaultProps: Partial<PropsUnion> = {
+        // Need defaultProps so compiler doesn't complain about propTypes.
+    };
+
+    public static propTypes: Partial<PropsUnion> = {
+        isLoadingUser: PropTypes.bool.isRequired,
+        user: PropTypes.instanceOf(UserModel),
+    };
 
     public componentWillMount(): void {
         this.props.dispatch(MetaAction.setMeta({
@@ -48,7 +60,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
                 <div className="jumbotron">
                     {!showLoader && (
                         <>
-                            <h1 className="display-3">{user.name.title} {user.name.first} {user.name.last}</h1>
+                            <h1 className="display-3">{user.name.title} {user.name.fullName}</h1>
                             <img
                                 className="rounded mx-auto d-block"
                                 src={user.picture.large}
