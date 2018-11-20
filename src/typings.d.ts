@@ -11,6 +11,9 @@ declare namespace NodeJS {
     }
 }
 
+declare module '*.css';
+declare module '*.scss';
+
 declare module 'form2js';
 declare module 'react-async-bootstrapper';
 declare module 'react-async-component';
