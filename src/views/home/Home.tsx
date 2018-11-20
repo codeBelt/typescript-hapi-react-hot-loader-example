@@ -2,7 +2,6 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {push} from 'connected-react-router';
 import UserAction from '../../stores/user/UserAction';
-import MetaAction from '../../stores/meta/MetaAction';
 import IStore from '../../stores/IStore';
 import {Dispatch} from 'redux';
 import GenericModalAsync from '../modals/GenericModalAsync';
@@ -12,6 +11,7 @@ import IAction from '../../stores/IAction';
 import {IProps as GenericModalProps} from '../modals/GenericModal';
 import UserModel from '../../stores/user/models/UserModel';
 import * as PropTypes from 'prop-types';
+import {Helmet} from 'react-helmet';
 
 interface IState {}
 interface IProps {}
@@ -44,19 +44,16 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
         user: PropTypes.instanceOf(UserModel),
     };
 
-    public componentWillMount(): void {
-        this.props.dispatch(MetaAction.setMeta({
-            title: 'Home Page',
-            description: 'This is the Home Page',
-        }));
-    }
-
     public render(): JSX.Element {
         const {user, isLoadingUser} = this.props;
         const showLoader: boolean = !user || isLoadingUser;
 
         return (
             <div>
+                <Helmet>
+                    <title>Home Page</title>
+                    <meta name="description" content="This is the Home Page" />
+                </Helmet>
                 <div className="jumbotron">
                     {!showLoader && (
                         <>

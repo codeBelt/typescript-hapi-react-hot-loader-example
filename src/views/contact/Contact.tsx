@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import MetaAction from '../../stores/meta/MetaAction';
 import {Dispatch} from 'redux';
 import IStore from '../../stores/IStore';
 import ContactForm from './ContactForm';
 import IAction from '../../stores/IAction';
+import {Helmet} from 'react-helmet';
 
 interface IState {}
 interface IProps {}
@@ -20,13 +20,13 @@ const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps 
 
 class Contact extends React.Component<IStateToProps & IDispatchToProps & IProps, IState> {
 
-    public componentWillMount(): void {
-        this.props.dispatch(MetaAction.setMeta({title: 'Contact Page'}));
-    }
-
     public render(): JSX.Element {
         return (
             <div>
+                <Helmet>
+                    <title>Contact Page</title>
+                    <meta name="description" content="This is the Contact Page" />
+                </Helmet>
                 <div className="jumbotron">
                     <h1 className="display-3">{'Contact'}</h1>
                     <p className="lead">{'This contact form uses redux-form to do client-side validation.'}</p>
