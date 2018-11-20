@@ -14,6 +14,7 @@ import IController from './IController';
 import IRenderReducerState from '../../stores/render/IRenderReducerState';
 import RequestMethodEnum from '../../constants/RequestMethodEnum';
 import {createMemoryHistory, History} from 'history';
+import {Helmet} from 'react-helmet';
 
 export default class ReactController implements IController {
 
@@ -60,6 +61,7 @@ export default class ReactController implements IController {
 
                 try {
                     const renderedHtml: string = renderToString(app);
+                    const helmet = Helmet.renderStatic();
                     const asyncComponentsState: IStore = asyncContext.getState();
                     const state: IStore = store.getState();
 
@@ -70,8 +72,8 @@ export default class ReactController implements IController {
 
                     const html: string = this._html
                         .slice(0)
-                        .replace('{title}', initialState.metaReducer.title)
-                        .replace('{description}', initialState.metaReducer.description)
+                        .replace('{title}', helmet.title.toString())
+                        .replace('{meta}', helmet.meta.toString())
                         .replace('{content}', renderedHtml)
                         .replace('{state}', JSON.stringify(initialState))
                         .replace('{asyncComponentsState}', serialize(asyncComponentsState));

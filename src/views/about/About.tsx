@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import MetaAction from '../../stores/meta/MetaAction';
 import IStore from '../../stores/IStore';
 import {Dispatch} from 'redux';
 import IAction from '../../stores/IAction';
+import {Helmet} from 'react-helmet';
 
 interface IState {}
 interface IProps {}
@@ -19,13 +19,13 @@ const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps 
 
 class About extends React.Component<IStateToProps & IDispatchToProps & IProps, IState> {
 
-    public componentWillMount(): void {
-        this.props.dispatch(MetaAction.setMeta({title: 'About Page'}));
-    }
-
     public render(): JSX.Element {
         return (
             <div>
+                <Helmet>
+                    <title>About Page</title>
+                    <meta name="description" content="This is the About Page" />
+                </Helmet>
                 <div className="jumbotron">
                     <h1 className="display-3">{'About'}</h1>
                     <p className="lead">{'This is a React Universal application that uses the libraries below.'}</p>
