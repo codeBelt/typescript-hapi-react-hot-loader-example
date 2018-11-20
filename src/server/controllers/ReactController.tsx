@@ -14,7 +14,7 @@ import IController from './IController';
 import IRenderReducerState from '../../stores/render/IRenderReducerState';
 import RequestMethodEnum from '../../constants/RequestMethodEnum';
 import {createMemoryHistory, History} from 'history';
-import {Helmet} from 'react-helmet';
+import {HelmetProvider} from 'react-helmet-async';
 
 export default class ReactController implements IController {
 
@@ -31,15 +31,19 @@ export default class ReactController implements IController {
                 const store: ISagaStore = ProviderUtility.createProviderStore(initialState, history, isServerSide);
                 const asyncContext: any = createAsyncContext();
                 const routeContext: any = {};
+                const helmetContext: any = {};
 
                 const app = (
                     <AsyncComponentProvider asyncContext={asyncContext}>
-                        <RouterWrapper
-                            store={store}
-                            location={request.path}
-                            context={routeContext}
-                            isServerSide={true}
-                        />
+                        <HelmetProvider context={helmetContext}>
+                            <RouterWrapper
+                                store={store}
+                                location={request.path}
+                                context={routeContext}
+                                helmetContext={helmetContext}
+                                isServerSide={true}
+                            />
+                        </HelmetProvider>
                     </AsyncComponentProvider>
                 );
 
@@ -61,7 +65,7 @@ export default class ReactController implements IController {
 
                 try {
                     const renderedHtml: string = renderToString(app);
-                    const helmet = Helmet.renderStatic();
+                    const {helmet} = helmetContext;
                     const asyncComponentsState: IStore = asyncContext.getState();
                     const state: IStore = store.getState();
 
@@ -69,6 +73,7 @@ export default class ReactController implements IController {
                         ...state,
                         renderReducer: this._getRenderReducer(request),
                     };
+                    console.log(`helmet`, helmet);
 
                     const html: string = this._html
                         .slice(0)

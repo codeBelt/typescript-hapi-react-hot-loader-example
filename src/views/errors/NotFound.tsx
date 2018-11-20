@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import IStore from '../../stores/IStore';
 import {Dispatch} from 'redux';
 import IAction from '../../stores/IAction';
-import {Helmet} from 'react-helmet';
+import Helmet from 'react-helmet-async';
 
 interface IState {}
 interface IProps {}

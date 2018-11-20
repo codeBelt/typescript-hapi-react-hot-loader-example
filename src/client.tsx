@@ -14,6 +14,7 @@ import IStore from './stores/IStore';
 import ISagaStore from './stores/ISagaStore';
 import rootReducer from './stores/rootReducer';
 import UserModel from './stores/user/models/UserModel';
+import {HelmetProvider} from 'react-helmet-async';
 
 (async (window: Window) => {
 
@@ -39,14 +40,16 @@ import UserModel from './stores/user/models/UserModel';
     delete window.__ASYNC_COMPONENTS_STATE__;
 
     const composeApp = (Component: any) => (
-        <ReactHotLoader key={Math.random()}>
-            <AsyncComponentProvider rehydrateState={codeSplittingState}>
-                <Component
-                    store={store}
-                    history={history}
-                />
-            </AsyncComponentProvider>
-        </ReactHotLoader>
+        <HelmetProvider>
+            <ReactHotLoader key={Math.random()}>
+                <AsyncComponentProvider rehydrateState={codeSplittingState}>
+                    <Component
+                        store={store}
+                        history={history}
+                    />
+                </AsyncComponentProvider>
+            </ReactHotLoader>
+        </HelmetProvider>
     );
 
     const renderApp = () => {
