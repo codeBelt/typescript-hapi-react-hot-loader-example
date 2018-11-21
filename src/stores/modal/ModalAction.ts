@@ -1,5 +1,7 @@
 import IAction from '../IAction';
 
+export type ModalActionUnion = void | JSX.Element;
+
 export default class ModalAction {
 
     public static readonly ADD_MODAL: string = 'ModalAction.ADD_MODAL';
