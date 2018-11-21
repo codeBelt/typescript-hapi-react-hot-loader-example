@@ -1,6 +1,8 @@
 import IAction from '../IAction';
 import ITitleDescription from './models/ITitleDescription';
 
+export type ActionUnion = ITitleDescription;
+
 export default class MetaAction {
 
     public static readonly SET_META: string = 'MetaAction.SET_META';
