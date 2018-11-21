@@ -1,6 +1,8 @@
 import IAction from '../IAction';
 import UserModel from './models/UserModel';
 
+export type ActionUnion = void | UserModel;
+
 export default class UserAction {
 
     public static readonly LOAD_USER: string = 'UserAction.LOAD_USER';

@@ -1,4 +1,4 @@
-import UserAction from './UserAction';
+import UserAction, {ActionUnion} from './UserAction';
 import IUserReducerState from './IUserReducerState';
 import IAction from '../IAction';
 import UserModel from './models/UserModel';
@@ -10,30 +10,22 @@ export default class UserReducer {
         isLoadingUser: false,
     };
 
-    public static reducer(state: IUserReducerState = UserReducer._initialState, action: IAction<any>): IUserReducerState {
+    public static reducer(state: IUserReducerState = UserReducer._initialState, action: IAction<ActionUnion>): IUserReducerState {
         switch (action.type) {
             case UserAction.LOAD_USER:
-                return UserReducer._loadUser(state, action);
+                return {
+                    ...state,
+                    isLoadingUser: true,
+                };
             case UserAction.LOAD_USER_SUCCESS:
-                return UserReducer._loadUserSuccess(state, action);
+                return {
+                    ...state,
+                    isLoadingUser: false,
+                    currentUser: action.payload as UserModel,
+                };
             default:
                 return state;
         }
-    }
-
-    private static _loadUser(state: IUserReducerState, action: IAction<UserModel>): IUserReducerState {
-        return {
-            ...state,
-            isLoadingUser: true,
-        };
-    }
-
-    private static _loadUserSuccess(state: IUserReducerState, action: IAction<UserModel>): IUserReducerState {
-        return {
-            ...state,
-            currentUser: action.payload,
-            isLoadingUser: false,
-        };
     }
 
 }
