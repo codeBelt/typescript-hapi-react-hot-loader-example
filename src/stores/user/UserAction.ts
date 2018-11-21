@@ -1,7 +1,7 @@
 import IAction from '../IAction';
 import UserModel from './models/UserModel';
 
-export type ActionUnion = void | UserModel;
+export type UserActionUnion = void | UserModel;
 
 export default class UserAction {
 

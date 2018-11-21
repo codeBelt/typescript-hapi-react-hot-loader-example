@@ -1,4 +1,4 @@
-import ModalAction, {ActionUnion} from './ModalAction';
+import ModalAction, {ModalActionUnion} from './ModalAction';
 import IModalReducerState from './IModalReducerState';
 import IAction from '../IAction';
 
@@ -9,7 +9,7 @@ export default class ModalReducer {
         modals: [],
     };
 
-    public static reducer(state: IModalReducerState = ModalReducer._initialState, action: IAction<ActionUnion>): IModalReducerState {
+    public static reducer(state: IModalReducerState = ModalReducer._initialState, action: IAction<ModalActionUnion>): IModalReducerState {
         switch (action.type) {
             case ModalAction.ADD_MODAL:
                 const modal: JSX.Element = action.payload as JSX.Element;

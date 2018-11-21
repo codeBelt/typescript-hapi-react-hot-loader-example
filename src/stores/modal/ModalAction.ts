@@ -1,6 +1,6 @@
 import IAction from '../IAction';
 
-export type ActionUnion = void | JSX.Element;
+export type ModalActionUnion = void | JSX.Element;
 
 export default class ModalAction {
 

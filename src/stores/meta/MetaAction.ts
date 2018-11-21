@@ -1,7 +1,7 @@
 import IAction from '../IAction';
 import ITitleDescription from './models/ITitleDescription';
 
-export type ActionUnion = ITitleDescription;
+export type MetaActionUnion = ITitleDescription;
 
 export default class MetaAction {
 
