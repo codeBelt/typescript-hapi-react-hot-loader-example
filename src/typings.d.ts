@@ -15,6 +15,7 @@ declare module 'form2js';
 declare module 'react-async-bootstrapper';
 declare module 'react-async-component';
 declare module 'hapi-webpack-plugin';
+declare module 'redux-freeze';
 
 declare module 'environment' {
     const value: {

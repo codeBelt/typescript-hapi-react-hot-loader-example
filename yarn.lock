@@ -2720,6 +2720,11 @@ deep-extend@^0.6.0:
   resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.6.0.tgz#c4fa7c95404a17a9c3e8ca7e1537312b736330ac"
   integrity sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA==
 
+deep-freeze-strict@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/deep-freeze-strict/-/deep-freeze-strict-1.1.1.tgz#77d0583ca24a69be4bbd9ac2fae415d55523e5b0"
+  integrity sha1-d9BYPKJKab5LvZrC+uQV1VUj5bA=
+
 default-gateway@^2.6.0:
   version "2.7.2"
   resolved "https://registry.yarnpkg.com/default-gateway/-/default-gateway-2.7.2.tgz#b7ef339e5e024b045467af403d50348db4642d0f"
@@ -7185,6 +7190,13 @@ redux-form@7.4.2:
     lodash-es "^4.17.10"
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
+
+redux-freeze@0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/redux-freeze/-/redux-freeze-0.1.7.tgz#f965c28f24126bd7c094533e351f3f941cd5775f"
+  integrity sha512-L+S9pvWW4u7BRqM2nmeOR/ZTU5k/3pWd+0Vq/oH4vliObKzMLBvENkzmicL/eb44gO3C/OX0fov6NHIlDGw8Zg==
+  dependencies:
+    deep-freeze-strict "1.1.1"
 
 redux-saga@0.16.2:
   version "0.16.2"
