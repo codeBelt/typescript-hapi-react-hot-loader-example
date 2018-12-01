@@ -10,6 +10,7 @@
 .npmrc
 .nvmrc
 .prettierignore
+.prettierrc
 .stylelintrc
 .vscode/*
 .yarnrc
@@ -17,3 +18,4 @@ dist
 LICENSE
 node_modules
 tools/templates/*
+webpack.config.js
