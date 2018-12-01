@@ -57,7 +57,7 @@ const webpackConfig = {
             {
                 test: /\.(ts|js)x?$/,
                 loader: 'babel-loader',
-                exclude: /node_modules/
+                exclude: /node_modules/,
             },
             {
                 test: /\.s?css$/,
@@ -68,20 +68,20 @@ const webpackConfig = {
                         loader: 'css-loader',
                         options: {
                             minimize: isProduction,
-                            sourceMap: !isProduction
+                            sourceMap: !isProduction,
                         },
                     },
                     {
                         loader: 'postcss-loader',
                         options: {
-                            sourceMap: !isProduction
+                            sourceMap: !isProduction,
                         },
                     },
                     {
                         loader: 'sass-loader',
                         options: {
-                            sourceMap: !isProduction
-                        }
+                            sourceMap: !isProduction,
+                        },
                     },
                 ],
             },
@@ -112,10 +112,8 @@ const webpackConfig = {
 
         new webpack.LoaderOptionsPlugin({
             options: {
-                postcss: [
-                    autoprefixer()
-                ]
-            }
+                postcss: [autoprefixer()],
+            },
         }),
 
         isDevelopment
@@ -138,8 +136,8 @@ const webpackConfig = {
                 context: 'src/assets',
                 from: '**/*',
                 to: 'assets',
-                ignore: ['styles/**/*']
-            }
+                ignore: ['styles/**/*'],
+            },
         ]),
 
         new RobotstxtPlugin({
@@ -165,8 +163,8 @@ const webpackConfig = {
                     chunks: 'all',
                     enforce: true,
                 },
-            }
-        }
+            },
+        },
     },
 
     devtool: isProduction
