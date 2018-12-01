@@ -1,7 +1,7 @@
 # `typescript-hapi-react-hot-loader-example`
 TypeScript example universal/isomorphic application demonstrating react-hot-loader-4 with webpack-4, react and friends, async code splitting, and hapi.
 
->  [Check out the JavaScript version here](https://github.com/codeBelt/hapi-react-hot-loader-example)
+>  [Check out the JavaScript version here](https://github.com/codeBelt/hapi-react-hot-loader-example#no-longer-maintained-i-will-continue-to-maintain-the-typescript-version)
 
 > Found this usefull? give it a :star:
 
