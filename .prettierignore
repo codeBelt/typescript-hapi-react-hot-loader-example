@@ -1,6 +1,7 @@
 *.ico
 *.lock
 *.log
+.babelrc
 .DS_Store
 .editorconfig
 .git
