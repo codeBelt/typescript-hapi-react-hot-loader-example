@@ -22,7 +22,7 @@ export default class ProviderUtility {
             sagaMiddleware,
         ].filter(Boolean);
 
-        const store: ISagaStore = createStore(
+        const store: any = createStore(
             rootReducer(history),
             initialState,
             composeWithDevTools(
