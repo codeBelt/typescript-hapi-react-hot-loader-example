@@ -5,6 +5,12 @@
   "engines": {
     "node": ">=10.11.0"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged",
+      "post-commit": "git update-index -g"
+    }
+  },
   "scripts": {
     "---------- HELPERS -----------------------------------------------------------------------------": "",
     "clean": "rimraf dist",
@@ -102,10 +108,13 @@
     "fork-ts-checker-webpack-plugin": "0.4.15",
     "html-webpack-harddisk-plugin": "1.0.1",
     "html-webpack-plugin": "3.2.0",
+    "husky": "1.2.0",
     "mini-css-extract-plugin": "0.4.4",
     "node-sass": "4.10.0",
     "nodemon": "1.18.6",
     "postcss-loader": "3.0.0",
+    "prettier": "1.15.3",
+    "pretty-quick": "1.8.0",
     "redux-freeze": "0.1.7",
     "rimraf": "2.6.2",
     "robotstxt-webpack-plugin": "4.0.1",
@@ -116,6 +125,7 @@
     "stylelint-order": "1.0.0",
     "tslib": "1.9.3",
     "tslint": "5.11.0",
+    "tslint-config-prettier": "1.17.0",
     "tslint-react": "3.6.0",
     "typescript": "3.1.6",
     "webpack-cli": "3.1.2",
