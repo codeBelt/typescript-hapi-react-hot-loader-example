@@ -9,6 +9,7 @@ const WriteFilePlugin = require('write-file-webpack-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin').default;
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const pkg = require('./package.json');
 
 const PORT = process.env.PORT || 3000;
@@ -151,6 +152,8 @@ const webpackConfig = {
         new ForkTsCheckerWebpackPlugin(),
 
         new WriteFilePlugin(), // Forces webpack-dev-server to write files.
+
+        // new BundleAnalyzerPlugin(),
     ].filter(Boolean),
 
     optimization: {
