@@ -14,7 +14,6 @@ import IController from './IController';
 import IRenderReducerState from '../../stores/render/IRenderReducerState';
 import RequestMethodEnum from '../../constants/RequestMethodEnum';
 import {createMemoryHistory, History} from 'history';
-import {HelmetProvider} from 'react-helmet-async';
 
 export default class ReactController implements IController {
 
@@ -35,15 +34,13 @@ export default class ReactController implements IController {
 
                 const app = (
                     <AsyncComponentProvider asyncContext={asyncContext}>
-                        <HelmetProvider context={helmetContext}>
-                            <RouterWrapper
-                                store={store}
-                                location={request.path}
-                                context={routeContext}
-                                helmetContext={helmetContext}
-                                isServerSide={true}
-                            />
-                        </HelmetProvider>
+                        <RouterWrapper
+                            store={store}
+                            location={request.path}
+                            context={routeContext}
+                            helmetContext={helmetContext}
+                            isServerSide={true}
+                        />
                     </AsyncComponentProvider>
                 );
 

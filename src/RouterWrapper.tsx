@@ -11,6 +11,7 @@ import Header from './views/landmarks/Header';
 import NotFoundAsync from './views/errors/NotFoundAsync';
 import ISagaStore from './stores/ISagaStore';
 import ModalHub from './views/modals/ModalHub';
+import {HelmetProvider} from 'react-helmet-async';
 
 interface IProviderWrapperProps {
     store: ISagaStore;
@@ -18,6 +19,7 @@ interface IProviderWrapperProps {
     location?: string;
     context?: any;
     history?: History;
+    helmetContext?: any;
 }
 
 const RouterWrapper: React.StatelessComponent<IProviderWrapperProps> = (props: IProviderWrapperProps): JSX.Element => {
@@ -26,37 +28,39 @@ const RouterWrapper: React.StatelessComponent<IProviderWrapperProps> = (props: I
 
     return (
         <Provider store={props.store}>
-            <Router
-                context={props.context}
-                location={props.location}
-                history={history}
-            >
-                <div className="container">
-                    <Header />
-                    <Switch>
-                        <Route
-                            exact={true}
-                            path="/"
-                            component={Home}
-                        />
-                        <Route
-                            path="/about"
-                            component={AboutAsync}
-                        />
-                        <Route
-                            path="/contact"
-                            component={Contact}
-                        />
-                        <Redirect
-                            from="/old-path"
-                            to="/"
-                        />
-                        <Route component={NotFoundAsync} />
-                    </Switch>
-                    <FooterAsync />
-                    <ModalHub />
-                </div>
-            </Router>
+            <HelmetProvider context={props.helmetContext}>
+                <Router
+                    context={props.context}
+                    location={props.location}
+                    history={history}
+                >
+                    <div className="container">
+                        <Header />
+                        <Switch>
+                            <Route
+                                exact={true}
+                                path="/"
+                                component={Home}
+                            />
+                            <Route
+                                path="/about"
+                                component={AboutAsync}
+                            />
+                            <Route
+                                path="/contact"
+                                component={Contact}
+                            />
+                            <Redirect
+                                from="/old-path"
+                                to="/"
+                            />
+                            <Route component={NotFoundAsync} />
+                        </Switch>
+                        <FooterAsync />
+                        <ModalHub />
+                    </div>
+                </Router>
+            </HelmetProvider>
         </Provider>
     );
 };

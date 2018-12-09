@@ -35,21 +35,21 @@ import {HelmetProvider} from 'react-helmet-async';
     const history: History = createBrowserHistory();
     const store: ISagaStore = ProviderUtility.createProviderStore(initialState, history);
     const rootEl: HTMLElement = document.getElementById('root');
+    const helmetContext: any = {};
 
     delete window.__STATE__;
     delete window.__ASYNC_COMPONENTS_STATE__;
 
     const composeApp = (Component: any) => (
-        <HelmetProvider>
-            <ReactHotLoader key={Math.random()}>
-                <AsyncComponentProvider rehydrateState={codeSplittingState}>
-                    <Component
-                        store={store}
-                        history={history}
-                    />
-                </AsyncComponentProvider>
-            </ReactHotLoader>
-        </HelmetProvider>
+        <ReactHotLoader key={Math.random()}>
+            <AsyncComponentProvider rehydrateState={codeSplittingState}>
+                <Component
+                    store={store}
+                    history={history}
+                    helmetContext={helmetContext}
+                />
+            </AsyncComponentProvider>
+        </ReactHotLoader>
     );
 
     const renderApp = () => {
