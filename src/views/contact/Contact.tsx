@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import MetaAction from '../../stores/meta/MetaAction';
 import {Dispatch} from 'redux';
 import IStore from '../../stores/IStore';
-import ContactForm from './ContactForm';
 import IAction from '../../stores/IAction';
 
 interface IState {}
@@ -29,9 +28,9 @@ class Contact extends React.Component<IStateToProps & IDispatchToProps & IProps,
             <div>
                 <div className="jumbotron">
                     <h1 className="display-3">{'Contact'}</h1>
-                    <p className="lead">{'This contact form uses redux-form to do client-side validation.'}</p>
+                    <p className="lead">{'This contact form uses Formik to do client-side validation.'}</p>
                 </div>
-                <ContactForm />
+                <div>TODO: add Formik</div>
             </div>
         );
     }
