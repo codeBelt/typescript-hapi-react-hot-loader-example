@@ -1,3 +1,5 @@
+import styles from './Home.module.scss';
+
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {push} from 'connected-react-router';
@@ -56,7 +58,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
         const showLoader: boolean = !user || isLoadingUser;
 
         return (
-            <div>
+            <div className={styles.background}>
                 <div className="jumbotron">
                     {!showLoader && (
                         <>

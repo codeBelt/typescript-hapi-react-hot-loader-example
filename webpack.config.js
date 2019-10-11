@@ -61,7 +61,7 @@ const webpackConfig = {
                 exclude: /node_modules/,
             },
             {
-                test: /\.s?css$/,
+                test: /^(?!.*?\.module).*\.s?[ac]ss$/,
                 use: [
                     'css-hot-loader',
                     MiniCssExtractPlugin.loader,
@@ -82,6 +82,34 @@ const webpackConfig = {
                         options: {
                             sourceMap: !isProduction,
                         },
+                    },
+                ],
+            },
+            {
+                test: /\.module\.s?[ac]ss$/,
+                use: [
+                    // 'css-hot-loader',
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            localIdentName: '[name]__[local]--[hash:base64:5]',
+                            minimize: isProduction,
+                            sourceMap: !isProduction
+                        },
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: !isProduction
+                        },
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: !isProduction
+                        }
                     },
                 ],
             },
