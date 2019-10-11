@@ -14,6 +14,7 @@ import IStore from './stores/IStore';
 import ISagaStore from './stores/ISagaStore';
 import rootReducer from './stores/rootReducer';
 import UserModel from './stores/user/models/UserModel';
+import {HelmetProvider} from 'react-helmet-async';
 
 (async (window: Window) => {
 
@@ -34,6 +35,7 @@ import UserModel from './stores/user/models/UserModel';
     const history: History = createBrowserHistory();
     const store: ISagaStore = ProviderUtility.createProviderStore(initialState, history);
     const rootEl: HTMLElement = document.getElementById('root');
+    const helmetContext: any = {};
 
     delete window.__STATE__;
     delete window.__ASYNC_COMPONENTS_STATE__;
@@ -44,6 +46,7 @@ import UserModel from './stores/user/models/UserModel';
                 <Component
                     store={store}
                     history={history}
+                    helmetContext={helmetContext}
                 />
             </AsyncComponentProvider>
         </ReactHotLoader>

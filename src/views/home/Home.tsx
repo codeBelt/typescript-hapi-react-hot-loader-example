@@ -11,7 +11,7 @@ import IAction from '../../stores/IAction';
 import {IProps as GenericModalProps} from '../modals/GenericModal';
 import UserModel from '../../stores/user/models/UserModel';
 import * as PropTypes from 'prop-types';
-import {Helmet} from 'react-helmet';
+import Helmet from 'react-helmet-async';
 
 interface IState {}
 interface IProps {}
