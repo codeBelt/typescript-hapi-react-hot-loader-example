@@ -45,7 +45,7 @@
     "history": "4.7.2",
     "inert": "5.1.2",
     "module-alias": "2.1.0",
-    "node-notifier": "5.3.0",
+    "node-notifier": "8.0.1",
     "prop-types": "15.6.2",
     "react": "16.7.0",
     "react-async-bootstrapper": "2.1.1",
